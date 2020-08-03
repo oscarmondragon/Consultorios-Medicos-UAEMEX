@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Control de Consultorios UAEMEX</title>
+    
+    <link rel="stylesheet" href="http://localhost/consultorios/Resource/materialize/css/materialize.min.css">
+    <link rel="stylesheet" href="http://localhost/consultorios/Resource/css/style.css">
+ 
+
+
+
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper cyan darken-2">
+            <a href="" class="brand-logo center">
+                <i class="material-icons"> </i>
+                Sistema de Control de Consultorios UAEMex
+            </a>
+            <div id="menuNavbar1">
+                <ul class="right hide-on-med-and-down">
+                   
+                    <li>
+                        <a href="/consultorios/Usuarios/destroySession" onclick="sessionClose();">
+                           Salir
+                        </a>
+                    </li>
+                </ul>
+                <a href="#"  data-target="slide-out" class="btn-floating btn-large
+                waves-effect waves-light cyan darken-2 sidenav-trigger"></a>
+            </div>
+        </div>
+    </nav>
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view cyan darken-2">
+               
+                    
+                    <p class="white-text" id="name1"></p>
+               
+                    <p class="white-text" id="role1"></p>
+             
+            </div>
+        </li>
+        <li>
+            <a href="#" onclick="">Inicio</a>
+        </li>
+        <li>
+            <a href="#" onclick="">Pacientes</a>
+        </li>
+        <li>
+            <a href="#" onclick="">Consultas</a>
+        </li>
+        <li>
+            <a href="/consultorios/Usuarios/destroySession" onclick="sessionClose();">Salir</a>
+        </li>
+    </ul>
+    <div  id="menuNavbar2">
+        <div id="main">
+            <div class="wrapper">
+                <aside id="left-sidebar-nav">
+                    <ul id="slide-out" class="side-nav fixed leftside-navigation">
+                        <li class="user-details cyan darken-2">
+                            <div class="row">
+                            <div class="col col s8 m8 l8">
+                                <p class="user-roal white-text" id="name2"></p>
+                                <p class="user-roal white-text" id="role2"></p>
+                            </div>
+                        </div>
+                        </li>
+                        <div class="collection">
+                            <a href="#" onclick="" id="enlace1" class="collection-item">Inicio</a>
+                            <a href="#" onclick="" id="enlace2" class="collection-item">Pacientes</a>
+                            <a href="#" onclick="" id="enlace2" class="collection-item">Consultas</a>
+                          
+
+                        </div>
+                    </ul>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+    

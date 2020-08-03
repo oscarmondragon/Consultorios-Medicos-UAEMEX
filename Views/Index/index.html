@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="ro">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-content">
+                    <center>
+                        <h4>Iniciar sesión</h4>
+                    </center>
+                    <form method="post" id="login" action="">
+                        <div class="input-field col s12">
+                            <input id="username" type="text" name="username" class="validate" required>
+                            <label for="username" class="error" >Nombre de usuario</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input type="password" name="password" id="password" class="validate"
+                            minlength="6" maxlength="20" required>
+                            <label for="password" class="error">Contraseña</label>
+                        </div>
+                    </form>
+                    <center>
+                        <button onclick="loginUser();" id="btnLogn" class="waves-effect waves-light btn">
+                        Iniciar sesión</button>
+                    </center>
+                    <br>
+                    <label id="indexMessage" class="error"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

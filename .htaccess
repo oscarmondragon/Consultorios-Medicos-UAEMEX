@@ -1,0 +1,13 @@
+#Activar RewriteEngine
+RewriteEngine on
+
+#Esta condicion es verdadera cuando la ruta al REQUEST_FILE no hace referencia a una que existe en el
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#Esta condicion es verdadera cuando la ruta al REQUEST_FILE no hace referencia a una existente en el servidor.
+RewriteCond %{REQUEST_FILENAME} !-f 
+
+#La parte ^ (.*) $ le dice al modulo de reescritura que queremos pasar la ruta completa solicitada como un parametro. La parte QSA le dice al modulo que anexe cualquier cadena de consulta a la solicitud
+
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
