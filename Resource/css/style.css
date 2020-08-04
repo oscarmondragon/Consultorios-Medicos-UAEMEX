@@ -19,13 +19,20 @@
     .side-nav{
         display: none;
     }
+    .container2 {
+        margin: 10px 10px 10px;
+    }
 }
 @media(min-width:992px){
     .container {
-        max-width: 40%;
+        max-width: 30%;
     }
     .side-nav{
-        max-width: 20%;
+        max-width: 13%;
         display: block;
+    }
+    .container2 {
+        width: 76%;
+        margin: -270px 290px 0px;
     }
 }
