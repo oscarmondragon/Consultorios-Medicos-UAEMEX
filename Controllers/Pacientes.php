@@ -3,6 +3,7 @@ class Pacientes extends Controllers {
 
     public function __construct() {
         parent::__construct();
+       
     }
     public function pacientes(){
         if(Session::getSession("User") != null){
@@ -12,6 +13,18 @@ class Pacientes extends Controllers {
         }
         
     }
+     function getEstadoCivil(){
+         $data = $this->model->getEstadoCivil();
+         if(is_array($data)){
+            echo json_encode($data);
+         } else {
+             echo $data;
+         }
+     }
+
+     function registrarPaciente(){
+         echo $_POST["userId"];
+     }
 }
 
 ?>

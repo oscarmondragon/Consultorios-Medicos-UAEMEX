@@ -23,7 +23,7 @@ class QueryManager {
 
             $sth = $this->pdo->prepare($query);
             $sth->execute($param);    
-            $response = $sth->fetch(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   
+            $response = $sth->fetchAll(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   
             return array("results" => $response);
         } catch (PDOException $e) {
             return $e->getMessage();

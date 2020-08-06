@@ -3,7 +3,10 @@
 
   <div class="row">
     <div class="input-field col s0">
-      <a class="waves-effect waves-ligth btn modal-trigger" href="#modal1"
+      <a
+        onclick="restablecerPaciente();"
+        class="waves-effect waves-ligth btn modal-trigger"
+        href="#modal1"
         >Registrar</a
       >
     </div>
@@ -20,12 +23,12 @@
   </div>
   <!--Modal Structure-->
   <div id="modal1" class="modal modal-fixed-footer">
-    <form class="col s12" id="validate" enctype="multipart/form-data">
-    <div class="modal-content">
-      <center>
-        <h5>Registrar paciente</h5>
-      </center>
-      <div class="row">
+    <form class="col s12" id="validate"  method="POST">
+      <div class="modal-content">
+        <center>
+          <h5>Registrar paciente</h5>
+        </center>
+        <div class="row">
           <div class="row">
             <div class="input-field col s6">
               <input
@@ -84,7 +87,7 @@
               <label class="error" for="telefonoCel">Telefono</label>
             </div>
             <div class="input-field col s6">
-              <select id='sexo'>
+              <select id="sexo" required>
                 <option value="" disabled selected>Elige una opción</option>
                 <option value="1">Mujer</option>
                 <option value="2">Hombre</option>
@@ -92,34 +95,28 @@
               </select>
               <label>Sexo</label>
             </div>
-         
           </div>
           <div class="row">
             <div class="input-field col s6">
-                <select id='estadoCiv'>
-                  <option value="" disabled selected>Elige una opción</option>
-                  <option value="1">Soltero</option>
-                  <option value="2">Casado</option>
-                  <option value="3">Divorciado</option>
-                </select>
-                <label>Estado civil</label>
-              </div>
-            
+              <select id="estadoCiv" required> </select>
+              <label>Estado civil</label>
+            </div>
+
             <div class="input-field col s6">
-                <input
-                  placeholder="Departamento"
-                  id="departamento"
-                  name="departamento"
-                  type="text"
-                  class="validate"
-                  required
-                />
-                <label class="error" for="departamento">Departamento</label>
-              </div>
+              <input
+                placeholder="Departamento"
+                id="departamento"
+                name="departamento"
+                type="text"
+                class="validate"
+                required
+              />
+              <label class="error" for="departamento">Departamento</label>
+            </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <select id='centroCosto'>
+              <select id="centroCosto" required>
                 <option value="" disabled selected>Elige una opción</option>
                 <option value="1">Facultad de ingeniería</option>
                 <option value="2">Faculotad de derecho</option>
@@ -128,7 +125,7 @@
               <label>Centro de costos</label>
             </div>
             <div class="input-field col s6">
-              <select  id='tipoUser'>
+              <select id="tipoPaciente" required>
                 <option value="" disabled selected>Elige una opción</option>
                 <option value="1">Tipo 1</option>
                 <option value="2">Tipo 2 </option>
@@ -137,14 +134,17 @@
               <label>Tipo de paciente</label>
             </div>
           </div>
-          
+        </div>
       </div>
-    </div>
-    <div class="modal-footer">
-        <button onclick="registrarPaciente()" id="btnLogin" class="waves-effect waves-light btn">
-            Registrar
+      <div class="modal-footer">
+        <label id="registrarMessage" class="text-left"></label>
+        <button
+          id="btnLogin"
+          class="waves-effect waves-light btn"
+        >
+          Registrar
         </button>
-    </div>
-</form>
+      </div>
+    </form>
   </div>
 </div>
