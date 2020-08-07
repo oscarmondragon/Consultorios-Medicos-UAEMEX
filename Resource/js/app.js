@@ -30,6 +30,10 @@ $(function(){
     
         let sexos = document.getElementById("sexo");
         let sexo = sexos.options[sexos.selectedIndex].text;
+        let otro_sexo = null;
+        if(sexo==="Otro"){
+            otro_sexo = document.getElementById("otro_sexo").value;
+        }
     
         let estadosCiv = document.getElementById("estadoCiv");
         let estadoCiv = estadosCiv.options[estadosCiv.selectedIndex].text;
@@ -55,13 +59,12 @@ $(function(){
         && sexo !="" && estadoCiv != "Elige una opción" && departamento !="" && centroCost != "Elige una opción"
         && tipoPaciente !="Elige una opción"){
         pacientes.registrarPaciente(nombre,paterno,materno,fechaNac,
-            telefonoCel,sexo,estadoCiv,departamento,centroCost,tipoPaciente,fecha_alta_pac,userId);
+            telefonoCel,sexo, otro_sexo,estadoCiv,departamento,centroCost,tipoPaciente,fecha_alta_pac,userId);
             
             return false; //para evitar reenvio de formulario
         }
     });
 });
-
 
 
 
@@ -74,10 +77,12 @@ $().ready(()=>{
     let URLactual = window.location.pathname;
     usuarios.userData(URLactual);
     principal.linkPrincipal(URLactual);
-    $('select').formSelect();
-    $("#validate").validate();
-    $(".sidenav").sidenav();
-    $(".modal").modal();
+   
+    // $("#validate").validate();
+    // $(".sidenav").sidenav();
+    // $(".modal").modal();
+    // $('select').formSelect();
+    M.AutoInit();
 
  
 });
