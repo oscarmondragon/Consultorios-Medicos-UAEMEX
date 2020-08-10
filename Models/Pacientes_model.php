@@ -7,6 +7,12 @@ class Pacientes_model extends Conexion{
     function getEstadoCivil(){
         return $response = $this->db->select1("*","catalogo_estado_civil", null, null);
     }
+    function getCentroCostos(){
+        return $response = $this->db->select1("*","centro_costos", null, null);
+    }
+    function getTipoPaciente(){
+        return $response = $this->db->select1("*","tipo_paciente", null, null);
+    }
 
 
     function registroPaciente($paciente
@@ -56,6 +62,22 @@ class Pacientes_model extends Conexion{
         }  else {
             return $response;
         }
+    }
+
+    function getPacientes($filter){
+        $where = " WHERE id_paciente LIKE :id_paciente OR nombre_pac LIKE :nombre_pac
+        OR apPaterno_pac LIKE :apPaterno_pac OR apMaterno_pac LIKE :apMaterno_pac";
+        $array = array(
+            'id_paciente' =>'%'.$filter.'%',
+            'nombre_pac' => '%'.$filter.'%',
+            'apPaterno_pac' => '%'.$filter.'%',
+            'apMaterno_pac' => '%'.$filter.'%'
+        );
+        $columns = "id_paciente,nombre_pac,apPaterno_pac, apMaterno_pac,
+        tel_cel_pac,id_centro_costos,id_tipo_paciente";
+
+        return $this->db->select1($columns,"paciente",$where,$array);
+
     }
     
 

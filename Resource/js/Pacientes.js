@@ -24,6 +24,53 @@ class Pacientes {
       } catch (error) {}
     });
   }
+  getCentroCostos() {
+    let count = 1;
+    $.post(URL + "Pacientes/getCentroCostos", {}, (response) => {
+      try {
+        let item = JSON.parse(response);
+
+        $("#centroCosto").prepend(
+          "<option value='0' disabled selected='selected'  >Elige una opción</option>"
+        );
+        if (item.results.length > 0) {
+          //estamos obteniendo datos
+          for (let i = 0; i < item.results.length; i++) {
+            document.getElementById("centroCosto").options[count] = new Option(
+              item.results[i].des_centro_costos,
+              item.results[i].id_centro_costos
+            );
+            count++;
+            $("select").formSelect();
+          }
+        }
+      } catch (error) {}
+    });
+  }
+
+  getTipoPaciente() {
+    let count = 1;
+    $.post(URL + "Pacientes/getTipoPaciente", {}, (response) => {
+      try {
+        let item = JSON.parse(response);
+
+        $("#tipoPaciente").prepend(
+          "<option value='0' disabled selected='selected'  >Elige una opción</option>"
+        );
+        if (item.results.length > 0) {
+          //estamos obteniendo datos
+          for (let i = 0; i < item.results.length; i++) {
+            document.getElementById("tipoPaciente").options[count] = new Option(
+              item.results[i].tipo,
+              item.results[i].id_tipo_paciente
+            );
+            count++;
+            $("select").formSelect();
+          }
+        }
+      } catch (error) {}
+    });
+  }
 
   registrarPaciente(
     nombre,
@@ -71,6 +118,7 @@ class Pacientes {
             title: 'Registro exitoso.',
             text: ""
           });
+          getPacientes();
           
         } else {
           Swal.fire({
@@ -84,8 +132,24 @@ class Pacientes {
     });
   }
 
+  getPacientes(valor){
+     valor = valor != null ? valor: "";
+    $.post(
+      URL + "Pacientes/getPacientes", {
+        filter:valor
+      },
+      (response) => {
+        $("#resultPaciente").html(response);
+       // console.log(response);
+      }
+    );
+  }
+
   restablecerPaciente() {
     this.getEstadoCivil();
+    this.getCentroCostos();
+    this.getTipoPaciente();
+
    
   }
 

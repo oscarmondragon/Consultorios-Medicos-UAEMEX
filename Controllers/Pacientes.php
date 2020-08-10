@@ -21,6 +21,22 @@ class Pacientes extends Controllers {
              echo $data;
          }
      }
+     function getCentroCostos(){
+        $data = $this->model->getCentroCostos();
+        if(is_array($data)){
+           echo json_encode($data);
+        } else {
+            echo $data;
+        }
+    }
+    function getTipoPaciente(){
+        $data = $this->model->getTipoPaciente();
+        if(is_array($data)){
+           echo json_encode($data);
+        } else {
+            echo $data;
+        }
+    }
 
      function registrarPaciente(){
          $array = array(
@@ -40,6 +56,38 @@ class Pacientes extends Controllers {
 
          //echo $_POST["tel_cel_pac"];
      }
+
+    public function getPacientes(){
+        $dataFilter = null;
+        $data = $this->model->getPacientes($_POST["filter"]);
+        if(is_array($data)){
+            $array = $data["results"];
+            foreach ($array as $key => $value) {
+                $dataFilter.= "<tr>".
+                    "<td>".$value["id_paciente"]."</td>".
+                    "<td>".$value["nombre_pac"]."</td>".
+                    "<td>".$value["apPaterno_pac"]."</td>".
+                    "<td>".$value["apMaterno_pac"]."</td>".
+                    "<td>".$value["tel_cel_pac"]."</td>".
+                    "<td>".$value["id_centro_costos"]."</td>".
+                    "<td>".$value["id_tipo_paciente"]."</td>".
+                    "<td>".
+                    "<a data-toggle= 'modal' data-target= '#modalEdit' onclick='' class='btn 
+                    btn-success'>Editar</a>".
+                    "</td>".
+                    "<td>".
+                    "<a data-toggle= 'modal' data-target= '#modalDelete' onclick='' class='btn waves-effect waves-light
+ red'>Eliminar</a>".
+                    "</td>".
+                "</tr>";
+            }
+            echo $dataFilter;
+        } else {
+            echo $data;
+        }
+       
+     }
+
 }
 
 ?>

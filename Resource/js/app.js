@@ -56,15 +56,28 @@ $(function(){
 
         //mandamos los datos al metod registrarPaciente de Paciente.js
         if(nombre !="" && paterno !="" && materno !="" && fechaNac !="" && telefonoCel !=""
-        && sexo !="" && estadoCiv != "Elige una opción" && departamento !="" && centroCost != "Elige una opción"
+        && sexo !="Elige una opción" && estadoCiv != "Elige una opción" && departamento !="" && centroCost != "Elige una opción"
         && tipoPaciente !="Elige una opción"){
         pacientes.registrarPaciente(nombre,paterno,materno,fechaNac,
             telefonoCel,sexo, otro_sexo,estadoCiv,departamento,centroCost,tipoPaciente,fecha_alta_pac,userId);
             
             return false; //para evitar reenvio de formulario
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: 'Completa todos los campos!',
+                
+              })
         }
     });
 });
+
+// llama metodo para filtrar pacientes
+var getPacientes = () => {
+    let valor = document.getElementById("filtrarPaciente").value;
+    pacientes.getPacientes(valor);
+
+}
 
 
 
@@ -78,11 +91,19 @@ $().ready(()=>{
     usuarios.userData(URLactual);
     principal.linkPrincipal(URLactual);
    
-    // $("#validate").validate();
+     $("#validate").validate();
     // $(".sidenav").sidenav();
     // $(".modal").modal();
     // $('select').formSelect();
     M.AutoInit();
+
+    switch(URLactual){
+        case PATHNAME + "Principal/principal":
+            break;
+        case PATHNAME + "Pacientes/pacientes":
+            getPacientes();
+        break;
+    }
 
  
 });
