@@ -31,9 +31,10 @@
             <div class="input-field col s12">
               <select id="sexo" required>
                 <option value="" disabled selected>Elige una opción</option>
-                <option value="1">Enfermedades mentales</option>
-                <option value="2">Enfermedades físicas</option>
+                <option value="1">Biológico</option>
+                <option value="2">Mental</option>
                 <option value="3">Lesiones</option>
+                <option value="4">Contusiones</option>
                 <option value="5">Urgencias</option>
               </select>
               <label>Tipo de atención</label>
@@ -83,111 +84,69 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s10">
-              
-              <p>Medicina preventiva</p>
-
-              <div class="input-field col s5">
-                <p>
-                  <label>
-                    <input type="checkbox" name="o1" checked="checked">
-                    <span>Atención psicológica</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" name="mp" value="cd" id="test6" />
-                    <span>Crónico degenerativas</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="test7" />
-                    <span>Embarazo y lactancia</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="test8" />
-                    <span>Higiene bucal</span></label>
-                </p>
-               
-              </div>
-              <div class="input-field col s5">
-                <p>
-                  <label>
-                    <input type="checkbox" id="test8" />
-                    <span>Higiene de columna</span></label>
-                </p>
-                <p>
-                <label>
-                  <input type="checkbox" id="test9" />
-                  <span>Higiene personal</span></label>
-                </p>
-              <p>
-                <label>
-                  <input type="checkbox" id="test10" />
-                  <span>Nutrición</span></label>
-                </p>
-              <p>
-                <label>
-                  <input type="checkbox" id="test11" />
-                  <span>Plátias de educacion y salud sexual</span></label>
-                </p>
-              </div>
+            <div class="input-field col s6">
+              <select id="sexo" required>
+                <option value="" disabled selected>Elige una opción</option>
+                <option value="1">Biológico</option>
+                <option value="2">Mental</option>
+                <option value="3">Lesiones</option>
+                <option value="3">Contusiones</option>
+                <option value="3">Urgencias</option>
+              </select>
+              <label>Medicina preventiva</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
+              <label class="error" for="ompreventiva">Otra medicina preventiva</label>
             </div>
           </div>
-
-          <div class="input-field col s6">
-            <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
-            <label class="error" for="ompreventiva">Otra medicina preventiva</label>
+          <div class="row">
+            <div class="input-field col s3">
+              <P>Ambulancia</P>
+              <form action="#" id="ambulancia">
+                <p>
+                  <label class="radio-inline">
+                    <input name="ambulancia" type="radio" />
+                    <span>Si</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input name="ambulancia" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <div class="input-field col s3">
+              <P>Referenciado</P>
+              <form action="#" id="referenciado">
+                <p>
+                  <label class="radio-inline">
+                    <input name="referenciado" type="radio" />
+                    <span>Si</span>
+                  </label>
+                </p>
+                <p>
+                  <label class="radio-inline">
+                    <input name="referenciado" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate"
+                required />
+              <label class="error" for="lugarreferencia">Lugar de referencia</label>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s3">
-            <P>Ambulancia</P>
-            <form action="#" id="ambulancia">
-              <p>
-                <label class="radio-inline">
-                  <input name="ambulancia" type="radio" />
-                  <span>Si</span>
-                </label>
-                <label class="radio-inline">
-                  <input name="ambulancia" type="radio" />
-                  <span>No</span>
-                </label>
-              </p>
-            </form>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="descripcion" class="materialize-textarea"></textarea>
+              <label class="error" for="descripcion">Observaciones</label>
+            </div>
           </div>
-          <div class="input-field col s3">
-            <P>Referenciado</P>
-            <form action="#" id="referenciado">
-              <p>
-                <label class="radio-inline">
-                  <input name="referenciado" type="radio" />
-                  <span>Si</span>
-                </label>
-                <label class="radio-inline">
-                  <input name="referenciado" type="radio" />
-                  <span>No</span>
-                </label>
-              </p>
-            </form>
-          </div>
-          <div class="input-field col s6">
-            <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate"
-              required />
-            <label class="error" for="lugarreferencia">Lugar de referencia</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <textarea id="descripcion" class="materialize-textarea"></textarea>
-            <label class="error" for="descripcion">Observaciones</label>
-          </div>
-
         </div>
       </div>
-
       <div class="modal-footer">
         <label id="registrarMessage" class="text-left"></label>
         <button id="btnLogin" class="waves-effect waves-light btn">

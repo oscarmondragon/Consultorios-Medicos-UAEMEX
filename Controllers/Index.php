@@ -20,7 +20,7 @@ class Index  extends Controllers
     public function userLogin(){
       if(isset($_POST["username"]) && isset($_POST["password"])){
        $data = $this->model->userLogin($_POST["username"], $_POST["password"]);
-      // echo password_hash($_POST["password"], PASSWORD_DEFAULT);
+      //echo password_hash($_POST["password"], PASSWORD_DEFAULT);
         if(is_array($data)){
           echo json_encode($data);
         } else {

@@ -12,6 +12,10 @@ class Consultas extends Controllers {
         }
         
     }
+    public function destroySesion(){
+        Session::destroy();
+        header("Location:".URL);
+    }
 }
 
 ?>
