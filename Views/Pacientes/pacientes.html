@@ -108,12 +108,8 @@
               <label class="error" for="telefonoCel">Telefono</label>
             </div>
             <div class="input-field col s6">
-              <select id="sexo" required>
-                <option value="" disabled selected>Elige una opción</option>
-                <option value="1">Casado</option>
-                <option value="2">Divorciado</option>
-                <option value="3">Soltero</option>
-                <option value="4">Unión libre</option>
+              <select id="estadoCiv" required>
+              
               </select>
               <label>Estado Civil</label>
             </div>
@@ -165,24 +161,12 @@
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <select id="sexo" required>
-                <option value="" disabled selected>Elige una opción</option>
-                <option value="1">Académico</option>
-                <option value="2">Administrativo de confianza</option>
-                <option value="3">Alumno</option>
-                <option value="4">Asimilables al salario</option>
-                <option value="5">Becario</option>
-                <option value="6">CAF</option>
-                <option value="7">Eventual</option>
-                <option value="8">Honorarios</option>
-                <option value="9">Sindicalizado</option>
+              <select id="tipoPaciente" required>
+               
               </select>
               <label>Tipo de paciente</label>
             </div>
-            
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
+             <div class="input-field col s6">
               <select id="sexo" required>
                 <option value="" disabled selected>Elige una opción</option>
                 <option value="1">Pasante de licenciatura</option>
@@ -196,15 +180,261 @@
             </div>
             
           </div>
+         
         </div>
-      </div>
+  
+        
+          <center>
+            <h5>Datos de la consulta médica</h5>
+          </center>
+          <div class="row">
+            <div class="row">
+              <div class="input-field col s9">
+                <input disabled value="I am not editable" id="nombrePaciente" type="text" class="validate">
+                <label for="disabled">Nombre del Paciente</label>
+              </div>
+              <div   class="input-field col s3">
+                <input disabled value=0 id="edad" type="number" min="0" class="validate">
+                <label for="disabled">Edad</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s10">
+                <p>Población de riesgo</p>
+                <div class="input-field col s5">
+                  <p>
+                    <label>
+                      <input type="checkbox" name="o1">
+                      <span>Asma</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" name="mp" value="cd" id="test6" />
+                      <span>Cáncer</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test7" />
+                      <span>Diabetes</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test8" />
+                      <span>Embarazo</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test8" />
+                      <span>Enfermedades autoinmunes</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test8" />
+                      <span>EPOC</span></label>
+                  </p>
+  
+                </div>
+                <div class="input-field col s5">
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test8" />
+                      <span>Hipertensión</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test9" />
+                      <span>Lactancia</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test10" />
+                      <span>Mayor de 60 años</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test11" />
+                      <span>Obesidad</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test11" />
+                      <span>Rinitis alérgica</span></label>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="test11" />
+                      <span>Transplantes</span></label>
+                  </p>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <select id="tipoAtencion" required>
+                  <option value="" disabled selected>Elige una opción</option>
+                  <option value="1">Enfermedades mentales</option>
+                  <option value="2">Enfermedades físicas</option>
+                  <option value="3">Lesiones</option>
+                  <option value="5">Urgencias</option>
+                </select>
+                <label>Tipo de atención</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4">
+                <input placeholder="FC" name="frecCardiaca" id="frecCardiaca" type="text" class="validate" required />
+                <label class="error" for="frecCardiaca">Frecuencia Cardiaca</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="FR" name="frecRespiratoria" id="frecRespiratoria" type="text" class="validate"
+                  required />
+                <label class="error" for="frecRespiratoria">Frecuencia Respiratoria</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="°C" name="temperatura" id="temperatura" type="text" class="validate" required />
+                <label class="error" for="temperatura">Temperatura</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4">
+                <input placeholder="T/A" name="tarterial" id="tarterial" type="text" class="validate" required />
+                <label class="error" for="tarterial">Tensión Arterial</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="cm" name="talla" id="talla" type="text" class="validate" required />
+                <label class="error" for="talla">Talla</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="kg" name="peso" id="peso" type="text" class="validate" required />
+                <label class="error" for="peso">Peso</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea placeholder="Descripción" id="descripcion" class="materialize-textarea"></textarea>
+                <span class="error" for="descripcion">Descripción</span>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="diagnostico" class="materialize-textarea"></textarea>
+                <label class="error" for="diagnostico">Diagnóstico</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea id="tratamiento" class="materialize-textarea"></textarea>
+                <label class="error" for="tratamiento">Tratamiento</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s10">              
+                <p>Medicina preventiva</p>
+                <div class="input-field col s5">
+                  <p>
+                    <label>
+                      <input type="checkbox" name="o1" id="mp1" >
+                      <span>Atención psicológica</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" name="mp" value="cd" id="mp2" />
+                      <span>Crónico degenerativas</span>
+                    </label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="mp3" />
+                      <span>Embarazo y lactancia</span></label>
+                  </p>
+                  <p>
+                    <label>
+                      <input type="checkbox" id="mp4" />
+                      <span>Higiene bucal</span></label>
+                  </p>
+                 
+                </div>
+                <div class="input-field col s5">
+                  <p>
+                    <label>
+                      <input type="checkbox" id="mp5" />
+                      <span>Higiene de columna</span></label>
+                  </p>
+                  <p>
+                  <label>
+                    <input type="checkbox" id="mp6" />
+                    <span>Higiene personal</span></label>
+                  </p>
+                <p>
+                  <label>
+                    <input type="checkbox" id="mp7" />
+                    <span>Nutrición</span></label>
+                  </p>
+                <p>
+                  <label>
+                    <input type="checkbox" id="mp8" />
+                    <span>Plátias de educacion y salud sexual</span></label>
+                  </p>
+                </div>
+              </div>
+            </div>
+  
+            <div class="input-field col s6">
+              <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
+              <label class="error" for="ompreventiva">Otra medicina preventiva</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <P>Ambulancia</P>
+              <form action="#" id="ambulancia">
+                <p>
+                  <label class="radio-inline">
+                    <input name="ambulancia" type="radio" />
+                    <span>Si</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input name="ambulancia" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <div class="input-field col s3">
+              <P>Referenciado</P>
+              <form action="#" id="referenciado">
+                <p>
+                  <label class="radio-inline">
+                    <input name="referenciado" type="radio" />
+                    <span>Si</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input name="referenciado" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate"
+                required />
+              <label class="error" for="lugarreferencia">Lugar de referencia</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="descripcion" class="materialize-textarea"></textarea>
+              <label class="error" for="descripcion">Observaciones</label>
+            </div>
+  
+          </div>
+        </div>
       <div class="modal-footer">
         <label id="registrarMessage" class="text-left Message"></label>
         <button
           id="btnLogin"
           class="waves-effect waves-light btn"
         >
-          Enviar
+          Registrar
         </button>
       </div>
     </form>

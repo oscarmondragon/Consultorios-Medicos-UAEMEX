@@ -132,6 +132,7 @@ $(function () {
             })
         }
     });
+    
     $("#btnRConsulta").click(function () {
         let nombre = document.getElementById("nombre").value;
         let edad = document.getElementById("edad").value;
