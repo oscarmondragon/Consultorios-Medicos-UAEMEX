@@ -4,3 +4,4 @@ class Consultas_model extends Conexion{
        parent::__construct();
     }
 }
+?>
