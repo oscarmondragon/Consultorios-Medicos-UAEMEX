@@ -91,15 +91,21 @@ $(function () {
         }
 
         let estadosCiv = document.getElementById("estadoCiv");
-        let estadoCiv = estadosCiv.options[estadosCiv.selectedIndex].text;
 
+        let estadoCiv = estadosCiv.options[estadosCiv.selectedIndex].value;
+    
+
+ 
         let departamento = document.getElementById("departamento").value;
 
         let centrosCost = document.getElementById("centroCosto");
-        let centroCost = centrosCost.options[centrosCost.selectedIndex].text;
 
+        let centroCost = centrosCost.options[centrosCost.selectedIndex].value;
+    
+
+        
         let tiposPaciente = document.getElementById("tipoPaciente");
-        let tipoPaciente = tiposPaciente.options[tiposPaciente.selectedIndex].text;
+        let tipoPaciente = tiposPaciente.options[tiposPaciente.selectedIndex].value;
 
         //obtenemos fecha actual
         let fecha_alta_pac = new Date().toLocaleDateString();
@@ -107,6 +113,8 @@ $(function () {
         //obtenemos datos de usuario que registra
         let user = JSON.parse(localStorage.getItem("user"));
         let userId = user.id_usr;
+
+
 
 
         //mandamos los datos al metod registrarPaciente de Paciente.js
@@ -125,6 +133,7 @@ $(function () {
             })
         }
     });
+    
     $("#btnRConsulta").click(function () {
         let nombre = document.getElementById("nombre").value;
         let edad = document.getElementById("edad").value;
@@ -197,6 +206,12 @@ var getPacientes = () => {
     let valor = document.getElementById("filtrarPaciente").value;
     pacientes.getPacientes(valor);
 
+}
+
+//funcion para obtener datos del paciente para editar
+var dataPaciente = (data) => {
+    console.log(data);
+    pacientes.editarPaciente(data);
 }
 
 

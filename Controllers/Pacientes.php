@@ -58,30 +58,32 @@ class Pacientes extends Controllers {
      }
 
     public function getPacientes(){
+        $count = 0;
         $dataFilter = null;
         $data = $this->model->getPacientes($_POST["filter"]);
         if(is_array($data)){
             $array = $data["results"];
             foreach ($array as $key => $value) {
+                $dataUser = json_encode($array[$count]);
                 $dataFilter.= "<tr>".
                     "<td>".$value["id_paciente"]."</td>".
                     "<td>".$value["nombre_pac"]."</td>".
                     "<td>".$value["apPaterno_pac"]."</td>".
                     "<td>".$value["apMaterno_pac"]."</td>".
                     "<td>".$value["tel_cel_pac"]."</td>".
-                    "<td>".$value["id_centro_costos"]."</td>".
-                    "<td>".$value["id_tipo_paciente"]."</td>".
+                    "<td>".$value["des_centro_costos"]."</td>".
+                    "<td>".$value["tipo"]."</td>".
                     "<td>".
-                    "<a data-toggle= 'modal' data-target= '#modalEdit' onclick='' class='btn 
-                    btn-success'>Editar</a>".
-                    "</td>".
-                    "<td>".
-                    "<a data-toggle= 'modal' data-target= '#modalDelete' onclick='' class='btn waves-effect waves-light
- red'>Eliminar</a>".
+                    "<a  href= '#modal1' onclick='dataPaciente(".$dataUser.")'  class='btn 
+                    btn-success modal-trigger'>Editar</a> |".
+                    
+                    "<a href= '#modal1' onclick='dataPaciente(".$dataUser.")'  class='btn red lighten-1'>Eliminar</a>".
                     "</td>".
                 "</tr>";
+                $count++;
             }
-            echo $dataFilter;
+           echo $dataFilter;
+        //    echo $data["results"][0]['id_centro_costos'] ;
         } else {
             echo $data;
         }
