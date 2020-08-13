@@ -1,4 +1,5 @@
 /*Codigo de usuarios*/
+var consultas = new Consultas();
 var pacientes = new Pacientes();
 var usuarios = new Usuarios();
 
@@ -18,7 +19,7 @@ var restablecerPaciente = () => {
     pacientes.restablecerPaciente();
 }
 
-var rgistraPaciente = () => {
+var registraconsulta = () => {
     let nombre = document.getElementById("nombre").value;
     let edad = document.getElementById("edad").value;
 
@@ -136,35 +137,39 @@ $(function () {
         let temperatura = document.getElementById("temperatura").value;
         let tarterial = document.getElementById("tarterial").value;
         let talla = document.getElementById("talla").value;
+        let peso = document.getElementById("peso").value;
 
-        let descripcion = document.getElementById("descripcion");
-        let diagnostico = document.getElementById("diagnostico");
-        let tratamiento = document.getElementById("tratamiento");
+        let descripcion = document.getElementById("descripcion").value;
+        let diagnostico = document.getElementById("diagnostico").value;
+        let tratamiento = document.getElementById("tratamiento").value;
 
         //obtenemos fecha actual
-        let fecha_alta_pac = new Date().toLocaleDateString();
+    /*    let fecha_alta_pac = new Date().toLocaleDateString();
 
         //obtenemos datos de usuario que registra
         let user = JSON.parse(localStorage.getItem("user"));
         let userId = user.id_usr;
-
-       
+        */
         //Si se pulsa el botón enviar, se procesa la información
 
         //Si el checkbox condiciones tiene valor y es igual a 1
-       
-        if (talla != "") {
-            pacientes.registrarPaciente(nombre, paterno, materno, fechaNac,
-                telefonoCel, sexo, otro_sexo, estadoCiv, departamento, centroCost, tipoPaciente, fecha_alta_pac, userId);
 
-            return false; //para evitar reenvio de formulario
-        } else {
-            Swal.fire({
+        if (talla != "") {
+             // consultas.registraConsultas(talla);
+             Swal.fire({
                 icon: 'error',
-                text: 'Completa todos los campos!',
+                text: `Clleno!${edad},${tipoAtencion},${talla}`,
 
             })
-        }
+  
+            //  return false; //para evitar reenvio de formulario
+          } else {
+              Swal.fire({
+                  icon: 'error',
+                  text: `Completa todos los campos!${edad},${tipoAtencion},${talla}`,
+  
+              })
+          }
 
 
 
@@ -182,7 +187,7 @@ $(function () {
                 text: 'Completa todos los campos!',
                 
               })
-        }*/
+        }.....*/
     });
 
 });

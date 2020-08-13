@@ -2,7 +2,7 @@
   <h4>Consultas</h4>
   <div class="row">
     <div class="input-field col s0">
-      <a class="waves-effect waves-light btn modal-trigger" href="#modal2">Registrar</a>
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Registrar</a>
     </div>
     <div class="input-field col s6">
       <input placeholder="Buscar consulta" id="filtrar" type="text" onkeyup="">
@@ -10,7 +10,7 @@
     </div>
   </div>
   <!-- Modal Structure -->
-  <div id="modal2" class="modal modal-fixed-footer">
+  <div id="modal1" class="modal modal-fixed-footer">
     <form class="col s12" id="validate" method="POST">
       <div class="modal-content">
         <center>
@@ -33,34 +33,34 @@
               <div class="input-field col s5">
                 <p>
                   <label>
-                    <input type="checkbox" name="o1">
+                    <input type="checkbox" id="pr1">
                     <span>Asma</span>
                   </label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" name="mp" value="cd" id="test6" />
+                    <input type="checkbox" name="mp" value="cd" id="pr2" />
                     <span>Cáncer</span>
                   </label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test7" />
+                    <input type="checkbox" id="pr3" />
                     <span>Diabetes</span></label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test8" />
+                    <input type="checkbox" id="pr4" />
                     <span>Embarazo</span></label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test8" />
+                    <input type="checkbox" id="pr5" />
                     <span>Enfermedades autoinmunes</span></label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test8" />
+                    <input type="checkbox" id="pr6" />
                     <span>EPOC</span></label>
                 </p>
 
@@ -68,31 +68,31 @@
               <div class="input-field col s5">
                 <p>
                   <label>
-                    <input type="checkbox" id="test8" />
+                    <input type="checkbox" id="pr7" />
                     <span>Hipertensión</span></label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test9" />
+                    <input type="checkbox" id="pr8" />
                     <span>Lactancia</span></label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test10" />
+                    <input type="checkbox" id="pr9" />
                     <span>Mayor de 60 años</span></label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test11" />
+                    <input type="checkbox" id="pr10" />
                     <span>Obesidad</span></label>
                 </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="test11" />
+                    <input type="checkbox" id="pr11" />
                     <span>Rinitis alérgica</span></label>
                 <p>
                   <label>
-                    <input type="checkbox" id="test11" />
+                    <input type="checkbox" id="pr12" />
                     <span>Transplantes</span></label>
                 </p>
                 </p>
@@ -155,12 +155,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s10">              
+            <div class="input-field col s10">
               <p>Medicina preventiva</p>
               <div class="input-field col s5">
                 <p>
                   <label>
-                    <input type="checkbox" name="o1" id="mp1" >
+                    <input type="checkbox" name="o1" id="mp1">
                     <span>Atención psicológica</span>
                   </label>
                 </p>
@@ -180,7 +180,7 @@
                     <input type="checkbox" id="mp4" />
                     <span>Higiene bucal</span></label>
                 </p>
-               
+
               </div>
               <div class="input-field col s5">
                 <p>
@@ -189,83 +189,79 @@
                     <span>Higiene de columna</span></label>
                 </p>
                 <p>
-                <label>
-                  <input type="checkbox" id="mp6" />
-                  <span>Higiene personal</span></label>
+                  <label>
+                    <input type="checkbox" id="mp6" />
+                    <span>Higiene personal</span></label>
                 </p>
-              <p>
-                <label>
-                  <input type="checkbox" id="mp7" />
-                  <span>Nutrición</span></label>
+                <p>
+                  <label>
+                    <input type="checkbox" id="mp7" />
+                    <span>Nutrición</span></label>
                 </p>
-              <p>
-                <label>
-                  <input type="checkbox" id="mp8" />
-                  <span>Plátias de educacion y salud sexual</span></label>
+                <p>
+                  <label>
+                    <input type="checkbox" id="mp8" />
+                    <span>Plátias de educacion y salud sexual</span></label>
                 </p>
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
+              <label class="error" for="ompreventiva">Otra medicina preventiva</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <P>Ambulancia</P>
+              
+                <p>
+                  <label class="radio-inline">
+                    <input name="ambulancia" type="radio" />
+                    <span>Si</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input name="ambulancia2" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+              
+            </div>
+            <div class="input-field col s3">
+              <P>Referenciado</P>              
+                <p>
+                  <label class="radio-inline">
+                    <input name="referenciado" type="radio" />
+                    <span>Si</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input name="referenciado2" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate"
+                required />
+              <label class="error" for="lugarreferencia">Lugar de referencia</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="observaciones" class="materialize-textarea"></textarea>
+              <label class="error" for="observaciones">Observaciones</label>
+            </div>
 
-          <div class="input-field col s6">
-            <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
-            <label class="error" for="ompreventiva">Otra medicina preventiva</label>
           </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s3">
-            <P>Ambulancia</P>
-            <form action="#" id="ambulancia">
-              <p>
-                <label class="radio-inline">
-                  <input name="ambulancia" type="radio" />
-                  <span>Si</span>
-                </label>
-                <label class="radio-inline">
-                  <input name="ambulancia" type="radio" />
-                  <span>No</span>
-                </label>
-              </p>
-            </form>
-          </div>
-          <div class="input-field col s3">
-            <P>Referenciado</P>
-            <form action="#" id="referenciado">
-              <p>
-                <label class="radio-inline">
-                  <input name="referenciado" type="radio" />
-                  <span>Si</span>
-                </label>
-                <label class="radio-inline">
-                  <input name="referenciado" type="radio" />
-                  <span>No</span>
-                </label>
-              </p>
-            </form>
-          </div>
-          <div class="input-field col s6">
-            <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate"
-              required />
-            <label class="error" for="lugarreferencia">Lugar de referencia</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <textarea id="descripcion" class="materialize-textarea"></textarea>
-            <label class="error" for="descripcion">Observaciones</label>
-          </div>
-
         </div>
       </div>
-
       <div class="modal-footer">
-        <label id="registrarMessage" class="text-left"></label>
-        <button onclick="rgistraPaciente();" id="btnRConsulta" class="waves-effect waves-light btn">
+        <label id="registrarMessage" class="text-left Message"></label>
+        <button id="btnRConsulta" class="waves-effect waves-light btn">
           Registrar
         </button>
-        <button id="btnSalir" class="waves-effect waves-light btn">
-          Salir
-        </button>
+
       </div>
     </form>
   </div>
