@@ -141,16 +141,26 @@ class Pacientes {
       (response) => {
         $("#resultPaciente").html(response);
        // console.log(response);
-      }
+      } 
     );
+  }
+  editarPaciente(data){
+
+   
+    document.getElementById("nombre").value = data.nombre_pac;
+   document.getElementById("paterno").value  = data.apPaterno_pac;
+   document.getElementById("materno").value  = data.apMaterno_pac;
+   document.getElementById("fechaNac").value  = data.fecha_nacimiento_pac;
+   document.getElementById("telefonoCel").value  = data.tel_cel_pac;
+   document.getElementById("departamento").value = data.departamento;
+
+   
   }
 
   restablecerPaciente() {
     this.getEstadoCivil();
     this.getCentroCostos();
     this.getTipoPaciente();
-
-   
   }
 
   vaciarFromulario(){

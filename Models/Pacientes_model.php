@@ -73,10 +73,8 @@ class Pacientes_model extends Conexion{
             'apPaterno_pac' => '%'.$filter.'%',
             'apMaterno_pac' => '%'.$filter.'%'
         );
-        $columns = "id_paciente,nombre_pac,apPaterno_pac, apMaterno_pac,
-        tel_cel_pac,id_centro_costos,id_tipo_paciente";
 
-        return $this->db->select1($columns,"paciente",$where,$array);
+        return $this->db->selectPacientes($where,$array);
 
     }
     
