@@ -75,8 +75,11 @@ var registraconsulta = () => {
 
 }
 
+//registro de pacientes
 $(function () {
     $("#btnLogin").click(function () {
+
+        //capturamos en variables los datos del paciente a registrar
         let nombre = document.getElementById("nombre").value;
         let paterno = document.getElementById("paterno").value;
         let materno = document.getElementById("materno").value;
@@ -113,7 +116,6 @@ $(function () {
         //obtenemos datos de usuario que registra
         let user = JSON.parse(localStorage.getItem("user"));
         let userId = user.id_usr;
-
 
 
 

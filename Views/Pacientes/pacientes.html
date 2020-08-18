@@ -55,6 +55,7 @@
                 type="text"
                 class="validate"
                 required
+                onkeyup="copiarNombre()"
                 
               />
               <label class="error" for="nombre">Nombre</label>
@@ -67,7 +68,8 @@
                 type="text"
                 class="validate"
                 required
-              
+                onkeyup="copiarNombre()"
+                
               />
               <label class="error" for="paterno">Apellido Paterno</label>
             </div>
@@ -78,7 +80,8 @@
                 id="materno"
                 type="text"
                 class="validate"
-              
+                onkeyup="copiarNombre()"
+                
               />
               <label class="error" for="nombre">Apellido Materno</label>
             </div>
@@ -90,7 +93,7 @@
                 type="date"
                 class="validate"
                 required
-                
+                onchange="calcularEdad(event);"
               />
               <label class="error" for="fechaNac">Fecha de nacimiento</label>
             </div>
@@ -104,6 +107,7 @@
                 type="number"
                 class="validate"
                 required
+               
               />
               <label class="error" for="telefonoCel">Telefono</label>
             </div>
@@ -167,7 +171,7 @@
               <label>Tipo de paciente</label>
             </div>
              <div class="input-field col s6">
-              <select id="sexo" required>
+              <select id="nivelAcademico" required>
                 <option value="" disabled selected>Elige una opción</option>
                 <option value="1">Pasante de licenciatura</option>
                 <option value="2">Licenciatura</option>
@@ -194,7 +198,7 @@
                 <label for="disabled">Nombre del Paciente</label>
               </div>
               <div   class="input-field col s3">
-                <input disabled value=0 id="edad" type="number" min="0" class="validate">
+                <input disabled value=0 id="edadPaciente" type="number" min="0" class="validate">
                 <label for="disabled">Edad</label>
               </div>
             </div>
@@ -204,34 +208,34 @@
                 <div class="input-field col s5">
                   <p>
                     <label>
-                      <input type="checkbox" name="o1">
+                      <input type="checkbox" name="asma" id="asma">
                       <span>Asma</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" name="mp" value="cd" id="test6" />
+                      <input type="checkbox" name="cancer" value="cd" id="cancer" />
                       <span>Cáncer</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test7" />
+                      <input type="checkbox" id="diabetes" name="diabetes"/>
                       <span>Diabetes</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test8" />
+                      <input type="checkbox" id="embarazo" name="embarazo" />
                       <span>Embarazo</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test8" />
+                      <input type="checkbox" id="autoinmunes" name="autoinmunes" />
                       <span>Enfermedades autoinmunes</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test8" />
+                      <input type="checkbox" id="epoc" name="epoc" />
                       <span>EPOC</span></label>
                   </p>
   
@@ -239,31 +243,31 @@
                 <div class="input-field col s5">
                   <p>
                     <label>
-                      <input type="checkbox" id="test8" />
+                      <input type="checkbox" id="hipertension" name="hipertension" />
                       <span>Hipertensión</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test9" />
+                      <input type="checkbox" id="lactancia" name="lactancia" />
                       <span>Lactancia</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test10" />
+                      <input type="checkbox" id="mayorEdad"  name="mayorEdad"/>
                       <span>Mayor de 60 años</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test11" />
+                      <input type="checkbox" id="obesidad" name="obesidad" />
                       <span>Obesidad</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="test11" />
+                      <input type="checkbox" id="rinitis" name="rinitis" />
                       <span>Rinitis alérgica</span></label>
                   <p>
                     <label>
-                      <input type="checkbox" id="test11" />
+                      <input type="checkbox" id="transplantes" name="transplantes" />
                       <span>Transplantes</span></label>
                   </p>
                   </p>
@@ -313,15 +317,15 @@
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <textarea placeholder="Descripción" id="descripcion" class="materialize-textarea"></textarea>
+                <textarea placeholder="Descripción" name="descripcion" id="descripcion" class="materialize-textarea"></textarea>
                 <span class="error" for="descripcion">Descripción</span>
               </div>
               <div class="input-field col s12">
-                <textarea id="diagnostico" class="materialize-textarea"></textarea>
+                <textarea id="diagnostico" name="diagnostico" class="materialize-textarea"></textarea>
                 <label class="error" for="diagnostico">Diagnóstico</label>
               </div>
               <div class="input-field col s12">
-                <textarea id="tratamiento" class="materialize-textarea"></textarea>
+                <textarea id="tratamiento" name="tratamiento" class="materialize-textarea"></textarea>
                 <label class="error" for="tratamiento">Tratamiento</label>
               </div>
             </div>
@@ -331,24 +335,24 @@
                 <div class="input-field col s5">
                   <p>
                     <label>
-                      <input type="checkbox" name="o1" id="mp1" >
+                      <input type="checkbox" name="atencionPsico" id="atencionPsico" >
                       <span>Atención psicológica</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" name="mp" value="cd" id="mp2" />
+                      <input type="checkbox" name="cronico" value="cd" id="cronico" />
                       <span>Crónico degenerativas</span>
                     </label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="mp3" />
+                      <input type="checkbox" id="embarazoLac" name="embarazoLac" />
                       <span>Embarazo y lactancia</span></label>
                   </p>
                   <p>
                     <label>
-                      <input type="checkbox" id="mp4" />
+                      <input type="checkbox" id="higBucal" name="higBucal" />
                       <span>Higiene bucal</span></label>
                   </p>
                  
@@ -356,22 +360,22 @@
                 <div class="input-field col s5">
                   <p>
                     <label>
-                      <input type="checkbox" id="mp5" />
+                      <input type="checkbox" id="higColum" name="higColum" />
                       <span>Higiene de columna</span></label>
                   </p>
                   <p>
                   <label>
-                    <input type="checkbox" id="mp6" />
+                    <input type="checkbox" id="higPer" name="higPer" />
                     <span>Higiene personal</span></label>
                   </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="mp7" />
+                    <input type="checkbox" id="nutricion" name="nutricion" />
                     <span>Nutrición</span></label>
                   </p>
                 <p>
                   <label>
-                    <input type="checkbox" id="mp8" />
+                    <input type="checkbox" id="eduSexual" name="eduSexual" />
                     <span>Plátias de educacion y salud sexual</span></label>
                   </p>
                 </div>
@@ -422,7 +426,7 @@
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <textarea id="descripcion" class="materialize-textarea"></textarea>
+              <textarea id="observaciones" name="observaciones" class="materialize-textarea"></textarea>
               <label class="error" for="descripcion">Observaciones</label>
             </div>
   
