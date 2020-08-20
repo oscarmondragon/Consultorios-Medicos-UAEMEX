@@ -39,18 +39,82 @@ class Pacientes extends Controllers {
     }
 
      function registrarPaciente(){
+         //array para paciente
          $array = array(
             $_POST["nombre_pac"],$_POST["apPaterno_pac"],
-            $_POST["apMaterno_pac"],$_POST["fecha_nacimiento_pac"],$_POST["tel_cel_pac"],$_POST["sexo_pac"],
-            $_POST["otro_sexo_pac"],$_POST["id_estado_civil"],$_POST["departamento"],
-            $_POST["id_centro_costos"],$_POST["id_tipo_paciente"],$_POST["fecha_alta_pac"],
+            $_POST["apMaterno_pac"],$_POST["fecha_nacimiento_pac"],$_POST["sexo_pac"],
+            $_POST["otro_sexo_pac"],$_POST["tel_cel_pac"],$_POST["id_estado_civil"],
+            $_POST["id_centro_costos"],$_POST["id_tipo_paciente"],$_POST["nivel_academico"],
+            $_POST["departamento"],
+            $_POST["fecha_alta_pac"],
             $_POST["id_usuario_consultorio"]
          );
+         
+        
+         //array poblacion riesgo
+
+         //array medicina preventiva
+
+         //llamamos metodo para registrar paciente
          $data = $this->model->registroPaciente($this->pacienteClass($array));
+
          if($data ===1){
-             echo "Ya se ha registrado un paciente con este número telefónico anteriormente.";
+             echo "Ya se ha registrado un paciente con ese nombre y fecha de nacimiento anteriormente.";
+         } else if($data=== 0){ //se registro el usuario falta consulta
+            //enviamos arreglo de consulta, nos devuelve el id_paciente en $dataCon
+            $dataCon = $this->model->obtenerIdPaciente($this->pacienteClass($array)); 
+            
+            if($dataCon===0){ // si es igual a 0 no se encontro el id usuario
+                echo "No se encontro el paciente en la base de datos";
+            }  else {
+              
+                  //array para dar alta consulta
+          $arrayConsulta = array(
+            $dataCon,
+            $_POST["edad"],$_POST["id_tipo_atencion"],
+            $_POST["frecuencia_cardiaca"],$_POST["frecuencia_respiratoria"],
+            $_POST["temperatura"],$_POST["tension_arterial"],
+            $_POST["talla"],$_POST["peso"],
+            $_POST["descripcion"],$_POST["diagnostico"],
+            $_POST["tratamiento"],$_POST["ambulancia"],
+            $_POST["referenciado"],$_POST["observaciones"],
+            $_POST["lugar_referencia"],$_POST["fecha_consulta"],
+            $_POST["hora_consulta"],$_POST["id_medico"]
+
+         ); 
+             $dataConsulta = $this->model->registroConsulta($this->consultaClass($arrayConsulta));
+             
+             if($dataConsulta== 0){ // indica que se inserto el paciente y la consulta, falta poblacion_riesgo y medicina_prev
+                    //enviamos arreglo de consulta, nos devuelve el id_consulta
+                        $idConsulta = $this->model->obtenerIdConsulta($this->consultaClass($arrayConsulta)); 
+                        if($idConsulta===0){ // si es igual a 0 no se encontro el id usuario
+                            echo "No se registro la consulta en la Base de datos";
+                        }  else {
+                            //convertimos en arreglo los id de poblacion_riesgo y medicina_prev
+                            $poblacionRiesgo = explode(",", $_POST["poblacion_riesgo"]);
+                            $medicinaPreventiva = explode(",",$_POST["medicina_prev"]);
+                         // arreglo para mandar a registrar los datos
+                             $arrayPoblacionMedicina = [
+                                $idConsulta,
+                                $poblacionRiesgo,
+                                $medicinaPreventiva
+                             ];
+
+                           $dataPoblaMed = $this->model->registroPoblacionMedicina($arrayPoblacionMedicina);
+                           if($dataPoblaMed == 0){ // indica que ya se inserto todo correctamente
+                               echo 0;
+                           } else {
+                               echo $dataPoblaMed; // manda el error
+                           }
+                        }
+             } else{
+                 echo $dataConsulta;
+             }
+
+            }
+          
          } else{
-             echo $data;
+            echo $data;
          }
          
 
