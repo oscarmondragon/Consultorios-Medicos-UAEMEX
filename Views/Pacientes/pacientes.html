@@ -29,7 +29,7 @@
   </table>
   <!--Modal Structure-->
   <div id="modal1" class="modal modal-fixed-footer">
-    <form class="col s12" id="validate" method="POST">
+    <form id="formularioPaciente" class="col s12" id="validate" method="POST">
       <div class="modal-content">
         <center>
           <h5>Datos del paciente</h5>
@@ -140,7 +140,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s10">
+            <div id="poblacion" class="input-field col s10">
               <p>Población de riesgo</p>
               <div class="input-field col s5">
                 <p>
@@ -268,7 +268,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s10">
+            <div id="medicina" class="input-field col s10">
               <p>Medicina preventiva</p>
               <div class="input-field col s5">
                 <p>
@@ -326,9 +326,8 @@
           </div>
         </div>
         <div class="row">
-          <div class="input-field col s3">
+          <div id="ambula" class="input-field col s3">
             <P>Ambulancia</P>
-            <form action="#" id="ambulancia">
               <p>
                 <label class="radio-inline">
                   <input name="ambulancia" type="radio" value="1" />
@@ -339,11 +338,9 @@
                   <span>No</span>
                 </label>
               </p>
-            </form>
           </div>
-          <div class="input-field col s3">
+          <div id="refer" class="input-field col s3">
             <P>Referenciado</P>
-            <form action="#" id="referenciado">
               <p>
                 <label class="radio-inline">
                   <input name="referenciado" type="radio" value="1" />
@@ -354,7 +351,6 @@
                   <span>No</span>
                 </label>
               </p>
-            </form>
           </div>
           <div class="input-field col s6">
             <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate" />

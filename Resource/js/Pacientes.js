@@ -152,22 +152,22 @@ class Pacientes {
       type: "POST",
       success: (response) => {
 
-        
-         if (response == 0) {
-           this.vaciarFormulario();
+
+        if (response == 0) {
+          this.vaciarFormulario();
           Swal.fire({
             icon: 'success',
             title: 'Registro exitoso.',
             text: ""
           });
-          getPacientes(); 
-       } else {
-         Swal.fire({
-           icon: 'error',
-           title: 'Oops...',
-           text: response
-         });
-       }  
+          getPacientes();
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: response
+          });
+        }
 
       }
     });
@@ -281,6 +281,27 @@ class Pacientes {
     document.getElementById("materno").value = "";
     document.getElementById("fechaNac").value = "";
     document.getElementById("telefonoCel").value = "";
+    document.getElementById("nombrePaciente").value = "";
     document.getElementById("departamento").value = "";
+    document.getElementById("edadPaciente").value = "";
+    document.getElementById("frecCardiaca").value = "";
+    document.getElementById("frecRespiratoria").value = "";
+    document.getElementById("temperatura").value = "";
+    document.getElementById("tarterial").value = "";
+    document.getElementById("talla").value = "";
+    document.getElementById("peso").value = "";
+    document.getElementById("descripcion").value = "";
+    document.getElementById("diagnostico").value = "";
+    document.getElementById("tratamiento").value = "";
+    document.getElementById("lugarreferencia").value = "";
+    document.getElementById("observaciones").value ="";
+    document.getElementById("ompreventiva").value = "";
+    $('#sexo').prop('selectedIndex',0);
+    $('#nivelAcademico').prop('selectedIndex',0);
+    $('#tipoAtencion').prop('selectedIndex',0);
+    $("#poblacion input[type=checkbox]").prop('checked', false);
+    $("#medicina input[type=checkbox]").prop('checked', false);
+    $('#ambula input[type="radio"]').prop('checked', false);
+    $('#refer input[type="radio"]').prop('checked', false);
   }
 }
