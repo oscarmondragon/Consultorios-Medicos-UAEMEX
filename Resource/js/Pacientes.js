@@ -142,15 +142,6 @@ class Pacientes {
     data.append("id_medico", userId);
     data.append("poblacion_riesgo", poblacionRiesgo);
     data.append("medicina_prev", medicinaPreventiva);
-    poblacionRiesgo.forEach(element => {
-      console.log("\t" + element);
-
-    });
-    console.log("_________________");
-    medicinaPreventiva.forEach(element => {
-      console.log("\t" + element);
-
-    });
 
     $.ajax({
       url: URL + "Pacientes/registrarPaciente",
