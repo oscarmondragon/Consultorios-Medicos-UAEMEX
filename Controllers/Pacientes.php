@@ -94,19 +94,39 @@ class Pacientes extends Controllers {
                             $poblacionRiesgo = explode(",", $_POST["poblacion_riesgo"]);
                             $medicinaPreventiva = explode(",",$_POST["medicina_prev"]);
                          // arreglo para mandar a registrar los datos
-                             $arrayPoblacionMedicina = [
+                     
+                       //insertamos los valore de poblacion de riesgo
+                       if($poblacionRiesgo[0] != 0){
+                         foreach ($poblacionRiesgo as $valor) {
+                             $valores = array(
+                                 $idConsulta,
+                                 $valor
+                             );
+                            $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($valores));
+                            if($dataPoblacion != 0){
+                                $dataPoblacion = 1;
+                            break;
+                            }
+                         }
+                        }
+                  //insertamos valores de medicina preventiva
+                  if($medicinaPreventiva[0] != 0){
+                         foreach ($medicinaPreventiva as $valor) {
+                            $valores = array(
                                 $idConsulta,
-                                $poblacionRiesgo,
-                                $medicinaPreventiva
-                             ];
-
-                           $dataPoblaMed = $this->model->registroPoblacionMedicina($arrayPoblacionMedicina);
-                           if($dataPoblaMed == 0){ // indica que ya se inserto todo correctamente
-                               echo 0;
-                           } else {
-                               echo $dataPoblaMed; // manda el error
+                                $valor
+                            );
+                           $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($valores));
+                           if($dataMedicina != 0){
+                               $dataMedicina = 1;
+                           break;
                            }
                         }
+                  }
+                           
+                     echo 0;
+                      
+             }
              } else{
                  echo $dataConsulta;
              }
@@ -116,9 +136,6 @@ class Pacientes extends Controllers {
          } else{
             echo $data;
          }
-         
-
-         //echo $_POST["tel_cel_pac"];
      }
 
     public function getPacientes(){

@@ -85,6 +85,30 @@ class Anonymous {
     };
 }
 
+public function poblacionClass($array){
+    return new class($array){
+     public $id_consulta;
+     public $id_poblacion_riesgo;
+
+     public function __construct($array) {
+                 $this->id_consulta = $array[0];
+                 $this->id_poblacion_riesgo = $array[1];
+     }
+    };
+}
+
+public function medicinaClass($array){
+    return new class($array){
+     public $id_consulta;
+     public $id_medicina_preventiva;
+
+     public function __construct($array) {
+                 $this->id_consulta = $array[0];
+                 $this->id_medicina_preventiva = $array[1];
+     }
+    };
+}
+
 }
 
 ?>

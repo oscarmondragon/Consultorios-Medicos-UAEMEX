@@ -169,40 +169,39 @@ class Pacientes_model extends Conexion{
            
     }
 
-   function registroPoblacionMedicina($poblacionMedicina){
-
-   $idCon = $poblacionMedicina[0]; // id_consulta
-   $poblacionRiesgo = $poblacionMedicina[1]; // id de las poblaciones de riesgo seleccionadas
-   $medicinaPreventiva = $poblacionMedicina[2]; //id de las medicinas preventivas seleccionadas
-  
- //insertamos los datos a tabla consulta_medicina_preventiva
- 
-    foreach ($medicinaPreventiva as &$valor) {
-        $value = " (id_consulta,
-        id_medicina_preventiva
-        ) VALUES (
-        :$idCon,
-        :$valor
-        )";
-        $data = $this->db->insert('consulta_medicina_preventiva',[$idCon, $valor],$value);
-        
-        } 
- 
+   function registroPoblacionRiesgo($poblacionRiesgo){
      //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
 
-    foreach ($poblacionRiesgo as &$valor) {
-        $value = " (id_consulta,
+       $value = " (id_consulta,
         id_poblacion_riesgo
         ) VALUES (
-        :$idCon,
-        :$valor
+        :id_consulta,
+        :id_poblacion_riesgo
         )";
-        $data = $this->db->insert('consulta_poblacion_riesgo',[$idCon, $valor],$value);
-        } 
-
-        return 0; //se insertaron correctamente los datos
+        $data = $this->db->insert('consulta_poblacion_riesgo',$poblacionRiesgo,$value);
+        if($data == 1){
+            return 0;
+        } else {
+            return $data;
+        }
    }
     
+   function registroMedicinaPreventiva($medicinaPreventiva){
+    //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
+
+      $value = " (id_consulta,
+       id_medicina_preventiva
+       ) VALUES (
+       :id_consulta,
+       :id_medicina_preventiva
+       )";
+       $data = $this->db->insert('consulta_medicina_preventiva',$medicinaPreventiva,$value);
+       if($data == 1){
+           return 0;
+       } else {
+           return $data;
+       }
+  }
      
 
 

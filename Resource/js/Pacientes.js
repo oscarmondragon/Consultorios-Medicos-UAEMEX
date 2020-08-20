@@ -143,15 +143,15 @@ class Pacientes {
     data.append("poblacion_riesgo", poblacionRiesgo);
     data.append("medicina_prev", medicinaPreventiva);
     poblacionRiesgo.forEach(element => {
-      console.log("\t" +element);
+      console.log("\t" + element);
 
     });
     console.log("_________________");
     medicinaPreventiva.forEach(element => {
-      console.log("\t" +element);
+      console.log("\t" + element);
 
     });
-    
+
     $.ajax({
       url: URL + "Pacientes/registrarPaciente",
       data: data,
@@ -161,95 +161,95 @@ class Pacientes {
       type: "POST",
       success: (response) => {
 
-        console.log(response);
-         /* if (response == 0) {
-            this.vaciarFormulario();
-           Swal.fire({
-             icon: 'success',
-             title: 'Registro exitoso.',
-             text: ""
-           });
-           getPacientes(); 
-        } else {
+        
+         if (response == 0) {
+           this.vaciarFormulario();
           Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: response
+            icon: 'success',
+            title: 'Registro exitoso.',
+            text: ""
           });
-        }  */
- 
+          getPacientes(); 
+       } else {
+         Swal.fire({
+           icon: 'error',
+           title: 'Oops...',
+           text: response
+         });
+       }  
+
       }
     });
   }
 
-/* 
-  registrarConsulta(nombre,
-    paterno,
-    materno,
-    edad,
-    tipoAtencion,
-    fcardiaca,
-    frespiratoria,
-    temperatura,
-    tarterial,
-    talla,
-    peso,
-    descripcion,
-    diagnostico,
-    tratamiento,
-    ambulancia,
-    referenciado,
-    observaciones,
-    lugarReferencia,
-    fecha_alta_pac,
-    horaConsulta,
-    userId,
-    poblacionRiesgo,
-    medicinaPreventiva) {
-    var dataConsulta = new FormData();
-    dataConsulta.append("nombre_pac", nombre);
-    dataConsulta.append("apPaterno_pac", paterno);
-    dataConsulta.append("apMaterno_pac", materno);
-    dataConsulta.append("fecha_nacimiento_pac", fechaNac);
-    dataConsulta.append("tel_cel_pac", telefonoCel);
-    dataConsulta.append("sexo_pac", sexo);
-    dataConsulta.append("otro_sexo_pac", otro_sexo);
-    dataConsulta.append("id_estado_civil", estadoCiv);
-    dataConsulta.append("departamento", departamento);
-    dataConsulta.append("id_centro_costos", centroCost);
-    dataConsulta.append("id_tipo_paciente", tipoPaciente);
-    dataConsulta.append("fecha_alta_pac", fecha_alta_pac);
-    dataConsulta.append("id_usuario_consultorio", userId);
-
-    $.ajax({
-      url: URL + "Pacientes/registrarPaciente",
-      data: data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      type: "POST",
-      success: (response) => {
-        if (response == 0) {
-          /*  this.vaciarFromulario();
-           Swal.fire({
-             icon: 'success',
-             title: 'Registro exitoso.',
-             text: ""
-           });
-           getPacientes(); 
-
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: response,
-          });
-        }
-
-      },
-    });
-
-  } */
+  /* 
+    registrarConsulta(nombre,
+      paterno,
+      materno,
+      edad,
+      tipoAtencion,
+      fcardiaca,
+      frespiratoria,
+      temperatura,
+      tarterial,
+      talla,
+      peso,
+      descripcion,
+      diagnostico,
+      tratamiento,
+      ambulancia,
+      referenciado,
+      observaciones,
+      lugarReferencia,
+      fecha_alta_pac,
+      horaConsulta,
+      userId,
+      poblacionRiesgo,
+      medicinaPreventiva) {
+      var dataConsulta = new FormData();
+      dataConsulta.append("nombre_pac", nombre);
+      dataConsulta.append("apPaterno_pac", paterno);
+      dataConsulta.append("apMaterno_pac", materno);
+      dataConsulta.append("fecha_nacimiento_pac", fechaNac);
+      dataConsulta.append("tel_cel_pac", telefonoCel);
+      dataConsulta.append("sexo_pac", sexo);
+      dataConsulta.append("otro_sexo_pac", otro_sexo);
+      dataConsulta.append("id_estado_civil", estadoCiv);
+      dataConsulta.append("departamento", departamento);
+      dataConsulta.append("id_centro_costos", centroCost);
+      dataConsulta.append("id_tipo_paciente", tipoPaciente);
+      dataConsulta.append("fecha_alta_pac", fecha_alta_pac);
+      dataConsulta.append("id_usuario_consultorio", userId);
+  
+      $.ajax({
+        url: URL + "Pacientes/registrarPaciente",
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: "POST",
+        success: (response) => {
+          if (response == 0) {
+            /*  this.vaciarFromulario();
+             Swal.fire({
+               icon: 'success',
+               title: 'Registro exitoso.',
+               text: ""
+             });
+             getPacientes(); 
+  
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: response,
+            });
+          }
+  
+        },
+      });
+  
+    } */
 
   getPacientes(valor) {
     valor = valor != null ? valor : "";
