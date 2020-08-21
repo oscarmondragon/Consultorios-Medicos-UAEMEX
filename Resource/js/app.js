@@ -69,7 +69,6 @@ $(function () {
         let userId = user.id_usr;
 
         //DATOS DE LA CONSULTA CONSULTA
-
         let edad = document.getElementById("edadPaciente").value;
 
         let atencion = document.getElementById("tipoAtencion");
@@ -154,7 +153,6 @@ $(function () {
         $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
             poblacionRiesgo.push($(this).val());
         });
-
         let medicinaPreventiva = [];
         $("input:checkbox[name=medicinaPrev]:checked").each(function () {
             medicinaPreventiva.push($(this).val());
@@ -188,7 +186,6 @@ $(function () {
                 fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
                 tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
                 fecha_consulta, horaConsulta, userId);
-
             return false; //para evitar reenvio de formulario
         } else {
             Swal.fire({
