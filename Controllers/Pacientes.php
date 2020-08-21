@@ -57,7 +57,8 @@ class Pacientes extends Controllers {
          //echo $_POST["tel_cel_pac"];
      }
 
-    public function getPacientes(){
+    public function getPacientes()
+    {
         $count = 0;
         $dataFilter = null;
         $data = $this->model->getPacientes($_POST["filter"]);
@@ -89,6 +90,8 @@ class Pacientes extends Controllers {
         }
        
      }
+
+    
 
 }
 

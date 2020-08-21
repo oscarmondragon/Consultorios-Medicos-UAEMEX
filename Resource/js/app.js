@@ -201,20 +201,144 @@ $(function () {
         }.....*/
     });
 
+    $("#btnRConsulta").click(function () {
+        //obtenemos id del paciente a registrar consulta
+        let id_paciente = localStorage.getItem("id_paciente"); 
+       
+        //obtenemos fecha actual
+        let hoy = new Date();
+        let fecha_consulta = hoy.getFullYear() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getDate();
+
+        //obtenemos datos de usuario que registra
+        let user = JSON.parse(localStorage.getItem("user"));
+        let userId = user.id_usr;
+
+        //DATOS DE LA CONSULTA CONSULTA
+        let edad = document.getElementById("edadPaciente").value;
+
+        let atencion = document.getElementById("tipoAtencion");
+        let tipoAtencion = atencion.options[atencion.selectedIndex].value;
+
+        let atencion2 = document.getElementById("tipoAtencion2");
+        let tipoAtencion2 = atencion2.options[atencion2.selectedIndex].value;
+
+        //poblacion de riesgo
+        let poblacionRiesgo = [];
+        $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
+            poblacionRiesgo.push($(this).val());
+        });
+
+        let medicinaPreventiva = [];
+        $("input:checkbox[name=medicinaPrev]:checked").each(function () {
+            medicinaPreventiva.push($(this).val());
+        });
+
+        let fcardiaca = document.getElementById("frecCardiaca").value;
+        let frespiratoria = document.getElementById("frecRespiratoria").value;
+        let temperatura = document.getElementById("temperatura").value;
+        let tarterial = document.getElementById("tarterial").value;
+        let talla = document.getElementById("talla").value;
+        let peso = document.getElementById("peso").value;
+
+        let descripcion = document.getElementById("descripcion").value;
+        let diagnostico = document.getElementById("diagnostico").value;
+        let tratamiento = document.getElementById("tratamiento").value;
+
+        let observaciones = document.getElementById("observaciones").value;
+
+        let ambulancia = $('input:radio[name=ambulancia]:checked').val();
+        let referenciado = $('input:radio[name=referenciado]:checked').val();
+        let lugarReferencia = document.getElementById("lugarreferencia").value;
+
+        let horaConsulta = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
+
+        //mandamos los datos al metod registrarPaciente de Paciente.js
+        if (edad != "" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
+            && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
+            && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
+            alert("aqui todo bien");
+            consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva,
+                fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
+                tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
+                fecha_consulta, horaConsulta, userId);
+
+            return false; //para evitar reenvio de formulario
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: 'Completa todos los campos obligatorios!',
+
+            })
+        }
+    });
+
 });
 
 // llama metodo para filtrar pacientes
 var getPacientes = () => {
     let valor = document.getElementById("filtrarPaciente").value;
+   
     pacientes.getPacientes(valor);
+   
+    //consultas.getPacientesConsulta(valor);
+
+}
+
+var getPacientesC = () => {
+    
+    let valor = document.getElementById("filtrarPacienteC").value;
+   // pacientes.getPacientes(valor);
+    //alert("hola");
+    consultas.getPacientesConsulta(valor);
 
 }
 
 //funcion para obtener datos del paciente para editar
 var dataPaciente = (data) => {
     console.log(data);
-    pacientes.editarPaciente(data);
+    //pacientes.editarPaciente(data);
 }
+
+/*funcion que envia datos de paciente para generar NUEVA consulta*/
+var pacienteNConsulta = (data) => {   
+    alert("hola" + data.nombre_pac);
+    consultas.reestablecerUsuario();
+    consultas.nombrePaciente(data);
+    console.log(data);
+   // consultas.nombrePaciente(data);
+    //pacientes.editarPaciente(data);
+}
+/*funcion que envia datos de paciente para generar HISTORIAL de consultas*/
+var pacienteHistorial = (data) => {
+    consultas.nombrePacienteH(data);
+    console.log(data);
+    //pacientes.editarPaciente(data);
+}
+
+//declaracion del input lugarreferencia
+var lugarreferencia = document.getElementById('lugarreferencia');
+
+// evento para el input radio del "si referenciado"
+document.getElementById('referenciado').addEventListener('click', function (e) {
+    console.log('Vamos a habilitar el input text');
+    lugarreferencia.disabled = false;
+});
+
+// evento para el input radio del "no referenciado"
+document.getElementById('noreferenciado').addEventListener('click', function (e) {
+    console.log('Vamos a deshabilitar el input text');
+    lugarreferencia.value = "";
+    lugarreferencia.disabled = true;
+});
+
+// evento para eltipo de atencion
+/*document.getElementById('tipoAtencion').addEventListener("change", function (e) {
+    console.log('click en el tipo');
+  /* lugarreferencia.value = "";
+    lugarreferencia.disabled = true;*./
+});*/
+
+
 
 
 
@@ -239,6 +363,8 @@ $().ready(() => {
             break;
         case PATHNAME + "Pacientes/pacientes":
             getPacientes();
+        case PATHNAME + "Consultas/consultas":
+            getPacientesC();
             break;
     }
 
