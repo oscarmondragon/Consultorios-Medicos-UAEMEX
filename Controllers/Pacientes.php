@@ -154,12 +154,12 @@ class Pacientes extends Controllers {
                     "<td>".$value["tel_cel_pac"]."</td>".
                     "<td>".$value["des_centro_costos"]."</td>".
                     "<td>".$value["tipo"]."</td>".
-                    "<td>".
+                    /* "<td>".
                     "<a  href= '#modal'  class='btn 
                     btn-success modal-trigger'>Editar</a> |".
                     
                     "<a href= '#modal1' onclick='dataPaciente(".$dataUser.")'  class='btn red lighten-1'>Eliminar</a>".
-                    "</td>".
+                    "</td>". */
                 "</tr>";
                 $count++;
             }
