@@ -8,9 +8,9 @@ class Pacientes_model extends Conexion{
         return $response = $this->db->select1("*","catalogo_estado_civil", null, null);
     }
     function getCentroCostos(){
-        $where = " WHERE subnivel = 0 AND  estatus = 0";
+        $where = " WHERE subnivel = 0 AND  estatus = 1";
 
-        return $response = $this->db->select1("*","centro_costos", null, null);
+        return $response = $this->db->select1("*","centro_costos", $where, null);
     }
     function getTipoPaciente(){
         return $response = $this->db->select1("*","tipo_paciente", null, null);

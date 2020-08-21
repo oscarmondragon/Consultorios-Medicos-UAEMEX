@@ -1,4 +1,4 @@
-class Consultas {
+ï»¿class Consultas {
     
 
     constructor() {
@@ -23,7 +23,7 @@ class Consultas {
                 let item = JSON.parse(response);
 
                 $("#tipoAtencion").prepend(
-                    "<option value='0' disabled selected='selected'  >Elige una opción</option>"
+                    "<option value='0' disabled selected='selected'  >Elige una opciÃ³n</option>"
                 );
                 if (item.results.length > 0) {
                     //estamos obteniendo datos
@@ -54,7 +54,7 @@ class Consultas {
                     let item = JSON.parse(response);
 
                     $("#tipoAtencion2").prepend(
-                        "<option value='0' disabled selected='selected'  >Elige una opción</option>"
+                        "<option value='0' disabled selected='selected'  >Elige una opciÃ³n</option>"
                     );
                     if (item.results.length > 0) {
                         //estamos obteniendo datos
