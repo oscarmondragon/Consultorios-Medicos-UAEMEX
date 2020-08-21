@@ -35,7 +35,7 @@ var selectatencion2 = () => {
     $(document).on('change', '#tipoAtencion', function (event) {
 
         let tipoAtencion = $("#tipoAtencion option:selected").val();
-        alert("El tipo de atencion es:" + tipoAtencion);
+       // alert("El tipo de atencion es:" + tipoAtencion);
         consulta.reestablecerUsuario2(tipoAtencion);
        /* if (sexo === "Otro") {
 
@@ -78,7 +78,7 @@ var calcularEdadC = (fecha) => {
 
     let fechaNace = new Date(fecha);
     let fechaActual = new Date();
-    alert("fn" + fechaNace + "fa" + fechaActual);
+    //alert("fn" + fechaNace + "fa" + fechaActual);
     let mes = fechaActual.getMonth();
     let dia = fechaActual.getDate();
     let año = fechaActual.getFullYear();

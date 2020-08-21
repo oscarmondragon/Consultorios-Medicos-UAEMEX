@@ -1,7 +1,14 @@
 class Consultas {
     
 
-    constructor() {}
+    constructor() {
+        //declaracion del input lugarreferencia
+       
+    }
+
+    caracteristicasformulario() {
+       
+    }
 
     registraConsultas(talla){
 
@@ -38,7 +45,7 @@ class Consultas {
     }
 
     getTipoAtencion2(padre) {
-        alert("consultas.js_gta2" + padre);
+        //alert("consultas.js_gta2" + padre);
         let count = 1;
 
         $.post(URL + "Consultas/getTipoAtencion2",
@@ -152,7 +159,7 @@ class Consultas {
         data.append("id_medico", userId);
         data.append("poblacion_riesgo", poblacionRiesgo);
         data.append("medicina_prev", medicinaPreventiva);
-        alert("CONSULTAS.js");
+        //alert("CONSULTAS.js");
         $.ajax({
             url: URL + "Consultas/registrarConsulta",
             data: data,
@@ -190,7 +197,7 @@ class Consultas {
         
     }
     reestablecerUsuario2(ta) {
-        alert("consultas.js_r" + ta);
+       // alert("consultas.js_r" + ta);
         this.getTipoAtencion2(ta);
 
     }
@@ -219,6 +226,8 @@ class Consultas {
         $('#ambula input[type="radio"]').prop('checked', false);
         $('#refer input[type="radio"]').prop('checked', false);
     }
+
+   
 
    
 }
