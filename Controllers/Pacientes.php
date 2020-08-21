@@ -138,7 +138,8 @@ class Pacientes extends Controllers {
          }
      }
 
-    public function getPacientes(){
+    public function getPacientes()
+    {
         $count = 0;
         $dataFilter = null;
         $data = $this->model->getPacientes($_POST["filter"]);
@@ -170,6 +171,8 @@ class Pacientes extends Controllers {
         }
        
      }
+
+    
 
 }
 
