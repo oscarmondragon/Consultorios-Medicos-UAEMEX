@@ -61,6 +61,7 @@ class QueryManager {
             //throw $th;
             return $e->getMessage();
         }
+        $pdo = null; // cerrar la conexion
     }
 }
 ?>
