@@ -50,11 +50,6 @@ class Pacientes extends Controllers {
             $_POST["id_usuario_consultorio"]
          );
          
-        
-         //array poblacion riesgo
-
-         //array medicina preventiva
-
          //llamamos metodo para registrar paciente
          $data = $this->model->registroPaciente($this->pacienteClass($array));
 
@@ -93,8 +88,7 @@ class Pacientes extends Controllers {
                             //convertimos en arreglo los id de poblacion_riesgo y medicina_prev
                             $poblacionRiesgo = explode(",", $_POST["poblacion_riesgo"]);
                             $medicinaPreventiva = explode(",",$_POST["medicina_prev"]);
-                         // arreglo para mandar a registrar los datos
-                     
+                        
                        //insertamos los valore de poblacion de riesgo
                        if($poblacionRiesgo[0] != 0){
                          foreach ($poblacionRiesgo as $valor) {
@@ -109,12 +103,13 @@ class Pacientes extends Controllers {
                             }
                          }
                         }
+                        
                   //insertamos valores de medicina preventiva
                   if($medicinaPreventiva[0] != 0){
                          foreach ($medicinaPreventiva as $valor) {
                             $valores = array(
                                 $idConsulta,
-                                $valor
+                                $valor, NULL
                             );
                            $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($valores));
                            if($dataMedicina != 0){
@@ -122,9 +117,20 @@ class Pacientes extends Controllers {
                            break;
                            }
                         }
-                  }
+                  } 
+
+                  //guardamos en una variable la otra medicina preventiva
+                 // el id para otra medicina siempre será 0, posteriormente podemos hacer el metodo para obtener el id desde la db
+                 if($_POST["otraMedicina"] != ""){
+                    $idOtraMedicina = 0;
+                    $otraMedicinaPrev = array($idConsulta,$idOtraMedicina,$_POST["otraMedicina"]); // arreglo para mandar a registrar
+                //insertamos valores de otra medicina
+                $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($otraMedicinaPrev));
+
+                 }
+                   
                            
-                     echo 0;
+                echo 0;
                       
              }
              } else{

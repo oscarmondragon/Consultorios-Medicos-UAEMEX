@@ -23,7 +23,7 @@ var restablecerPaciente = () => {
 
 //registro de pacientes
 $(function () {
-    $("#btnLogin").click(function () {
+    $("#btnNuevoPac").click(function () {
 
         //capturamos en variables los datos del paciente a registrar
         let nombre = document.getElementById("nombre").value;
@@ -69,9 +69,9 @@ $(function () {
         let userId = user.id_usr;
 
         //DATOS DE LA CONSULTA CONSULTA
-        let edad = document.getElementById("edadPaciente").value;
+        let edad = document.getElementById("edadPacienteN").value;
 
-        let atencion = document.getElementById("tipoAtencion");
+        let atencion = document.getElementById("tipoAtencion2N");
         let tipoAtencion = atencion.options[atencion.selectedIndex].value;
 
         //poblacion de riesgo
@@ -85,24 +85,26 @@ $(function () {
             medicinaPreventiva.push($(this).val());
         });
 
-        let fcardiaca = document.getElementById("frecCardiaca").value;
-        let frespiratoria = document.getElementById("frecRespiratoria").value;
-        let temperatura = document.getElementById("temperatura").value;
-        let tarterial = document.getElementById("tarterial").value;
-        let talla = document.getElementById("talla").value;
-        let peso = document.getElementById("peso").value;
+        let fcardiaca = document.getElementById("frecCardiacaN").value;
+        let frespiratoria = document.getElementById("frecRespiratoriaN").value;
+        let temperatura = document.getElementById("temperaturaN").value;
+        let tarterial = document.getElementById("tarterialN").value;
+        let talla = document.getElementById("tallaN").value;
+        let peso = document.getElementById("pesoN").value;
 
-        let descripcion = document.getElementById("descripcion").value;
-        let diagnostico = document.getElementById("diagnostico").value;
-        let tratamiento = document.getElementById("tratamiento").value;
+        let descripcion = document.getElementById("descripcionN").value;
+        let diagnostico = document.getElementById("diagnosticoN").value;
+        let tratamiento = document.getElementById("tratamientoN").value;
 
-        let observaciones = document.getElementById("observaciones").value;
+        let observaciones = document.getElementById("observacionesN").value;
 
-        let ambulancia = $('input:radio[name=ambulancia]:checked').val();
-        let referenciado = $('input:radio[name=referenciado]:checked').val();
-        let lugarReferencia = document.getElementById("lugarreferencia").value;
+        let ambulancia = $('input:radio[name=ambulanciaN]:checked').val();
+        let referenciado = $('input:radio[name=referenciadoN]:checked').val();
+        let lugarReferencia = document.getElementById("lugarreferenciaN").value;
 
         let horaConsulta = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
+
+        let otraMedicina = document.getElementById("ompreventivaN").value;
 
         //mandamos los datos al metod registrarPaciente de Paciente.js
         if (nombre != "" && paterno != "" && materno != "" && fechaNac != "" && telefonoCel != ""
@@ -115,7 +117,7 @@ $(function () {
                 telefonoCel, estadoCiv, centroCost, tipoPaciente, nivelAcademico, departamento, fecha_alta_pac, userId,
                 edad, tipoAtencion, poblacionRiesgo, medicinaPreventiva, fcardiaca, frespiratoria, temperatura,
                 tarterial, talla, peso, descripcion, diagnostico, tratamiento, observaciones,
-                ambulancia, referenciado, lugarReferencia, horaConsulta);
+                ambulancia, referenciado, lugarReferencia, horaConsulta, otraMedicina);
 
             return false; //para evitar reenvio de formulario
         } else {
@@ -200,11 +202,23 @@ $(function () {
 
 // llama metodo para filtrar pacientes
 var getPacientes = () => {
+    let lugarreferencia = document.getElementById('lugarreferenciaN');
+    lugarreferencia.disabled = true;
+
+    // evento para el input radio del "si referenciado paciente"
+    document.getElementById('referenciadoN').addEventListener('click', function (e) {
+        lugarreferencia.disabled = false;
+    });
+
+    // evento para el input radio del "no referenciado paciente"
+    document.getElementById('noreferenciadoN').addEventListener('click', function (e) {
+        lugarreferencia.value = "";
+        lugarreferencia.disabled = true;
+    });
+
     let valor = document.getElementById("filtrarPaciente").value;
    
     pacientes.getPacientes(valor);
-   
-    //consultas.getPacientesConsulta(valor);
 
 }
 

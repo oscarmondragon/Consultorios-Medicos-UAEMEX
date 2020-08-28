@@ -19,6 +19,7 @@ var validarEmail = (email) => {
             
             $('#otro_sexo').attr("disabled", false);
            } else {
+            $('#otro_sexo').val("");
             $('#otro_sexo').attr("disabled", true);
            }
             
@@ -27,6 +28,24 @@ var validarEmail = (email) => {
 }
 
 
+var selectatencion2Nuevo = () => {
+    let paciente = new Pacientes();
+
+    $(document).on('change', '#tipoAtencionN', function (event) {
+
+        let tipoAtencion = $("#tipoAtencionN option:selected").val();
+       // alert("El tipo de atencion es:" + tipoAtencion);
+        paciente.restablecerPacienteAtencion2(tipoAtencion);
+       /* if (sexo === "Otro") {
+
+            $('#otro_sexo').attr("disabled", false);
+        } else {
+            $('#otro_sexo').attr("disabled", true);
+        }*/
+
+    });
+
+}
 
 
 var selectatencion2 = () => {
@@ -53,7 +72,7 @@ var copiarNombre = () => {
     let apPaterno = document.getElementById("paterno").value;
     let apMaterno = document.getElementById("materno").value;
 
-    document.getElementById("nombrePaciente").value = nombre + " " + apPaterno + " " + apMaterno;
+    document.getElementById("nombrePacienteN").value = nombre + " " + apPaterno + " " + apMaterno;
 }
 
 var calcularEdad = (fecha) => {
@@ -70,7 +89,7 @@ var calcularEdad = (fecha) => {
     fechaActual.setFullYear(año);
 
     edad = Math.floor(((fechaActual - fechaNace) / (1000 * 60 * 60 * 24) / 365));
-    document.getElementById("edadPaciente").value = edad;
+    document.getElementById("edadPacienteN").value = edad;
   
 }
 

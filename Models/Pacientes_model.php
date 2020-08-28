@@ -192,10 +192,12 @@ class Pacientes_model extends Conexion{
     //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
 
       $value = " (id_consulta,
-       id_medicina_preventiva
+       id_medicina_preventiva,
+       observaciones
        ) VALUES (
        :id_consulta,
-       :id_medicina_preventiva
+       :id_medicina_preventiva,
+       :observaciones
        )";
        $data = $this->db->insert('consulta_medicina_preventiva',$medicinaPreventiva,$value);
        if($data == 1){
@@ -204,8 +206,6 @@ class Pacientes_model extends Conexion{
            return $data;
        }
   }
-     
-
 
     function getPacientes($filter){
         $where = " WHERE id_paciente LIKE :id_paciente OR nombre_pac LIKE :nombre_pac
