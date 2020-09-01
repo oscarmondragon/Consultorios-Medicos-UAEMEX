@@ -160,6 +160,8 @@ $(function () {
             medicinaPreventiva.push($(this).val());
         });
 
+        let ompreventiva = document.getElementById("ompreventiva").value;
+
         let fcardiaca = document.getElementById("frecCardiaca").value;
         let frespiratoria = document.getElementById("frecRespiratoria").value;
         let temperatura = document.getElementById("temperatura").value;
@@ -184,10 +186,10 @@ $(function () {
             && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
            // alert("aqui todo bien");
-            consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva,
-                fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
-                tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
-                fecha_consulta, horaConsulta, userId);
+           consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva, ompreventiva,
+            fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
+            tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
+            fecha_consulta, horaConsulta, userId);
             return false; //para evitar reenvio de formulario
         } else {
             Swal.fire({
