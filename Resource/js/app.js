@@ -151,10 +151,17 @@ $(function () {
         let tipoAtencion2 = atencion2.options[atencion2.selectedIndex].value;
 
         //poblacion de riesgo
+
         let poblacionRiesgo = [];
-        $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
-            poblacionRiesgo.push($(this).val());
-        });
+        let ningunaPoblacion = document.getElementById("ninguna");
+        if(ningunaPoblacion.checked){
+            poblacionRiesgo.push($(ningunaPoblacion).val());
+        } else {
+            $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
+                poblacionRiesgo.push($(this).val());
+            });
+        }
+
         let medicinaPreventiva = [];
         $("input:checkbox[name=medicinaPrev]:checked").each(function () {
             medicinaPreventiva.push($(this).val());
@@ -185,7 +192,7 @@ $(function () {
         if (edad != "" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
             && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
-           // alert("aqui todo bien");
+            //alert("aqui todo bien");
            consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva, ompreventiva,
             fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
             tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
@@ -239,6 +246,19 @@ var getPacientesC = () => {
         lugarreferencia.value = "";
         lugarreferencia.disabled = true;
     });
+
+    document.getElementById('ninguna').addEventListener('change', function (e) {
+        if(document.getElementById('ninguna').checked){
+            console.log('Vamos a habilitar los checkPR');
+            $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
+            $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
+        }else{
+            $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
+        }
+        
+        }
+    );
+
     let valor = document.getElementById("filtrarPacienteC").value;
   
     //alert("hola");

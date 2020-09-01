@@ -161,7 +161,7 @@
         data.append("poblacion_riesgo", poblacionRiesgo);
         data.append("medicina_prev", medicinaPreventiva);
         data.append("ompreventiva", ompreventiva);
-        alert("Medicina preventiva:" + ompreventiva);
+        //alert("Medicina preventiva:" + ompreventiva);
         $.ajax({
             url: URL + "Consultas/registrarConsulta",
             data: data,

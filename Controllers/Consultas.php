@@ -140,7 +140,7 @@ class Consultas extends Controllers {
                     // arreglo para mandar a registrar los datos
                      
                     //insertamos los valore de poblacion de riesgo
-                    if($poblacionRiesgo[0] != 0){
+                    if($poblacionRiesgo[0] != null){
                          foreach ($poblacionRiesgo as $valor) 
                          {
                             $valores = array($idConsulta, $valor);
@@ -167,7 +167,7 @@ class Consultas extends Controllers {
                     
                     if($omp != "" or $omp != NULL){//verificamos que exista otra medicina preventiva
                     
-                        $valores = array($idConsulta, 9,$omp);                        
+                        $valores = array($idConsulta, 0,$omp);                        
                         $dataPoblacion = $this->model->registroOMedicinaPreventiva($this->omedicinaClass($valores));
                             if($dataPoblacion != 0){
                                 $dataPoblacion = 1;
