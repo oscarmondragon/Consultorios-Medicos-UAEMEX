@@ -28,6 +28,21 @@ var validarEmail = (email) => {
 }
 
 
+
+var deshabilitarPoblacion  = document.getElementById('ningunaN');
+
+deshabilitarPoblacion.addEventListener("change", compruebaPoblacion, false);
+function compruebaPoblacion(){
+    if(deshabilitarPoblacion.checked){
+        $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
+        $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
+
+    }else{
+        $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
+    }
+  }
+
+
 var selectatencion2Nuevo = () => {
     let paciente = new Pacientes();
 

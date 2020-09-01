@@ -307,5 +307,11 @@ getTipoAtencion2N(padre) {
     $("#medicina input[type=checkbox]").prop('checked', false);
     $('#ambula input[type="radio"]').prop('checked', false);
     $('#refer input[type="radio"]').prop('checked', false);
+    $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
+    $("input:checkbox[name=medicinaPrev]").prop("checked", false);
+
+    
+
+    
   }
 }
