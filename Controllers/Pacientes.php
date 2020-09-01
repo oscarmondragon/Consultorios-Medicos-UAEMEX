@@ -158,7 +158,6 @@ class Pacientes extends Controllers {
                     "<td>".$value["nombre_pac"]."</td>".
                     "<td>".$value["apPaterno_pac"]."</td>".
                     "<td>".$value["apMaterno_pac"]."</td>".
-                    "<td>".$value["tel_cel_pac"]."</td>".
                     "<td>".$value["des_centro_costos"]."</td>".
                     "<td>".$value["tipo"]."</td>".
                     /* "<td>".
