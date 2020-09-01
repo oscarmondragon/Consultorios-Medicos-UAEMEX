@@ -81,6 +81,7 @@ class Consultas extends Controllers {
         if(is_array($data)){
             $array = $data["results"];
             foreach ($array as $key => $value) {
+                $datosConsulta = json_encode($array[$count]);
                 $dataUser = json_encode($array[$count]);
                 $idtipoA = $value["id_tipo_atencion"];
                 $descTipo = $this->model->getCatalogotipoatencion($idtipoA);
@@ -93,7 +94,7 @@ class Consultas extends Controllers {
                             "<td>".$value["hora_consulta"]."</td>".
                             "<td>".$valuedt["nombre_tipo_atencion"]."</td>".
                             "<td>".
-                            "<a  href= '#modal1'  onclick='pacienteNConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Detalles</a>".
+                            "<a  href= '#modal1'  onclick='mostrarConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Detalles</a>".
                             "</td>".
                             "</tr>";
                     }
@@ -109,6 +110,10 @@ class Consultas extends Controllers {
         }       
      }
 
+     public function getconsulta(){
+
+
+     }
 
      function registrarConsulta()
      {         

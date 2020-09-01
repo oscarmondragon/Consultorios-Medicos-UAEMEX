@@ -113,6 +113,17 @@
         );
     }
 
+    muestraConsulta(idconsulta){
+        $.post(
+            URL + "Consultas/getConsulta",
+            { "id_paciente": idconsulta. },
+            (response) => {
+                $("#historial_consulta").html(response);
+                // console.log(response);
+            }
+        );
+    }
+
     registrarConsulta(
         id_paciente,
         edad,

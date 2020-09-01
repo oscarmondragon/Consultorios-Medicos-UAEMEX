@@ -286,6 +286,33 @@ var pacienteHistorial = (data) => {
     //pacientes.editarPaciente(data);
 }
 
+var mostrarConsulta = (data) => {
+    alert("muestra datos:"+data);
+    console.log(data);
+    console.log(data.edad);
+    document.getElementById("edadPaciente").value = data.edad;
+    //poblacion de riesgo
+    document.getElementById("frecCardiaca").value = data.frecuencia_cardiaca;
+    document.getElementById("frecRespiratoria").value = data.frecuencia_respiratoria;
+    document.getElementById("temperatura").value = data.temperatura;
+    document.getElementById("tarterial").value = data.tension_arterial;
+    document.getElementById("talla").value = data.talla;
+    document.getElementById("peso").value = data.peso;
+    document.getElementById("descripcion").value = data.descripcion;
+    document.getElementById("diagnostico").value = data.diagnostico;
+    document.getElementById("tratamiento").value = data.tratamiento;
+    //medicina preventiva
+    //otra_medicina preventiva
+    //document.getElementById("omp").value
+    //ambulancia
+    //referenciado
+    document.getElementById("lugarreferencia").value = data.lugar_referencia;
+    document.getElementById("observaciones").value = data.observaciones;
+
+    //document.getElementById("frecCardiaca").value = paciente.nombre_pac + " " + paciente.apPaterno_pac + " " + paciente.apMaterno_pac;
+   // document.getElementById("fechaNac").value = paciente.fecha_nacimiento_pac;
+}
+
 /**/
 // evento para eltipo de atencion
 /*document.getElementById('tipoAtencion').addEventListener("change", function (e) {

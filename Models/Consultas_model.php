@@ -59,6 +59,12 @@ class Consultas_model extends Conexion{
 
     }
 
+    function getConsulta($id_conuslta){
+        $where = " WHERE id_consulta = ".$id_consulta;
+        return $response = $this->db->select1("*","consulta", $where, null);
+
+    }
+
     function registroConsulta($consultaRegistro
     ){
          
