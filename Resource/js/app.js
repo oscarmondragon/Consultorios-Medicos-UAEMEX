@@ -74,80 +74,10 @@ $(function () {
 
         let atencion = document.getElementById("tipoAtencion");
         let tipoAtencion = atencion.options[atencion.selectedIndex].value;
-
-        //poblacion de riesgo
-        let poblacionRiesgo = [];
-        $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
-            poblacionRiesgo.push($(this).val());
-        });
-
-        let medicinaPreventiva = [];
-        $("input:checkbox[name=medicinaPrev]:checked").each(function () {
-            medicinaPreventiva.push($(this).val());
-        });
-
-        let fcardiaca = document.getElementById("frecCardiaca").value;
-        let frespiratoria = document.getElementById("frecRespiratoria").value;
-        let temperatura = document.getElementById("temperatura").value;
-        let tarterial = document.getElementById("tarterial").value;
-        let talla = document.getElementById("talla").value;
-        let peso = document.getElementById("peso").value;
-
-        let descripcion = document.getElementById("descripcion").value;
-        let diagnostico = document.getElementById("diagnostico").value;
-        let tratamiento = document.getElementById("tratamiento").value;
-
-        let observaciones = document.getElementById("observaciones").value;
-
-        let ambulancia = $('input:radio[name=ambulancia]:checked').val();
-        let referenciado = $('input:radio[name=referenciado]:checked').val();
-        let lugarReferencia = document.getElementById("lugarreferencia").value;
-
-        let horaConsulta = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
-
-        //mandamos los datos al metod registrarPaciente de Paciente.js
-        if (nombre != "" && paterno != "" && materno != "" && fechaNac != "" && telefonoCel != ""
-            && sexo != "Elige una opción" && estadoCiv != "Elige una opción" && centroCost != "Elige una opción"
-            && tipoPaciente != "Elige una opción" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
-            && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
-            && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
-
-            pacientes.registrarPaciente(nombre, paterno, materno, fechaNac, sexo, otro_sexo,
-                telefonoCel, estadoCiv, centroCost, tipoPaciente, nivelAcademico, departamento, fecha_alta_pac, userId,
-                edad, tipoAtencion, poblacionRiesgo, medicinaPreventiva, fcardiaca, frespiratoria, temperatura,
-                tarterial, talla, peso, descripcion, diagnostico, tratamiento, observaciones,
-                ambulancia, referenciado, lugarReferencia, horaConsulta);
-
-            return false; //para evitar reenvio de formulario
-        } else {
-            Swal.fire({
-                icon: 'error',
-                text: 'Completa todos los campos obligatorios!',
-
-            })
-        }
-    });
-
-    $("#btnRConsulta").click(function () {
-        //obtenemos id del paciente a registrar consulta
-        let id_paciente = localStorage.getItem("id_paciente"); 
-       
-        //obtenemos fecha actual
-        let hoy = new Date();
-        let fecha_consulta = hoy.getFullYear() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getDate();
-
-        //obtenemos datos de usuario que registra
-        let user = JSON.parse(localStorage.getItem("user"));
-        let userId = user.id_usr;
-
-        //DATOS DE LA CONSULTA CONSULTA
-        let edad = document.getElementById("edadPaciente").value;
-
-        let atencion = document.getElementById("tipoAtencion");
-        let tipoAtencion = atencion.options[atencion.selectedIndex].value;
-
+        
         let atencion2 = document.getElementById("tipoAtencion2");
         let tipoAtencion2 = atencion2.options[atencion2.selectedIndex].value;
+
 
         //poblacion de riesgo
         let poblacionRiesgo = [];

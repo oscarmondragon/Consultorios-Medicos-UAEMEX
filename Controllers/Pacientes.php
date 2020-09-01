@@ -160,7 +160,7 @@ class Pacientes extends Controllers {
                     btn-success modal-trigger'>Editar</a> |".
                     
                     "<a href= '#modal1' onclick='dataPaciente(".$dataUser.")'  class='btn red lighten-1'>Eliminar</a>".
-                    "</td>".
+                    "</td>". */
                 "</tr>";
                 $count++;
             }
