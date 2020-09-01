@@ -26,9 +26,6 @@ var validarEmail = (email) => {
        });
  
 }
-
-
-
 var deshabilitarPoblacion  = document.getElementById('ningunaN');
 
 deshabilitarPoblacion.addEventListener("change", compruebaPoblacion, false);
@@ -41,8 +38,6 @@ function compruebaPoblacion(){
         $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
     }
   }
-
-
 var selectatencion2Nuevo = () => {
     let paciente = new Pacientes();
 
@@ -57,27 +52,35 @@ var selectatencion2Nuevo = () => {
         } else {
             $('#otro_sexo').attr("disabled", true);
         }*/
-
     });
-
 }
+
+
+/*
+  document.getElementById('transplantes').addEventListener("change", checaPR, false);
+  
+  function checaPR() {
+    console.log('Vamos a habilitar los checkPR');
+    $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
+        $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
+    }
+
+
+*/
 
 
 var selectatencion2 = () => {
     let consulta = new Consultas();
 
     $(document).on('change', '#tipoAtencion', function (event) {
-
         let tipoAtencion = $("#tipoAtencion option:selected").val();
        // alert("El tipo de atencion es:" + tipoAtencion);
         consulta.reestablecerUsuario2(tipoAtencion);
        /* if (sexo === "Otro") {
-
             $('#otro_sexo').attr("disabled", false);
         } else {
             $('#otro_sexo').attr("disabled", true);
         }*/
-
     });
 
 }

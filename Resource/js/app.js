@@ -160,14 +160,23 @@ $(function () {
         let tipoAtencion2 = atencion2.options[atencion2.selectedIndex].value;
 
         //poblacion de riesgo
+
         let poblacionRiesgo = [];
-        $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
-            poblacionRiesgo.push($(this).val());
-        });
+        let ningunaPoblacion = document.getElementById("ninguna");
+        if(ningunaPoblacion.checked){
+            poblacionRiesgo.push($(ningunaPoblacion).val());
+        } else {
+            $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
+                poblacionRiesgo.push($(this).val());
+            });
+        }
+
         let medicinaPreventiva = [];
         $("input:checkbox[name=medicinaPrev]:checked").each(function () {
             medicinaPreventiva.push($(this).val());
         });
+
+        let ompreventiva = document.getElementById("ompreventiva").value;
 
         let fcardiaca = document.getElementById("frecCardiaca").value;
         let frespiratoria = document.getElementById("frecRespiratoria").value;
@@ -192,11 +201,11 @@ $(function () {
         if (edad != "" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
             && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
-           // alert("aqui todo bien");
-            consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva,
-                fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
-                tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
-                fecha_consulta, horaConsulta, userId);
+            //alert("aqui todo bien");
+           consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva, ompreventiva,
+            fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
+            tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
+            fecha_consulta, horaConsulta, userId);
             return false; //para evitar reenvio de formulario
         } else {
             Swal.fire({
@@ -246,6 +255,19 @@ var getPacientesC = () => {
         lugarreferencia.value = "";
         lugarreferencia.disabled = true;
     });
+
+    document.getElementById('ninguna').addEventListener('change', function (e) {
+        if(document.getElementById('ninguna').checked){
+            console.log('Vamos a habilitar los checkPR');
+            $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
+            $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
+        }else{
+            $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
+        }
+        
+        }
+    );
+
     let valor = document.getElementById("filtrarPacienteC").value;
   
     //alert("hola");
@@ -271,6 +293,33 @@ var pacienteHistorial = (data) => {
     consultas.nombrePacienteH(data);
     console.log(data);
     //pacientes.editarPaciente(data);
+}
+
+var mostrarConsulta = (data) => {
+    alert("muestra datos:"+data);
+    console.log(data);
+    console.log(data.edad);
+    document.getElementById("edadPaciente").value = data.edad;
+    //poblacion de riesgo
+    document.getElementById("frecCardiaca").value = data.frecuencia_cardiaca;
+    document.getElementById("frecRespiratoria").value = data.frecuencia_respiratoria;
+    document.getElementById("temperatura").value = data.temperatura;
+    document.getElementById("tarterial").value = data.tension_arterial;
+    document.getElementById("talla").value = data.talla;
+    document.getElementById("peso").value = data.peso;
+    document.getElementById("descripcion").value = data.descripcion;
+    document.getElementById("diagnostico").value = data.diagnostico;
+    document.getElementById("tratamiento").value = data.tratamiento;
+    //medicina preventiva
+    //otra_medicina preventiva
+    //document.getElementById("omp").value
+    //ambulancia
+    //referenciado
+    document.getElementById("lugarreferencia").value = data.lugar_referencia;
+    document.getElementById("observaciones").value = data.observaciones;
+
+    //document.getElementById("frecCardiaca").value = paciente.nombre_pac + " " + paciente.apPaterno_pac + " " + paciente.apMaterno_pac;
+   // document.getElementById("fechaNac").value = paciente.fecha_nacimiento_pac;
 }
 
 /**/

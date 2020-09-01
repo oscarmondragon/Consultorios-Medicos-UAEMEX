@@ -34,8 +34,8 @@
                 <div class="row">
                     <div class="row">
                         <div class="input-field col s9">
-                            <input id="nombrePaciente" type="text" class="validate">
-                            <!--label for="nombrePaciente">Nombre del Paciente</label-->
+                            <input disabled id="nombrePaciente" type="text" class="validate">
+                            <!--label for="disabled">Nombre del Paciente</label-->
                         </div>
                         <div class="input-field col s3">
                             <input disabled value=0 id="edadPaciente" type="number" min="0" class="validate">
@@ -83,6 +83,12 @@
                                     <label>
                                         <input type="checkbox" id="epoc" value="6" name="poblacionRiesgo" />
                                         <span>EPOC</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="ninguna" value="0" name="ninguna" />
+                                        <span>Ninguna </span>
                                     </label>
                                 </p>
 
@@ -332,6 +338,7 @@
                                     <th>Fecha de Consulta</th>
                                     <th>Hra. consulta</th>
                                     <th>Tipo Atención</th>
+                                    <th>Detalles</th>
                                 </tr>
                             </thead>
                             <tbody id="historial_consulta">

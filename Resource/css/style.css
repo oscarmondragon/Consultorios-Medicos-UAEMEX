@@ -1,7 +1,60 @@
+/*Segmento para el login*/
+.isa{
+    background-image: url("/consultorios/Resource/images/isa.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: white;
+   /* position: absolute;*/
+    bottom: 0;
+    width: 100%;
+    height: 15vh;
+    color: white;
+    margin: -4vh 0vh;
+}
+.logueo{
+    width: 47%;
+    /*height: 31vh;*/
+}
+.inicia{
+    background-image: url("/consultorios/Resource/images/isi.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: white;
+   /* position: absolute;*/
+    bottom: 0;
+    width: 47%;
+    height: 31vh;
+    color: white;
+    margin: 2vh 1vh;
+}
 
 .btn-floating{
     background: url(../images/iconos/ic_reorder_whites.png) no-repeat;
 }
+
+.footerC{
+    background: blue;
+}
+
+.center.footerC{
+    background-color: black;
+}
+
+footer.footerC {
+    background-image: url("/consultorios/Resource/images/pie.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 16vh;
+    color: white;
+}
+
 
 .side-nav {
     top: 0;
@@ -15,6 +68,15 @@
     color: brown;
 }
 
+.nav-wrapper.greenBG {
+    background-image: url("/consultorios/Resource/images/encabezado.png");
+    background-repeat: no-repeat;
+    background-position: center;
+   /* background-size: contain;*/
+    background-color: white;
+    background-size: 96% 100%;
+}
+
 @media(max-width: 1024px){
     .side-nav{
         display: none;
@@ -22,10 +84,14 @@
     .container2 {
         margin: 10px 10px 10px;
     }
+    
 }
+
+
 @media(min-width:992px){
     .container {
-        max-width: 30%;
+        max-width: 50%;
+        margin-top: 7vh;
     }
     .side-nav{
         max-width: 13%;
@@ -36,3 +102,14 @@
         margin: -270px 290px 0px;
     }
 }
+
+@media only screen and (min-width: 601px){
+/*nav{    height: 12vh;}*/
+.nav .sidenav-trigger{margin:10vh 18px}
+}
+
+@media only screen and (min-width: 1200px){
+    /*nav{        height: 20vh;    }*/
+
+}
+

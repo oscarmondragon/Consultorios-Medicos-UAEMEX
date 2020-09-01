@@ -81,6 +81,7 @@ class Consultas extends Controllers {
         if(is_array($data)){
             $array = $data["results"];
             foreach ($array as $key => $value) {
+                $datosConsulta = json_encode($array[$count]);
                 $dataUser = json_encode($array[$count]);
                 $idtipoA = $value["id_tipo_atencion"];
                 $descTipo = $this->model->getCatalogotipoatencion($idtipoA);
@@ -92,6 +93,9 @@ class Consultas extends Controllers {
                             "<td>".$value["fecha_consulta"]."</td>".
                             "<td>".$value["hora_consulta"]."</td>".
                             "<td>".$valuedt["nombre_tipo_atencion"]."</td>".
+                            "<td>".
+                            "<a  href= '#modal1'  onclick='mostrarConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Detalles</a>".
+                            "</td>".
                             "</tr>";
                     }
                 }else{
@@ -106,9 +110,10 @@ class Consultas extends Controllers {
         }       
      }
 
-     
+     public function getconsulta(){
 
 
+     }
 
      function registrarConsulta()
      {         
@@ -123,7 +128,8 @@ class Consultas extends Controllers {
             $_POST["tratamiento"],$_POST["ambulancia"],
             $_POST["referenciado"],$_POST["observaciones"],
             $_POST["lugar_referencia"],$_POST["fecha_consulta"],
-            $_POST["hora_consulta"],$_POST["id_medico"] 
+            $_POST["hora_consulta"],$_POST["id_medico"]
+            
         ); 
         $dataConsulta = $this->model->registroConsulta($this->consultaClass($arrayConsulta));
              
@@ -139,7 +145,7 @@ class Consultas extends Controllers {
                     // arreglo para mandar a registrar los datos
                      
                     //insertamos los valore de poblacion de riesgo
-                    if($poblacionRiesgo[0] != 0){
+                    if($poblacionRiesgo[0] != null){
                          foreach ($poblacionRiesgo as $valor) 
                          {
                             $valores = array($idConsulta, $valor);
@@ -154,7 +160,7 @@ class Consultas extends Controllers {
                     if($medicinaPreventiva[0] != 0){
                          foreach ($medicinaPreventiva as $valor)
                          {
-                             $valores = array($idConsulta, $valor);
+                             $valores = array($idConsulta, $valor, NULL);
                              $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($valores));
                                if($dataMedicina != 0){
                                     $dataMedicina = 1;
@@ -162,7 +168,16 @@ class Consultas extends Controllers {
                                }
                          }
                     }
-                           
+                    $omp = $_POST["ompreventiva"] ;
+                    
+                    if($omp != "" or $omp != NULL){//verificamos que exista otra medicina preventiva
+                    
+                        $valores = array($idConsulta, 0,$omp);                        
+                        $dataPoblacion = $this->model->registroOMedicinaPreventiva($this->omedicinaClass($valores));
+                            if($dataPoblacion != 0){
+                                $dataPoblacion = 1;
+                            }
+                    }                           
                     echo 0;
                 }
         } else{

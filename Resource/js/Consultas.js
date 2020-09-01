@@ -113,12 +113,24 @@
         );
     }
 
+    muestraConsulta(idconsulta){
+        $.post(
+            URL + "Consultas/getConsulta",
+            { "id_paciente": idconsulta. },
+            (response) => {
+                $("#historial_consulta").html(response);
+                // console.log(response);
+            }
+        );
+    }
+
     registrarConsulta(
         id_paciente,
         edad,
         tipoAtencion,
         poblacionRiesgo,
         medicinaPreventiva,
+        ompreventiva,
         fcardiaca,
         frespiratoria,
         temperatura,
@@ -159,7 +171,8 @@
         data.append("id_medico", userId);
         data.append("poblacion_riesgo", poblacionRiesgo);
         data.append("medicina_prev", medicinaPreventiva);
-        //alert("CONSULTAS.js");
+        data.append("ompreventiva", ompreventiva);
+        //alert("Medicina preventiva:" + ompreventiva);
         $.ajax({
             url: URL + "Consultas/registrarConsulta",
             data: data,
@@ -175,7 +188,7 @@
                         title: 'Registro exitoso.',
                         text: ""
                     });
-                    getPacientes();
+                    getPacientesC();
                 } else {
                     Swal.fire({
                         icon: 'error',

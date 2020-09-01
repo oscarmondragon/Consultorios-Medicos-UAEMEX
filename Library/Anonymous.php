@@ -111,6 +111,20 @@ public function medicinaClass($array){
     };
 }
 
+public function omedicinaClass($array){
+    return new class($array){
+     public $id_consulta;
+     public $id_medicina_preventiva;
+     public $observaciones;
+
+     public function __construct($array) {
+                 $this->id_consulta = $array[0];
+                 $this->id_medicina_preventiva = $array[1];
+                 $this->observaciones = $array[2];
+     }
+    };
+}
+
 }
 
 ?>

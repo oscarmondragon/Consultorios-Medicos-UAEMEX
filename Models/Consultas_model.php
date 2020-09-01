@@ -59,6 +59,12 @@ class Consultas_model extends Conexion{
 
     }
 
+    function getConsulta($id_conuslta){
+        $where = " WHERE id_consulta = ".$id_consulta;
+        return $response = $this->db->select1("*","consulta", $where, null);
+
+    }
+
     function registroConsulta($consultaRegistro
     ){
          
@@ -135,6 +141,24 @@ class Consultas_model extends Conexion{
        ) VALUES (
        :id_consulta,
        :id_medicina_preventiva
+       )";
+       $data = $this->db->insert('consulta_medicina_preventiva',$medicinaPreventiva,$value);
+       if($data == 1){
+           return 0;
+       } else {
+           return $data;
+       }
+  }
+
+     function registroOMedicinaPreventiva($medicinaPreventiva){
+    //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
+
+      $value = " (id_consulta,
+       id_medicina_preventiva,observaciones 
+       ) VALUES (
+       :id_consulta,
+       :id_medicina_preventiva,
+       :observaciones
        )";
        $data = $this->db->insert('consulta_medicina_preventiva',$medicinaPreventiva,$value);
        if($data == 1){
