@@ -1,268 +1,351 @@
-<div class="container2">
-  <h4>Consultas</h4>
-  <div class="row">
-    <div class="input-field col s0">
-      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Registrar</a>
-    </div>
-    <div class="input-field col s6">
-      <input placeholder="Buscar consulta" id="filtrar" type="text" onkeyup="">
-      <label for="filtrar">Buscar consulta</label>
-    </div>
-  </div>
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
-    <form class="col s12" id="validate" method="POST">
-      <div class="modal-content">
-        <center>
-          <h5>Registrar consulta</h5>
-        </center>
-        <div class="row">
-          <div class="row">
-            <div class="input-field col s9">
-              <input disabled value="I am not editable" id="nombrePaciente" type="text" class="validate">
-              <label for="disabled">Nombre del Paciente</label>
-            </div>
-            <div class="input-field col s3">
-              <input placeholder="Edad" name="edad" id="edad" type="number" min="0" class="validate" required />
-              <label class="error" for="paterno">Edad</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s10">
-              <p>Población de riesgo</p>
-              <div class="input-field col s5">
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr1">
-                    <span>Asma</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" name="mp" value="cd" id="pr2" />
-                    <span>Cáncer</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr3" />
-                    <span>Diabetes</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr4" />
-                    <span>Embarazo</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr5" />
-                    <span>Enfermedades autoinmunes</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr6" />
-                    <span>EPOC</span></label>
-                </p>
+﻿<div class="container2">
+    <h5>Registro de consultas</h5>
 
-              </div>
-              <div class="input-field col s5">
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr7" />
-                    <span>Hipertensión</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr8" />
-                    <span>Lactancia</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr9" />
-                    <span>Mayor de 60 años</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr10" />
-                    <span>Obesidad</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr11" />
-                    <span>Rinitis alérgica</span></label>
-                <p>
-                  <label>
-                    <input type="checkbox" id="pr12" />
-                    <span>Transplantes</span></label>
-                </p>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <select id="tipoAtencion" required>
-                <option value="" disabled selected>Elige una opción</option>
-                <option value="1">Enfermedades mentales</option>
-                <option value="2">Enfermedades físicas</option>
-                <option value="3">Lesiones</option>
-                <option value="5">Urgencias</option>
-              </select>
-              <label>Tipo de atención</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s4">
-              <input placeholder="FC" name="frecCardiaca" id="frecCardiaca" type="text" class="validate" required />
-              <label class="error" for="frecCardiaca">Frecuencia Cardiaca</label>
-            </div>
-            <div class="input-field col s4">
-              <input placeholder="FR" name="frecRespiratoria" id="frecRespiratoria" type="text" class="validate"
-                required />
-              <label class="error" for="frecRespiratoria">Frecuencia Respiratoria</label>
-            </div>
-            <div class="input-field col s4">
-              <input placeholder="°C" name="temperatura" id="temperatura" type="text" class="validate" required />
-              <label class="error" for="temperatura">Temperatura</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s4">
-              <input placeholder="T/A" name="tarterial" id="tarterial" type="text" class="validate" required />
-              <label class="error" for="tarterial">Tensión Arterial</label>
-            </div>
-            <div class="input-field col s4">
-              <input placeholder="cm" name="talla" id="talla" type="text" class="validate" required />
-              <label class="error" for="talla">Talla</label>
-            </div>
-            <div class="input-field col s4">
-              <input placeholder="kg" name="peso" id="peso" type="text" class="validate" required />
-              <label class="error" for="peso">Peso</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea placeholder="Descripción" id="descripcion" class="materialize-textarea"></textarea>
-              <span class="error" for="descripcion">Descripción</span>
-            </div>
-            <div class="input-field col s12">
-              <textarea id="diagnostico" class="materialize-textarea"></textarea>
-              <label class="error" for="diagnostico">Diagnóstico</label>
-            </div>
-            <div class="input-field col s12">
-              <textarea id="tratamiento" class="materialize-textarea"></textarea>
-              <label class="error" for="tratamiento">Tratamiento</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s10">
-              <p>Medicina preventiva</p>
-              <div class="input-field col s5">
-                <p>
-                  <label>
-                    <input type="checkbox" name="o1" id="mp1">
-                    <span>Atención psicológica</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" name="mp" value="cd" id="mp2" />
-                    <span>Crónico degenerativas</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="mp3" />
-                    <span>Embarazo y lactancia</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="mp4" />
-                    <span>Higiene bucal</span></label>
-                </p>
-
-              </div>
-              <div class="input-field col s5">
-                <p>
-                  <label>
-                    <input type="checkbox" id="mp5" />
-                    <span>Higiene de columna</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="mp6" />
-                    <span>Higiene personal</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="mp7" />
-                    <span>Nutrición</span></label>
-                </p>
-                <p>
-                  <label>
-                    <input type="checkbox" id="mp8" />
-                    <span>Plátias de educacion y salud sexual</span></label>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
-              <label class="error" for="ompreventiva">Otra medicina preventiva</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s3">
-              <P>Ambulancia</P>
-              
-                <p>
-                  <label class="radio-inline">
-                    <input name="ambulancia" type="radio" />
-                    <span>Si</span>
-                  </label>
-                  <label class="radio-inline">
-                    <input name="ambulancia2" type="radio" />
-                    <span>No</span>
-                  </label>
-                </p>
-              
-            </div>
-            <div class="input-field col s3">
-              <P>Referenciado</P>              
-                <p>
-                  <label class="radio-inline">
-                    <input name="referenciado" type="radio" />
-                    <span>Si</span>
-                  </label>
-                  <label class="radio-inline">
-                    <input name="referenciado2" type="radio" />
-                    <span>No</span>
-                  </label>
-                </p>
-            </div>
-            <div class="input-field col s6">
-              <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate"
-                required />
-              <label class="error" for="lugarreferencia">Lugar de referencia</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <textarea id="observaciones" class="materialize-textarea"></textarea>
-              <label class="error" for="observaciones">Observaciones</label>
-            </div>
-
-          </div>
+    <div class="row">
+        
+        <div class="input-field col s6">
+            <input id="filtrarPacienteC" type="text" placeholder="Buscar paciente" onkeyup="getPacientesC()" />
+            <label for="filtrarPacienteC">Buscar paciente</label>
         </div>
-      </div>
-      <div class="modal-footer">
-        <label id="registrarMessage" class="text-left Message"></label>
-        <button id="btnRConsulta" class="waves-effect waves-light btn">
-          Registrar
-        </button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Ap. Paterno</th>
+                <th>Ap. Materno</th>
+                <th>Telefono</th>
+                <th>Centro de Costos</th>
+                <th>Tipo Paciente</th>
+                <th>Consultas</th>
+            </tr>
+        </thead>
+        <tbody id="resultPacienteC">
+        </tbody>
+    </table>
+    <!--Modal para registro de nueva consulta-->
+    <div id="modal1" class="modal modal-fixed-footer">
+        <form class="col s12" id="validate" method="POST">
+            <div class="modal-content">
+                <center>
+                    <h5>Datos del paciente</h5>
+                </center>
+                <div class="row">
+                    <div class="row">
+                        <div class="input-field col s9">
+                            <input disabled id="nombrePaciente" type="text" class="validate">
+                            <!--label for="disabled">Nombre del Paciente</label-->
+                        </div>
+                        <div class="input-field col s3">
+                            <input disabled value=0 id="edadPaciente" type="number" min="0" class="validate">
+                            <label for="disabled">Edad</label>
+                        </div>
+                    </div>
+                    <center>
+                        <h5>Datos de la consulta médica</h5>
+                    </center>
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <p>Población de riesgo</p>
+                            <div class="input-field col s5">
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="poblacionRiesgo" id="asma" value="1">
+                                        <span>Asma</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="poblacionRiesgo" id="cancer" value="2" />
+                                        <span>Cáncer</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="diabetes" value="3" name="poblacionRiesgo" />
+                                        <span>Diabetes</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="embarazo" value="4" name="poblacionRiesgo" />
+                                        <span>Embarazo</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="autoinmunes" value="5" name="poblacionRiesgo" />
+                                        <span>Enfermedades autoinmunes</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="epoc" value="6" name="poblacionRiesgo" />
+                                        <span>EPOC</span>
+                                    </label>
+                                </p>
 
-      </div>
-    </form>
-  </div>
+                            </div>
+                            <div class="input-field col s5">
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="hipertension" value="7" name="poblacionRiesgo" />
+                                        <span>Hipertensión</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="lactancia" value="8" name="poblacionRiesgo" />
+                                        <span>Lactancia</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="mayorEdad" value="9" name="poblacionRiesgo" />
+                                        <span>Mayor de 60 años</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="obesidad" value="10" name="poblacionRiesgo" />
+                                        <span>Obesidad</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="rinitis" value="11" name="poblacionRiesgo" />
+                                        <span>Rinitis alérgica</span>
+                                    </label>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="transplantes" value="12" name="poblacionRiesgo" />
+                                        <span>Transplantes</span>
+                                    </label>
+                                </p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <select id="tipoAtencion" onchange="selectatencion2();" required>
+                            </select>
+                            <label>Tipo de atención</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="tipoAtencion2" required>
+                            </select>
+                            <label>Tipo de atención 2</label>
+                        </div>
+                        <!--div class="input-field col s12">
+        <select id="tipoAtencion" required>
+            <option value="" disabled selected>Elige una opción</option>
+            <option value="1">Enfermedades mentales</option>
+            <option value="2">Enfermedades físicas</option>
+            <option value="3">Lesiones</option>
+            <option value="5">Urgencias</option>
+        </select>
+        <label>Tipo de atención</label>
+    </div-->
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input placeholder="FC" name="frecCardiaca" id="frecCardiaca" type="text" class="validate" required />
+                            <label class="error" for="frecCardiaca">Frecuencia Cardiaca</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input placeholder="FR" name="frecRespiratoria" id="frecRespiratoria" type="text" class="validate"
+                                   required />
+                            <label class="error" for="frecRespiratoria">Frecuencia Respiratoria</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input placeholder="°C" name="temperatura" id="temperatura" type="text" class="validate" required />
+                            <label class="error" for="temperatura">Temperatura</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input placeholder="T/A" name="tarterial" id="tarterial" type="text" class="validate" required />
+                            <label class="error" for="tarterial">Tensión Arterial</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input placeholder="cm" name="talla" id="talla" type="text" class="validate" required />
+                            <label class="error" for="talla">Talla</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <input placeholder="kg" name="peso" id="peso" type="text" class="validate" required />
+                            <label class="error" for="peso">Peso</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea placeholder="Descripción" name="descripcion" id="descripcion" class="materialize-textarea"
+                                      required></textarea>
+                            <label class="error" for="descripcion">Descripción</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="diagnostico" name="diagnostico" class="materialize-textarea" required></textarea>
+                            <label class="error" for="diagnostico">Diagnóstico</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <textarea id="tratamiento" name="tratamiento" class="materialize-textarea" required></textarea>
+                            <label class="error" for="tratamiento">Tratamiento</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <p>Medicina preventiva</p>
+                            <div class="input-field col s5">
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="medicinaPrev" value="1" id="atencionPsico">
+                                        <span>Atención psicológica</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="medicinaPrev" value="2" id="cronico" />
+                                        <span>Crónico degenerativas</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="embarazoLac" value="3" name="medicinaPrev" />
+                                        <span>Embarazo y lactancia</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="higBucal" value="4" name="medicinaPrev" />
+                                        <span>Higiene bucal</span>
+                                    </label>
+                                </p>
+
+                            </div>
+                            <div class="input-field col s5">
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="higColum" value="5" name="medicinaPrev" />
+                                        <span>Higiene de columna</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="higPer" value="6" name="medicinaPrev" />
+                                        <span>Higiene personal</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="nutricion" value="7" name="medicinaPrev" />
+                                        <span>Nutrición</span>
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="eduSexual" value="8" name="medicinaPrev" />
+                                        <span>Pláticas de educacion y salud sexual</span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-field col s6">
+                        <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
+                        <label class="error" for="ompreventiva">Otra medicina preventiva</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s3">
+                        <label for="ambulancia">Ambulancia</label><br>
+
+                        <p>
+                            <label class="radio-inline">
+                                <input name="ambulancia" type="radio" value="1" />
+                                <span>Si</span>
+                            </label>
+                            <label class="radio-inline">
+                                <input name="ambulancia" type="radio" value="0" />
+                                <span>No</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="input-field col s3">
+                        <label for="referenciado">Referenciado</label><br>
+
+                        <p>
+                            <label class="radio-inline">
+                                <input id="referenciado" name="referenciado" type="radio" value="1" />
+                                <span>Si</span>
+                            </label>
+                            <label class="radio-inline">
+                                <input id="noreferenciado" name="referenciado" type="radio" value="0" />
+                                <span>No</span>
+                            </label>
+                        </p>
+                    </div>
+                    <div class="input-field col s6">
+                        <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate" />
+                        <label class="error" for="lugarreferencia">Lugar de referencia</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="observaciones" name="observaciones" class="materialize-textarea"></textarea>
+                        <label class="error" for="descripcion">Observaciones</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label id="registrarMessage" class="text-left Message"></label>
+                <button id="btnRConsulta" class="waves-effect waves-light btn">
+                    Registrar
+                </button>
+            </div>
+        </form>
+    </div>
+    <!--Modal para vislauizacion de consultas-->
+    <div id="modal2" class="modal modal-fixed-footer">
+        <form class="col s12" id="validate" method="POST">
+            <div class="modal-content">
+                <center>
+                    <h5>Consultas del paciente</h5>
+                </center>
+                <div class="row">
+                    <div class="row">
+                        <div class="input-field col s11">
+                            <input id="pacienteHistorial" type="text" class="validate">
+                            <!--label for="nombrePaciente">Nombre del Paciente</label-->
+                        </div>
+                        <div class="input-field col s11">
+                            <input disabled value=0 id="fechaNac" type="text" class="validate">
+                            <label for="disabled">Fecha de Nacimiento</label>
+                        </div>vgf
+                    </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>                                    
+                                    <th>Fecha de Consulta</th>
+                                    <th>Hra. consulta</th>
+                                    <th>Tipo Atención</th>
+                                    <th>Detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historial_consulta">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </form>
+     </div><!--fin modal de historial-->
+
 </div>
