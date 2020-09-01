@@ -76,9 +76,18 @@ $(function () {
 
         //poblacion de riesgo
         let poblacionRiesgo = [];
-        $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
-            poblacionRiesgo.push($(this).val());
-        });
+        let ningunaPoblacion = document.getElementById("ningunaN");
+        if(ningunaPoblacion.checked){
+            poblacionRiesgo.push($(ningunaPoblacion).val());
+        } else {
+            $("input:checkbox[name=poblacionRiesgo]:checked").each(function () {
+                poblacionRiesgo.push($(this).val());
+            });
+        }
+        
+    console.log(poblacionRiesgo);
+       
+
 
         let medicinaPreventiva = [];
         $("input:checkbox[name=medicinaPrev]:checked").each(function () {
@@ -349,6 +358,9 @@ $().ready(() => {
             break;
         case PATHNAME + "Consultas/consultas":
             getPacientesC();
+            break;
+            case PATHNAME + "Reportes/reportes":
+            
             break;
     }
 
