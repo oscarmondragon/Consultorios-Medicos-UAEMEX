@@ -2,9 +2,46 @@
     <div class="row">
         <div class="input-field col s0">
             <a class="waves-effect waves-ligth btn modal-trigger"
+                href="#modalRSC">Reporte de consultas</a>
+               
+        </div>
+    </div>
+    <div id="modalRSC" class="modal modal-fixed-footer">
+        <form class="col s12" id="validate" method="POST">
+            <div class="modal-content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Consultorio</th>
+                            <th>Total de consultas</th>                           
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Edificio de Rectoría</td>
+                            <td>3</td>                           
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Facultad de Ciencias</td>
+                            <td>6</td>                           
+                        </tr>
+
+                    </thead>
+                    <tbody id="consultasDatos">
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </form>
+    </div>
+    <!--div class="row">
+        <div class="input-field col s0">
+            <a class="waves-effect waves-ligth btn modal-trigger"
                 href="#modalRSC">Reporte semanal por consultorio</a>
-                <!--a onclick="restablecerPaciente();" class="waves-effect waves-ligth btn modal-trigger"
-                href="#modalRSC">Reporte semanal por consultorio</a-->
+               
         </div>
     </div>
     <div id="modalRSC" class="modal modal-fixed-footer">
@@ -35,6 +72,6 @@
                 </button>
             </div>
         </form>
-    </div>
+    </div-->
     <!--fin modal de historial-->
 </div>

@@ -80,6 +80,20 @@
             });
 
     }
+    getDatos(){
+        console.log("getconsultorios");
+        $.post(URL + "Consultas/getConsultasDatos",
+            {}, (response) => {
+                try {
+                    let item = JSON.parse(response);
+                    console.log("item");
+                    $("#consultasDatos").html(response);
+                   
+                } catch (error) { }
+            });
+
+
+    }
 
     /* getConsultas(id_consultorio, fechaRango){
          var data = new FormData();

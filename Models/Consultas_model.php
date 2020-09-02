@@ -17,6 +17,10 @@ class Consultas_model extends Conexion{
         return $response = $this->db->select1("*","tipo_atencion", $where, null);
     }
 
+    function getconsultasDatos(){
+        //$where = "";
+
+    }
     function getRconsultas($id_consultorio,$fechaInicial, $fechaFinal){
         $whereConsultorio_USUARIO = "Where id_consultorio = ".$id_consultorio;
         $response = $this->db->select1("*","usuario_consultorio", $whereConsultorio_USUARIO, null);
@@ -35,7 +39,7 @@ class Consultas_model extends Conexion{
       //  SELECT * FROM `consulta` WHERE `fecha_consulta` BETWEEN '2020-08-31' AND '2020-09-01
         
     }
-    }
+    
     function obtenerIdConsulta($consulta){
         $where = " WHERE id_paciente = :id_paciente AND  fecha_consulta = 
         :fecha_consulta AND hora_consulta = :hora_consulta";

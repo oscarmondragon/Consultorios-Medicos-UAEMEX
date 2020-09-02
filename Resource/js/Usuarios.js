@@ -66,7 +66,7 @@ userData(URLactual){
                 document.getElementById("consultorio2").innerHTML = user.nombre_consultorio;
                 document.getElementById("role2").innerHTML = user.tipoUsuario;
 
-                document.getElementById("messageBienvenida").innerHTML = "Bienvenid@ " + "<strong>" +user.nombre_usr + "</strong> al Sistema de Control de Consultorios UAEM";
+               // document.getElementById("messageBienvenida").innerHTML = "Bienvenid@ " + "<strong>" +user.nombre_usr + "</strong> al Sistema de Control de Consultorios UAEM";
                 
                
 

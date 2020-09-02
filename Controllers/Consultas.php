@@ -14,7 +14,38 @@ class Consultas extends Controllers {
         }
         
     }
+function getConsultasDatos(){
+    alert("estas en controlador");
+    $count = 0;
+    $dataFilter = null;
+    $data = $this->model->getConsultasDatos();
+    if(is_array($data)){
+        $array = $data["results"];
+        foreach ($array as $key => $value) {
+            $dataUser = json_encode($array[$count]);
+            $dataFilter.= "<tr>".
+                "<td>".$value["id_paciente"]."</td>".
+                "<td>".$value["nombre_pac"]."</td>".
+                "<td>".$value["apPaterno_pac"]."</td>".
+                "<td>".$value["apMaterno_pac"]."</td>".
+                "<td>".$value["tel_cel_pac"]."</td>".
+                "<td>".$value["des_centro_costos"]."</td>".
+                "<td>".$value["tipo"]."</td>".
+                "<td>".
+                "<a  href= '#modal1'  onclick='pacienteNConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Nueva</a> | ".
+                
+                "<a href= '#modal2' onclick='pacienteHistorial(".$dataUser.")'  class='btn btn-success modal-trigger'> Ver todas</a>".
+                "</td>".
+            "</tr>";
+            $count++;
+        }
+       echo $dataFilter;
+    //    echo $data["results"][0]['id_centro_costos'] ;
+    } else {
+        echo $data;
+    }  
 
+}
     function getConsultorios(){
         $data = $this->model->getConsultorios();
         if(is_array($data)){
