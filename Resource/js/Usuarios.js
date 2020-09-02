@@ -59,9 +59,15 @@ userData(URLactual){
                 document.getElementById('menuNavbar2').style.display = 'block';
 
                 document.getElementById("name1").innerHTML = user.nombre_usr + " " + user.apPaterno_usr + " " + user.apMaterno_usr;
+                document.getElementById("consultorio1").innerHTML = user.nombre_consultorio;
                 document.getElementById("role1").innerHTML = user.username;
+
                 document.getElementById("name2").innerHTML = user.nombre_usr + " " + user.apPaterno_usr + " " + user.apMaterno_usr;
-                document.getElementById("role2").innerHTML = user.username;
+                document.getElementById("consultorio2").innerHTML = user.nombre_consultorio;
+                document.getElementById("role2").innerHTML = user.tipoUsuario;
+
+                document.getElementById("messageBienvenida").innerHTML = "Bienvenid@ " + "<strong>" +user.nombre_usr + "</strong> al Sistema de Control de Consultorios UAEM";
+                
                
 
             }

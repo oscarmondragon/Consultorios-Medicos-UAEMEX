@@ -63,5 +63,21 @@ class QueryManager {
         }
         $pdo = null; // cerrar la conexion
     }
+
+    //Funcion para obtener datos del Usuario, para la interfaz principal
+    function selectDatosUsuario($where,$param){
+        try {
+            $where = $where ?? "";
+            $query = "SELECT usuario.id_usr,usuario.nombre_usr,usuario.apPaterno_usr,usuario.apMaterno_usr, consultorios.nombre_consultorio, tipo_usuario.descripcion FROM usuario,usuario_consultorio,consultorios,tipo_usuario".$where;
+            $sth = $this->pdo->prepare($query);
+            $sth->execute($param);    
+            $response = $sth->fetchAll(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   
+            return array("results" => $response);
+        } catch (PDOException $e) {
+            return $e->getMessage();
+            //throw $th;
+        }
+        $pdo = null; // cerrar la conexion
+    }
 }
 ?>
