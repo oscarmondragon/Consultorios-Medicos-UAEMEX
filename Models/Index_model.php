@@ -18,12 +18,11 @@ class Index_model extends Conexion{
             $response = $response['results'];
             if(password_verify($password, $response[0]["password_usr"])){
                $wh = " WHERE usuario.id_usr = :id_usr AND usuario.id_usr = usuario_consultorio.id_usr AND
-               usuario_consultorio.id_consultorio = consultorios.id_consultorio";
+               usuario_consultorio.id_consultorio = consultorios.id_consultorio AND usuario.id_tipo_usuario = tipo_usuario.id_tipo_usuario";
                $parametros = array('id_usr' => $response[0]["id_usr"]);
                $res = $this->db->selectDatosUsuario($wh,$parametros);
               $res = $res['results'];
-
-                $data = array(
+                 $data = array(
                   "id_usr" => $res[0]["id_usr"],
                   "nombre_usr" => $res[0]["nombre_usr"],
                   "apPaterno_usr" => $res[0]["apPaterno_usr"],
