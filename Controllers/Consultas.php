@@ -15,6 +15,16 @@ class Consultas extends Controllers {
         
     }
 
+    function getConsultorios(){
+        $data = $this->model->getConsultorios();
+        if(is_array($data)){
+           echo json_encode($data);
+        } else {
+            echo $data;
+        }
+    }
+
+
     function getTipoAtencion(){
          $data = $this->model->getTipoAtencion();
          if(is_array($data)){
@@ -111,7 +121,16 @@ class Consultas extends Controllers {
      }
 
      public function getconsulta(){
+         $id_consultorio = $_POST["id_consultorio"];
+         $fechaInicial = $_POST["fechaRango"];
+         $fechaFinal = $_POST["fechaFin"];
 
+         $data = $this->model->getRconsultas($id_consultorio,$fechaInicial, $fechaFinal);
+             if(is_array($data)){
+                echo json_encode($data);
+            } else {
+                echo $data;
+             }
 
      }
 

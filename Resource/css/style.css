@@ -48,7 +48,8 @@ footer.footerC {
     background-position: center;
     background-size: contain;
     background-color: white;
-    position: absolute;
+    background-size: 96% 100%;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 16vh;

@@ -1,1 +1,40 @@
-<h2>Reportes</h2>
+<div class="container2">
+    <div class="row">
+        <div class="input-field col s0">
+            <a class="waves-effect waves-ligth btn modal-trigger"
+                href="#modalRSC">Reporte semanal por consultorio</a>
+                <!--a onclick="restablecerPaciente();" class="waves-effect waves-ligth btn modal-trigger"
+                href="#modalRSC">Reporte semanal por consultorio</a-->
+        </div>
+    </div>
+    <div id="modalRSC" class="modal modal-fixed-footer">
+        <form class="col s12" id="validate" method="POST">
+            <div class="modal-content">
+                <center>
+                    <h5>Reporte semanal por consultorio</h5>
+                </center>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select id="selectConsultorio" required>
+                        </select>
+                        <label>Selecciona consultorio</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <select id="selectRango" required>
+                        </select>
+                        <label>Selecciona rango de fecha a consultar</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <label id="registrarMessage" class="text-left Message"></label>
+                <button id="btnMuestraReporte" class="waves-effect waves-light btn">
+                    Mostrar Consultas
+                </button>
+            </div>
+        </form>
+    </div>
+    <!--fin modal de historial-->
+</div>

@@ -1,5 +1,8 @@
 //var consultas = new Consultas();
-
+function sumarDias(fecha, dias){
+    fecha.setDate(fecha.getDate() + dias);
+    return fecha;
+  }
 
 var validarEmail = (email) => {
     let regex = /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
@@ -26,6 +29,8 @@ var validarEmail = (email) => {
        });
  
 }
+
+
 var deshabilitarPoblacion  = document.getElementById('ningunaN');
 
 deshabilitarPoblacion.addEventListener("change", compruebaPoblacion, false);

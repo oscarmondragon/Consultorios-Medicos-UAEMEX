@@ -4,6 +4,9 @@ class Consultas_model extends Conexion{
        parent::__construct();
     }
 
+    function getConsultorios(){
+        return $response = $this->db->select1("*","consultorios", "", null);
+    }
     
     function getTipoAtencion(){
         return $response = $this->db->select1("*","tipo_atencion", " WHERE estatus=1 AND nivel=2", null);
@@ -14,6 +17,25 @@ class Consultas_model extends Conexion{
         return $response = $this->db->select1("*","tipo_atencion", $where, null);
     }
 
+    function getRconsultas($id_consultorio,$fechaInicial, $fechaFinal){
+        $whereConsultorio_USUARIO = "Where id_consultorio = ".$id_consultorio;
+        $response = $this->db->select1("*","usuario_consultorio", $whereConsultorio_USUARIO, null);
+        if(is_array($response)){
+            $response = $response['results'];
+            $idMedico= $response[0]["id_usr"];
+
+            $where = "Where id_medico = ".$idMedico." AND fecha_consulta BETWEEN ".$fechaInicial." AND ".$fechaFinal;
+            return $response = $this->db->select1("*","tipo_atencion", $where, null);
+           // return $idMedico;
+
+        } else {
+            return 0; // no se encontro el paciente
+        }
+
+      //  SELECT * FROM `consulta` WHERE `fecha_consulta` BETWEEN '2020-08-31' AND '2020-09-01
+        
+    }
+    }
     function obtenerIdConsulta($consulta){
         $where = " WHERE id_paciente = :id_paciente AND  fecha_consulta = 
         :fecha_consulta AND hora_consulta = :hora_consulta";
@@ -26,6 +48,7 @@ class Consultas_model extends Conexion{
             $response = $response['results'];
             $idConsulta= $response[0]["id_consulta"];
            
+
             return $idConsulta;
 
         } else {
