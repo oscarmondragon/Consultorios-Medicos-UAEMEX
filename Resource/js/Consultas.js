@@ -114,9 +114,10 @@
     }
 
     muestraConsulta(idconsulta){
+        let id_consulta = idconsulta.id_consulta;
         $.post(
             URL + "Consultas/getConsulta",
-            { "id_paciente": idconsulta. },
+            { "id_paciente": idconsulta },
             (response) => {
                 $("#historial_consulta").html(response);
                 // console.log(response);
