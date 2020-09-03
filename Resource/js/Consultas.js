@@ -80,7 +80,7 @@
             });
 
     }
-    getDatos(){
+    getDatos() {
         console.log("getconsultorios");
         $.post(URL + "Consultas/getConsultasDatos",
             {}, (response) => {
@@ -88,7 +88,7 @@
                     let item = JSON.parse(response);
                     console.log("item");
                     $("#consultasDatos").html(response);
-                   
+
                 } catch (error) { }
             });
 
@@ -137,6 +137,48 @@
          });
  
      }*/
+
+    consultaAtencionRiesgoMedP(id_consulta, id_tipo_atencion) {
+        alert("en el consultas.js")
+
+        $.post(URL + "Consultas/consultaTipoAtencion",
+            { "id_tipo_atencion": id_tipo_atencion }, (response) => {
+                try {
+                    let item = JSON.parse(response);
+                    if (item.results.length == 1) {
+                        //estamos obteniendo datos
+                        alert("JSON::" + item.results.length + "::" + item.results[0].nombre_tipo_atencion + ":padre:" + item.results[0].padre);
+
+                        $("#tipoAtencion2").prepend(
+                            "<option value='0' selected='selected'>" + item.results[0].nombre_tipo_atencion + "</option>"
+                        );
+                    
+                        if (item.results[0].padre != null) {
+                            alert("padre::" + item.results[0].padre)
+                            $.post(URL + "Consultas/consultaTipoAtencion",
+                                { "id_tipo_atencion": item.results[0].padre }, (response) => {
+                                    try {
+                                        let item2 = JSON.parse(response);
+                                        if (item2.results.length == 1) {
+                                            //estamos obteniendo datos
+                                            $("#tipoAtencion").prepend(
+                                                "<option value='0' disabled selected='selected'>" + item2.results[0].nombre_tipo_atencion + "</option>"
+                                            );      
+                                        }
+                                    } catch (error) { }
+                                });
+                        }
+                    }
+                } catch (error) { }
+        });
+        /*Obtener datos de paciente de riesgo*/
+
+        /*Obtener datos de medicina preventiva*/
+
+
+
+    }
+
 
     getTipoAtencion() {
         let count = 1;
@@ -217,13 +259,32 @@
     nombrePaciente(paciente) {
         //alert("consultas.js" + paciente.id_paciente + "..");
         localStorage.setItem("id_paciente", paciente.id_paciente);
+
         document.getElementById("nombrePaciente").value = paciente.nombre_pac + " " + paciente.apPaterno_pac + " " + paciente.apMaterno_pac;
         calcularEdadC(paciente.fecha_nacimiento_pac);
 
     }
-
+    /*Obtiene el nombre del paciente para ver su historial*/
     nombrePacienteH(paciente) {
+
         document.getElementById("pacienteHistorial").value = paciente.nombre_pac + " " + paciente.apPaterno_pac + " " + paciente.apMaterno_pac;
+        document.getElementById("fechaNac").value = paciente.fecha_nacimiento_pac;
+
+        let idPaciente = paciente.id_paciente;
+        $.post(
+            URL + "Consultas/getConsultasHistorico",
+            { "id_paciente": idPaciente },
+            (response) => {
+                $("#historial_consulta").html(response);
+                // console.log(response);
+            }
+        );
+    }
+    /*Obtiene el nombre del paciente para ver su consulta en particular*/
+    nombrePacienteDetalleConsulta(paciente) {
+        localStorage.setItem("nombreCompletoPac", paciente.nombre_pac + " " + paciente.apPaterno_pac + " " + paciente.apMaterno_pac);
+        document.getElementById("pacienteHistorial").value = paciente.nombre_pac + " " + paciente.apPaterno_pac + " " + paciente.apMaterno_pac;
+        // calcularEdadC(paciente.fecha_nacimiento_pac);
         document.getElementById("fechaNac").value = paciente.fecha_nacimiento_pac;
 
         let idPaciente = paciente.id_paciente;
@@ -307,7 +368,7 @@
             type: "POST",
             success: (response) => {
                 if (response == 0) {
-                    this.vaciarFormulario();
+                    this.vaciarFormularioConsulta();
                     Swal.fire({
                         icon: 'success',
                         title: 'Registro exitoso.',
@@ -340,7 +401,7 @@
 
     }
 
-    vaciarFormulario() {
+    vaciarFormularioConsulta() {
         var instance = M.Modal.getInstance($('#modal1'));
         instance.close();
         document.getElementById("nombrePaciente").value = "";
@@ -359,10 +420,15 @@
         document.getElementById("ompreventiva").value = "";
         $('#tipoAtencion').prop('selectedIndex', 0);
         $('#tipoAtencion2').prop('selectedIndex', 0);
-        $("#poblacion input[type=checkbox]").prop('checked', false);
-        $("#medicina input[type=checkbox]").prop('checked', false);
-        $('#ambula input[type="radio"]').prop('checked', false);
-        $('#refer input[type="radio"]').prop('checked', false);
+        $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
+        $("input:checkbox[name=medicinaPrev]:checked").prop('checked', false);
+        $("input:checkbox[name=ninguna]:checked").prop('checked', false);
+        $("input:radio[name=ambulancia]:checked").prop('checked', false);
+        $("input:radio[name=referenciado]:checked").prop('checked', false);
+
+        /*$('#ambula input[type="radio"]').prop('checked', false);
+        $('#refer input[type="radio"]').prop('checked', false);*/
+        alert("vaciado");
     }
 
 

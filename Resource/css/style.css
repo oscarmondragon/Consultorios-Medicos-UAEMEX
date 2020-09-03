@@ -49,10 +49,10 @@ footer.footerC {
     background-size: contain;
     background-color: white;
     background-size: 96% 100%;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
-    height: 16vh;
+    height: 14vh;
     color: white;
 }
 
@@ -100,7 +100,7 @@ footer.footerC {
     }
     .container2 {
         width: 76%;
-        margin: -270px 290px 0px;
+        margin: -300px 290px 0px;
     }
 }
 

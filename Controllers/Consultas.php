@@ -32,7 +32,7 @@ function getConsultasDatos(){
                 "<td>".$value["des_centro_costos"]."</td>".
                 "<td>".$value["tipo"]."</td>".
                 "<td>".
-                "<a  href= '#modal1'  onclick='pacienteNConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Nueva</a> | ".
+                "<a  href= '#modal1'  onclick='pacienteNuevaConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Nueva</a> | ".
                 
                 "<a href= '#modal2' onclick='pacienteHistorial(".$dataUser.")'  class='btn btn-success modal-trigger'> Ver todas</a>".
                 "</td>".
@@ -55,6 +55,15 @@ function getConsultasDatos(){
         }
     }
 
+    function consultaTipoAtencion(){
+        $id_tipo_atencion = $_POST["id_tipo_atencion"];
+        $data = $this->model->consultaTipoAtencion($id_tipo_atencion);
+         if(is_array($data)){
+            echo json_encode($data);
+         } else {
+             echo $data;
+         }
+    }
 
     function getTipoAtencion(){
          $data = $this->model->getTipoAtencion();
@@ -99,7 +108,7 @@ function getConsultasDatos(){
                     "<td>".$value["des_centro_costos"]."</td>".
                     "<td>".$value["tipo"]."</td>".
                     "<td>".
-                    "<a  href= '#modal1'  onclick='pacienteNConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Nueva</a> | ".
+                    "<a  href= '#modal1'  onclick='pacienteNuevaConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Nueva</a> | ".
                     
                     "<a href= '#modal2' onclick='pacienteHistorial(".$dataUser.")'  class='btn btn-success modal-trigger'> Ver todas</a>".
                     "</td>".

@@ -8,6 +8,11 @@ class Consultas_model extends Conexion{
         return $response = $this->db->select1("*","consultorios", "", null);
     }
     
+    function consultaTipoAtencion($id_tipo_atencion){
+        $where = " WHERE id_tipo_atencion = ".$id_tipo_atencion;
+        return $response = $this->db->select1("*","tipo_atencion", $where, null);
+    }
+
     function getTipoAtencion(){
         return $response = $this->db->select1("*","tipo_atencion", " WHERE estatus=1 AND nivel=2", null);
     }

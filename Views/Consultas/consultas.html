@@ -144,16 +144,6 @@
                             </select>
                             <label>Tipo de atención 2</label>
                         </div>
-                        <!--div class="input-field col s12">
-        <select id="tipoAtencion" required>
-            <option value="" disabled selected>Elige una opción</option>
-            <option value="1">Enfermedades mentales</option>
-            <option value="2">Enfermedades físicas</option>
-            <option value="3">Lesiones</option>
-            <option value="5">Urgencias</option>
-        </select>
-        <label>Tipo de atención</label>
-    </div-->
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
@@ -191,11 +181,11 @@
                             <label class="error" for="descripcion">Descripción</label>
                         </div>
                         <div class="input-field col s12">
-                            <textarea id="diagnostico" name="diagnostico" class="materialize-textarea" required></textarea>
+                            <textarea placeholder="Diagnóstico" id="diagnostico" name="diagnostico" class="materialize-textarea" required></textarea>
                             <label class="error" for="diagnostico">Diagnóstico</label>
                         </div>
                         <div class="input-field col s12">
-                            <textarea id="tratamiento" name="tratamiento" class="materialize-textarea" required></textarea>
+                            <textarea placeholder="Tratamiento" id="tratamiento" name="tratamiento" class="materialize-textarea" required></textarea>
                             <label class="error" for="tratamiento">Tratamiento</label>
                         </div>
                     </div>
@@ -269,11 +259,11 @@
 
                         <p>
                             <label class="radio-inline">
-                                <input name="ambulancia" type="radio" value="1" />
+                                <input name="ambulancia" id="ambulanciaSI" type="radio" value="1" />
                                 <span>Si</span>
                             </label>
                             <label class="radio-inline">
-                                <input name="ambulancia" type="radio" value="0" />
+                                <input name="ambulancia" id="ambulanciaNO" type="radio" value="0" />
                                 <span>No</span>
                             </label>
                         </p>
@@ -299,7 +289,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="observaciones" name="observaciones" class="materialize-textarea"></textarea>
+                        <textarea placeholder="Observaciones" id="observaciones" name="observaciones" class="materialize-textarea"></textarea>
                         <label class="error" for="descripcion">Observaciones</label>
                     </div>
 
@@ -315,7 +305,7 @@
     </div>
     <!--Modal para vislauizacion de consultas-->
     <div id="modal2" class="modal modal-fixed-footer">
-        <form class="col s12" id="validate" method="POST">
+        <form class="col s12" id="validate2" method="POST">
             <div class="modal-content">
                 <center>
                     <h5>Consultas del paciente</h5>

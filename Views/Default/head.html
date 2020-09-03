@@ -1,23 +1,26 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Control de Consultorios UAEMEX</title>
-    
+
     <link rel="stylesheet" href="http://localhost/consultorios/Resource/materialize/css/materialize.min.css">
     <link rel="stylesheet" href="http://localhost/consultorios/Resource/css/style.css">
     <link rel="stylesheet" href="http://localhost/consultorios/Resource/css/sweetalert2.min.css">
 
 </head>
+
 <body>
-    <nav>
-        <div class="nav-wrapper greenBG"  width: 100; height: 100; ">
-            <a href="" class="brand-logo center">
+
+        <nav>
+            <div class="nav-wrapper greenBG" width: 100; height: 100; ">
+            <a href="" class=" brand-logo center">
                 <i class="material-icons"> </i>
-               <!-- Sistema de Control de Consultorios UAEMex-->
-            </a>
-            <!--div id="menuNavbar1">
+                <!-- Sistema de Control de Consultorios UAEMex-->
+                </a>
+                <!--div id="menuNavbar1">
                 <ul class="right hide-on-med-and-down">
                    
                     <li>
@@ -29,76 +32,79 @@
                 <a href="#"  data-target="slide-out" class="btn-floating btn-large
                 waves-effect waves-light green lighten-1 sidenav-trigger"></a>
             </div-->
-        </div>
-        <div id="menuNavbar1">
-            <ul class="right hide-on-med-and-down">
-               
-                <li>
-                    <a href="/consultorios/Usuarios/destroySession" onclick="sessionClose();">
-                       Salir
-                    </a>
-                </li>
-            </ul>
-            <a href="#"  data-target="slide-out" class="btn-floating btn-large
-            waves-effect waves-light green lighten-1 sidenav-trigger"></a>
-        </div>
-    </nav>
-    <ul id="slide-out" class="sidenav">
-        <li>
-            <div class="user-view green">
-
-
-                <p class="white-text" id="name1"></p>
-
-                <p class="white-text" id="consultorio1"></p>
-                <p class="white-text" id="role1"></p>
-
-
             </div>
-        </li>
-        <li>
-            <a href="/consultorios/Principal/principal" onclick="">Inicio</a>
-        </li>
-        <li>
-            <a href="/consultorios/Pacientes/pacientes" onclick="">Registro</a>
-        </li>
-        <li>
-            <a href="/consultorios/Consultas/consultas" onclick="">Consultas médicas</a>
-        </li>
-        <li>
-            <a href="/consultorios/Reportes/reportes" onclick="">Reportes</a>
-        </li>
-        <li>
-            <a href="/consultorios/Usuarios/destroySession" onclick="sessionClose();">Salir</a>
-        </li>
-    </ul>
-    <div  id="menuNavbar2">
-        <div id="main">
-            <div class="wrapper">
-                <aside id="left-sidebar-nav">
-                    <ul id="slide-out" class="side-nav fixed leftside-navigation">
-                        <li class="user-details green">
-                            <div class="row">
-                            <div class="col col s8 m8 l8">
-                                <p class="user-roal white-text" id="name2"></p>
-                                <p class="user-roal white-text" id="consultorio2"></p>
-                                <p class="user-roal white-text" id="role2"></p>
+            <div id="menuNavbar1">
+                <ul class="right hide-on-med-and-down">
+
+                    <li>
+                        <a href="/consultorios/Usuarios/destroySession" onclick="sessionClose();">
+                            Salir
+                        </a>
+                    </li>
+                </ul>
+                <a href="#" data-target="slide-out" class="btn-floating btn-large
+            waves-effect waves-light green lighten-1 sidenav-trigger"></a>
+            </div>
+        </nav>
+        <ul id="slide-out" class="sidenav">
+            <li>
+                <div class="user-view green">
+
+
+                    <p class="white-text" id="name1"></p>
+
+                    <p class="white-text" id="consultorio1"></p>
+                    <p class="white-text" id="role1"></p>
+
+
+                </div>
+            </li>
+            <li>
+                <a href="/consultorios/Principal/principal" onclick="">Inicio</a>
+            </li>
+            <li>
+                <a href="/consultorios/Pacientes/pacientes" onclick="">Registro</a>
+            </li>
+            <li>
+                <a href="/consultorios/Consultas/consultas" onclick="">Consultas médicas</a>
+            </li>
+            <li>
+                <a href="/consultorios/Reportes/reportes" onclick="">Reportes</a>
+            </li>
+            <li>
+                <a href="/consultorios/Usuarios/destroySession" onclick="sessionClose();">Salir</a>
+            </li>
+        </ul>
+        <div id="menuNavbar2">
+            <div id="main">
+                <div class="wrapper">
+                    <aside id="left-sidebar-nav">
+                        <ul id="slide-out" class="side-nav fixed leftside-navigation">
+                            <li class="user-details green">
+                                <div class="row">
+                                    <div class="col col s8 m8 l8">
+                                        <p class="user-roal white-text" id="name2"></p>
+                                        <p class="user-roal white-text" id="consultorio2"></p>
+                                        <p class="user-roal white-text" id="role2"></p>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <div class="collection">
+                                <a href="/consultorios/Principal/principal" onclick="" id="enlace1"
+                                    class="collection-item">Inicio</a>
+                                <a href="/consultorios/Pacientes/pacientes" onclick="" id="enlace2"
+                                    class="collection-item">Registro</a>
+                                <a href="/consultorios/Consultas/consultas" onclick="" id="enlace3"
+                                    class="collection-item">Consultas médicas</a>
+                                <a href="/consultorios/Reportes/reportes" onclick="" id="enlace4"
+                                    class="collection-item">Reportes</a>
+
 
                             </div>
-                        </div>
-                        </li>
-                        <div class="collection">
-                            <a href="/consultorios/Principal/principal" onclick="" id="enlace1" class="collection-item">Inicio</a>
-                            <a href="/consultorios/Pacientes/pacientes" onclick="" id="enlace2" class="collection-item">Registro</a>
-                            <a href="/consultorios/Consultas/consultas" onclick="" id="enlace3" class="collection-item">Consultas médicas</a>
-                            <a href="/consultorios/Reportes/reportes" onclick="" id="enlace4" class="collection-item">Reportes</a>
-                          
+                        </ul>
+                    </aside>
 
-                        </div>
-                    </ul>
-                </aside>
-
+                </div>
             </div>
         </div>
-    </div>
-    
