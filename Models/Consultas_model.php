@@ -8,6 +8,24 @@ class Consultas_model extends Conexion{
         return $response = $this->db->select1("*","consultorios", "", null);
     }
     
+    function consultaPoblacionRiesgo($id_consulta){
+        //SELECT cpr.id_poblacion_riesgo, catpr.desc_poblacion_riesgo, cpr.observaciones 
+        //FROM `consulta_poblacion_riesgo` cpr INNER JOIN `catalogo_poblacion_riesgo` catpr 
+        //ON cpr.id_poblacion_riesgo = catpr.id_poblacion_riesgo WHERE cpr.id_consulta = $id_consulta
+        $where = " WHERE id_consulta = ".$id_consulta;
+        return $response = $this->db->select1(" cpr.id_poblacion_riesgo, catpr.desc_poblacion_riesgo, cpr.observaciones "
+            ," consulta_poblacion_riesgo cpr INNER JOIN catalogo_poblacion_riesgo catpr ON cpr.id_poblacion_riesgo = catpr.id_poblacion_riesgo"
+            , $where, null);
+    }
+
+    function consultaMedicinaPreventiva($id_consulta){
+        /*SELECT cmp.id_medicina_preventiva, catmp.desc_medicina_preventiva, cmp.observaciones FROM consulta_medicina_preventiva cmp INNER JOIN catalogo_medicina_preventiva catmp ON cmp.id_medicina_preventiva = catmp.id_medicina_preventiva WHERE id_consulta =*/
+         $where = " WHERE id_consulta = ".$id_consulta;
+        return $response = $this->db->select1(" cmp.id_medicina_preventiva, catmp.desc_medicina_preventiva, cmp.observaciones "
+            ," consulta_medicina_preventiva cmp LEFT JOIN catalogo_medicina_preventiva catmp ON cmp.id_medicina_preventiva = catmp.id_medicina_preventiva"
+            , $where, null);
+    }
+
     function consultaTipoAtencion($id_tipo_atencion){
         $where = " WHERE id_tipo_atencion = ".$id_tipo_atencion;
         return $response = $this->db->select1("*","tipo_atencion", $where, null);
@@ -25,24 +43,6 @@ class Consultas_model extends Conexion{
     function getconsultasDatos(){
         //$where = "";
 
-    }
-    function getRconsultas($id_consultorio,$fechaInicial, $fechaFinal){
-        $whereConsultorio_USUARIO = "Where id_consultorio = ".$id_consultorio;
-        $response = $this->db->select1("*","usuario_consultorio", $whereConsultorio_USUARIO, null);
-        if(is_array($response)){
-            $response = $response['results'];
-            $idMedico= $response[0]["id_usr"];
-
-            $where = "Where id_medico = ".$idMedico." AND fecha_consulta BETWEEN ".$fechaInicial." AND ".$fechaFinal;
-            return $response = $this->db->select1("*","tipo_atencion", $where, null);
-           // return $idMedico;
-
-        } else {
-            return 0; // no se encontro el paciente
-        }
-
-      //  SELECT * FROM `consulta` WHERE `fecha_consulta` BETWEEN '2020-08-31' AND '2020-09-01
-        
     }
     
     function obtenerIdConsulta($consulta){
@@ -199,6 +199,20 @@ class Consultas_model extends Conexion{
            return $data;
        }
   }
+
+
+  /*Reportes*/
+  function getRconsultas($id_consultorio,$fechaInicial, $fechaFinal){
+    /*SELECT * FROM consulta c Inner JOIN  `usuario_consultorio` uc 
+    ON uc.`id_usr` = c.id_medico 
+    WHERE (c.fecha_consulta BETWEEN '2020-09-02' and '2020-09-04') AND uc.id_consultorio = 3*/ 
+    $From ="consulta c Inner JOIN usuario_consultorio uc ON uc.id_usr = c.id_medico";
+    $where = "WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".fechaFinal."') AND uc.id_consultorio =".$id_consultorio;
+    return $response = $this->db->select1("*","usuario_consultorio", $where, null);
+    
+    
+}
+
      
 }
 ?>

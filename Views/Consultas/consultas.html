@@ -51,13 +51,13 @@
                             <div class="input-field col s5">
                                 <p>
                                     <label>
-                                        <input type="checkbox" name="poblacionRiesgo" id="asma" value="1">
+                                        <input type="checkbox" name="poblacionRiesgo" id="Asma" value="1">
                                         <span>Asma</span>
                                     </label>
                                 </p>
                                 <p>
                                     <label>
-                                        <input type="checkbox" name="poblacionRiesgo" id="cancer" value="2" />
+                                        <input type="checkbox" name="poblacionRiesgo" id="Cancer" value="2" />
                                         <span>Cáncer</span>
                                     </label>
                                 </p>
@@ -84,14 +84,7 @@
                                         <input type="checkbox" id="epoc" value="6" name="poblacionRiesgo" />
                                         <span>EPOC</span>
                                     </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        <input type="checkbox" id="ninguna" value="0" name="ninguna" />
-                                        <span>Ninguna </span>
-                                    </label>
-                                </p>
-
+                                </p>                   
                             </div>
                             <div class="input-field col s5">
                                 <p>
@@ -123,12 +116,18 @@
                                         <input type="checkbox" id="rinitis" value="11" name="poblacionRiesgo" />
                                         <span>Rinitis alérgica</span>
                                     </label>
+                                </p>
                                 <p>
                                     <label>
                                         <input type="checkbox" id="transplantes" value="12" name="poblacionRiesgo" />
                                         <span>Transplantes</span>
                                     </label>
                                 </p>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="ninguna" value="0" name="ninguna" />
+                                        <span>Ninguna </span>
+                                    </label>
                                 </p>
                             </div>
                         </div>
@@ -136,6 +135,7 @@
                     <div class="row">
                         <div class="input-field col s6">
                             <select id="tipoAtencion" onchange="selectatencion2();" required>
+                                
                             </select>
                             <label>Tipo de atención</label>
                         </div>

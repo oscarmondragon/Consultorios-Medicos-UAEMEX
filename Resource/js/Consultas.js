@@ -30,7 +30,6 @@
         var fechaInicio, fechaFin;
 
         var fechaActual = new Date();
-        console.log();
         do {
             fechaInicio = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 
@@ -69,9 +68,6 @@
                                 item.results[i].id_consultorio
                             );
 
-                            /* document.getElementById("tipoAtencion").options[count].onclick = function () {
-                                 alert(item.results[i].id_tipo_atencion);
-                             };*/
                             count++;
                             $("select").formSelect();
                         }
@@ -95,66 +91,24 @@
 
     }
 
-    /* getConsultas(id_consultorio, fechaRango){
-         var data = new FormData();
-         //datos de la consulta
-         //dia,mes/año
-         var fecha = new Date(fechaRango);
-         alert("fecha"+fecha);
-         fecha.setDate( d.getDate() +6);
-         alert("fechaf"+fecha);
-         fechaFin = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-         alert("fechaf"+fecha);
-         data.append("id_consultorio", id_consultorio);
-         data.append("fechaRango", fechaRango);
-         data.append("fechaFin", fechaFin);
- 
-         $.ajax({
-             url: URL + "Consultas/reporteConsultas",
-             data: data,
-             cache: false,
-             contentType: false,
-             processData: false,
-             type: "POST",
-             success: (response) => {
-                 if (response == 0) {
-                     this.vaciarFormulario();
-                     Swal.fire({
-                         icon: 'success',
-                         title: 'Registro exitoso.',
-                         text: ""
-                     });
-                     getPacientesC();
-                 } else {
-                     Swal.fire({
-                         icon: 'error',
-                         title: 'Oops...',
-                         text: response
-                     });
-                 }
- 
-             }
-         });
- 
-     }*/
+    
 
     consultaAtencionRiesgoMedP(id_consulta, id_tipo_atencion) {
-        alert("en el consultas.js")
-
+        //alert("en el consultas.js" + id_consulta)
         $.post(URL + "Consultas/consultaTipoAtencion",
             { "id_tipo_atencion": id_tipo_atencion }, (response) => {
                 try {
                     let item = JSON.parse(response);
                     if (item.results.length == 1) {
                         //estamos obteniendo datos
-                        alert("JSON::" + item.results.length + "::" + item.results[0].nombre_tipo_atencion + ":padre:" + item.results[0].padre);
-
+                        /*alert("JSON::" + item.results.length + "::" + item.results[0].nombre_tipo_atencion + ":padre:" + item.results[0].padre);
+                       */
                         $("#tipoAtencion2").prepend(
-                            "<option value='0' selected='selected'>" + item.results[0].nombre_tipo_atencion + "</option>"
+                            "<option value='0' disabled selected>" + item.results[0].nombre_tipo_atencion + "</option>"
                         );
-                    
+                        //  $("#tipoAtencion2").remove();
+                        //$('#tipoAtencion2').prop('selectedIndex', 1);
                         if (item.results[0].padre != null) {
-                            alert("padre::" + item.results[0].padre)
                             $.post(URL + "Consultas/consultaTipoAtencion",
                                 { "id_tipo_atencion": item.results[0].padre }, (response) => {
                                     try {
@@ -163,17 +117,58 @@
                                             //estamos obteniendo datos
                                             $("#tipoAtencion").prepend(
                                                 "<option value='0' disabled selected='selected'>" + item2.results[0].nombre_tipo_atencion + "</option>"
-                                            );      
+                                            );
                                         }
                                     } catch (error) { }
                                 });
                         }
                     }
                 } catch (error) { }
-        });
+            });
         /*Obtener datos de paciente de riesgo*/
+        var value = -1;
+        let item;
+        $.post(URL + "Consultas/consultaPoblacionRiesgo",
+            { "id_consulta": id_consulta }, (response) => {
+                try {
+                    item = JSON.parse(response);
+                    alert("Población de riesgo longitud::" + item.results.length);
+                    if (item.results.length > 0) {
+                        for (let i = 0; i < item.results.length; i++) {
+                            //estamos obteniendo id de la población para el value                           
+                            if (item.results[i].id_poblacion_riesgo == 0) {
+                                document.getElementsByName("ninguna").item(value).checked = true;
+                            } else {
+                                value = item.results[i].id_poblacion_riesgo - 1;
+                                document.getElementsByName("poblacionRiesgo").item(value).checked = true;
+                            }
+                            /*Se valida si el resultado es ninguna*/
 
+                            //falta validacion de cunado se elige otra población de riesgo(en proceso)
+                        }
+                    }
+                } catch (error) { }
+            });
         /*Obtener datos de medicina preventiva*/
+        $.post(URL + "Consultas/consultaMedicinaPreventiva",
+            { "id_consulta": id_consulta }, (response) => {
+                try {
+                    item = JSON.parse(response);
+                    alert("Medicina Preventiva longitud:" + item.results.length);
+                    if (item.results.length > 0) {
+                        for (let i = 0; i < item.results.length; i++) {
+                            //estamos obteniendo datos                            
+                            if (item.results[i].id_medicina_preventiva == 0) {
+                                document.getElementById("ompreventiva").value = item.results[i].observaciones;
+                            } else {
+                                value = item.results[i].id_medicina_preventiva - 1;
+                                document.getElementsByName("medicinaPrev").item(value).checked = true;
+                            }
+                        }
+                    }
+                } catch (error) { }
+            });
+
 
 
 
@@ -404,6 +399,8 @@
     vaciarFormularioConsulta() {
         var instance = M.Modal.getInstance($('#modal1'));
         instance.close();
+
+        // document.getElementById("tipoAtencion2").empty();
         document.getElementById("nombrePaciente").value = "";
         document.getElementById("edadPaciente").value = "";
         document.getElementById("frecCardiaca").value = "";
@@ -418,8 +415,12 @@
         document.getElementById("lugarreferencia").value = "";
         document.getElementById("observaciones").value = "";
         document.getElementById("ompreventiva").value = "";
-        $('#tipoAtencion').prop('selectedIndex', 0);
+        //$('#tipoAtencion').prop('selectedIndex', 0);
+        //$('#tipoAtencion').empty();
+        $('#tipoAtencion').children('option').remove();
+        $('#tipoAtencion2').empty();
         $('#tipoAtencion2').prop('selectedIndex', 0);
+        $('#tipoAtencion2').children('option').remove();
         $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
         $("input:checkbox[name=medicinaPrev]:checked").prop('checked', false);
         $("input:checkbox[name=ninguna]:checked").prop('checked', false);
@@ -429,6 +430,60 @@
         /*$('#ambula input[type="radio"]').prop('checked', false);
         $('#refer input[type="radio"]').prop('checked', false);*/
         alert("vaciado");
+    }
+
+    getRepConsultasSemanal(id_consultorio, fechaRango) {
+        console.log("getconsultorios");
+        var data = new FormData();
+
+        //dia,mes/año
+        var fecha = new Date(fechaRango);
+        fecha.setDate(fecha.getDate() + 6);
+        var fechaFin = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+        alert("fechaIni" + fechaRango + ":FechaFin:" + fechaFin);
+        data.append("id_consultorio", id_consultorio);
+        data.append("fechaInicio", fechaRango);
+        data.append("fechaFin", fechaFin);
+
+        $.ajax({
+            url: URL + "Consultas/reporteConsultas",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: "POST",
+            success: (response) => {
+                try{
+                    if (response == 0) {
+                        console.log("No hay nada");
+                    }else if (response == 1){
+                        console.log("DATOS");
+                    }
+
+                let item = JSON.parse(response);
+                if (item.results.length > 0) {//si jhay consultas en el criterio
+                   // $("#historial_consulta").html(response);
+                    console.log("Son")
+                    // this.vaciarFormulario();
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Busqueda hecha',
+                        text: ""
+                    });
+                    getPacientesC();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: response
+                    });
+                }
+            }catch(error){
+                console.log(error)
+            }
+            }
+        });
     }
 
 

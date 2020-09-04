@@ -202,6 +202,7 @@ $(function () {
             && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
             //alert("aqui todo bien");
+            //validar que inserten referenciado
             consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva, ompreventiva,
                 fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
                 tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
@@ -216,21 +217,18 @@ $(function () {
         }
     });
     $("#btnMuestraReporte").click(function () {
-        /* let consultorios = document.getElementById("selectConsultorio");        
-         let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
-         alert("llegue3"+id_consultorio);
+        alert("Vamos a hacer el reporte");
+        let consultorios = document.getElementById("selectConsultorio");  
+        let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
  
          let rango = document.getElementById("selectRango");
          let fechaRango = rango.options[rango.selectedIndex].value;
-         alert("llegue3"+fechaRango);
- 
-        */
+         alert("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
 
         //mandamos los datos al metod registrarPaciente de Paciente.js
-        /* if (id_consultorio != 0 && fechaRango != 0 ) {
+         if (id_consultorio != 0 && fechaRango != 0 ) {
              alert("aqui todo bien");
-             consultas.getConsultas(id_consultorio,fechaRango);
-           
+             consultas.getRepConsultasSemanal(id_consultorio,fechaRango);           
              return false; //para evitar reenvio de formulario
          } else {
              Swal.fire({
@@ -238,11 +236,20 @@ $(function () {
                  text: 'Elige una opcion para cada criterio',
  
              })
-         }*/
+         }
         consultas.getDatos();
     });
 
 });
+//inicializar Select consultas y select semanas para el reporte*/
+
+var iniciaConsultoriosSemanas = () => {
+    alert("Inicializamos select");
+    consultas.getConsultorios();
+    console.log("LLEGUE3");
+    consultas.getRangosFecha();
+}
+
 
 // llama metodo para filtrar pacientes
 var getPacientes = () => {
@@ -301,8 +308,9 @@ var getPacientesC = () => {
 
 }
 
-
+/*Entra a la pagina de reportes*/
 var getReportes = () => {
+    alert("estamos en la pagina de reportes PRINCIPAL");
     /*  console.log("LLEGUE");
       try{
           consultas.getConsultorios();
@@ -331,13 +339,13 @@ var pacienteNuevaConsulta = (data) => {
     var cambiaBoton = document.getElementById('btnRConsulta');
     if (cambiaBoton != null) {
         /*Oculta el botón del formulario*/
-        cambiaBoton.style.visibility  = 'visible';        
+        cambiaBoton.style.visibility = 'visible';
     }
 }
 
 /*funcion que se ejecuta cuando se pulsa el botón VER TODAS, 
 -- envia datos de paciente para generar HISTORIAL de consultas*/
-var pacienteHistorial = (data) => {    
+var pacienteHistorial = (data) => {
     consultas.vaciarFormularioConsulta();
     consultas.nombrePacienteDetalleConsulta(data);
     console.log("datosVERTODAS");
@@ -346,11 +354,12 @@ var pacienteHistorial = (data) => {
 }
 
 var mostrarConsulta = (data) => {
+    consultas.vaciarFormularioConsulta();
     //Se borra el boton del fromulario(RGISTRO)
     var cambiaBoton = document.getElementById('btnRConsulta');
     if (cambiaBoton != null) {
         /*Oculta el botón del formulario*/
-        cambiaBoton.style.visibility  = 'hidden';        
+        cambiaBoton.style.visibility = 'hidden';
     }
     alert("muestra datos:" + data);
     console.log(data);
@@ -371,27 +380,23 @@ var mostrarConsulta = (data) => {
     document.getElementById("descripcion").value = data.descripcion;
     document.getElementById("diagnostico").value = data.diagnostico;
     document.getElementById("tratamiento").value = data.tratamiento;
-    //medicina preventiva
-    document.getElementById("cronico").checked =true;
+    //trae datos para medicina preventiva, población de riesgo, tipo de atencion, otra medicina preventiva
     consultas.consultaAtencionRiesgoMedP(data.id_consulta, data.id_tipo_atencion);
-    //otra_medicina preventiva
-    //document.getElementById("omp").value
     //ambulancia
-    if(data.ambulancia = 0){
-        document.getElementById("ambulanciaNO").checked= true;
-    }else if(data.ambulancia = 1){
-        document.getElementById("ambulanciaSI").checked= true;
+    if (data.ambulancia = 0) {
+        document.getElementById("ambulanciaNO").checked = true;
+    } else if (data.ambulancia = 1) {
+        document.getElementById("ambulanciaSI").checked = true;
     }
     //referenciado
-    if(data.referenciado = 0){
-        document.getElementById("noreferenciado").checked= true;
-    }else if(data.referenciado = 1){
-        document.getElementById("referenciado").checked= true;
+    if (data.referenciado = 0) {
+        document.getElementById("noreferenciado").checked = true;
+    } else if (data.referenciado = 1) {
+        document.getElementById("referenciado").checked = true;
     }
     document.getElementById("lugarreferencia").value = data.lugar_referencia;
     document.getElementById("observaciones").value = data.observaciones;
-    //document.getElementById("frecCardiaca").value = paciente.nombre_pac + " " + paciente.apPaterno_pac + " " + paciente.apMaterno_pac;
-    // document.getElementById("fechaNac").value = paciente.fecha_nacimiento_pac;
+
 }
 
 /**/

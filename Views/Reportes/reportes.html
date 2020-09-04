@@ -1,5 +1,5 @@
 <div class="container2">
-    <div class="row">
+    <!--div class="row">
         <div class="input-field col s0">
             <a class="waves-effect waves-ligth btn modal-trigger"
                 href="#modalRSC">Reporte de consultas</a>
@@ -36,12 +36,12 @@
                 
             </div>
         </form>
-    </div>
-    <!--div class="row">
+    </div-->
+    <div class="row">
         <div class="input-field col s0">
-            <a class="waves-effect waves-ligth btn modal-trigger"
-                href="#modalRSC">Reporte semanal por consultorio</a>
-               
+            <a class="waves-effect waves-ligth btn modal-trigger" href="#modalRSC"
+            onclick='iniciaConsultoriosSemanas()'>Reporte semanal por consultorio</a>
+
         </div>
     </div>
     <div id="modalRSC" class="modal modal-fixed-footer">
@@ -63,15 +63,49 @@
                         <label>Selecciona rango de fecha a consultar</label>
                     </div>
                 </div>
+                <div class="input-field col s0">
+                    <!--href="#modalConsulta"-->
+                    <a class="waves-effect waves-ligth btn modal-trigger"
+                    id="btnMuestraReporte">Reporte semanal por consultorio</a>
+        
+                </div>
+
+                <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>                                    
+                                    <th>Fecha de Consulta</th>
+                                    <th>Hra. consulta</th>
+                                    <th>Tipo Atención</th>
+                                    <th>Detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reporte">
+                            </tbody>
+                        </table>
+                    </div>
 
             </div>
-            <div class="modal-footer">
-                <label id="registrarMessage" class="text-left Message"></label>
-                <button id="btnMuestraReporte" class="waves-effect waves-light btn">
-                    Mostrar Consultas
-                </button>
-            </div>
         </form>
-    </div-->
+        <!--Moidal que muestra el reporte-->
+        <!--div id="modalConsulta" class="modal modal-fixed-footer">
+            <form class="col s12" id="validate2" method="POST">
+                <div class="modal-content">
+                    <center>
+                        <h5>Reporte semanal por consultorio</h5>
+                    </center>
+
+                </div>
+                <div class="modal-footer">
+                    <label id="registrarMessage" class="text-left Message"></label>
+                    <button id="btnMuestraReporte" class="waves-effect waves-light btn">
+                        Mostrar Consultas
+                    </button>
+                </div>
+            </form>
+            
+
+        </div-->
+    </div>
     <!--fin modal de historial-->
 </div>

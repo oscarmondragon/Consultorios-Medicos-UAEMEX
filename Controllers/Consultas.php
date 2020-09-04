@@ -54,6 +54,25 @@ function getConsultasDatos(){
             echo $data;
         }
     }
+    function consultaMedicinaPreventiva(){
+        
+        $id_consulta = $_POST["id_consulta"];
+        $data = $this->model->consultaMedicinaPreventiva($id_consulta);
+         if(is_array($data)){
+            echo json_encode($data);
+         } else {
+             echo $data;
+         }
+    }
+    function consultaPoblacionRiesgo(){
+        $id_consulta = $_POST["id_consulta"];
+        $data = $this->model->consultaPoblacionRiesgo($id_consulta);
+         if(is_array($data)){
+            echo json_encode($data);
+         } else {
+             echo $data;
+         }
+    }
 
     function consultaTipoAtencion(){
         $id_tipo_atencion = $_POST["id_tipo_atencion"];
@@ -160,20 +179,7 @@ function getConsultasDatos(){
         }       
      }
 
-     public function getconsulta(){
-         $id_consultorio = $_POST["id_consultorio"];
-         $fechaInicial = $_POST["fechaRango"];
-         $fechaFinal = $_POST["fechaFin"];
-
-         $data = $this->model->getRconsultas($id_consultorio,$fechaInicial, $fechaFinal);
-             if(is_array($data)){
-                echo json_encode($data);
-            } else {
-                echo $data;
-             }
-
-     }
-
+     
      function registrarConsulta()
      {         
         //array para dar alta consulta
@@ -284,6 +290,47 @@ function getConsultasDatos(){
         Session::destroy();
         header("Location:".URL);
     }
+
+
+
+/*apartado de reportes**/
+function reporteConsultas(){    
+    $id_consultorio = $_POST["id_consultorio"];
+    $fecInicio= $_POST["fechaInicio"];
+    $fecInicio= $_POST["fechaFin"];
+
+    $data = $this->model->getRconsultas($id_consultorio,$fechaInicial, $fechaFinal);
+        if(is_array($data)){
+           echo json_encode($data);
+        } else {
+            echo $data;
+        }
+}
+
+public function getconsulta(){
+    $id_consultorio = $_POST["id_consultorio"];
+    $fechaInicial = $_POST["fechaRango"];
+    $fechaFinal = $_POST["fechaFin"];
+
+    $data = $this->model->getRconsultas($id_consultorio,$fechaInicial, $fechaFinal);
+        if(is_array($data)){ 
+            echo 1; 
+            /*
+            if(is_array($data)){
+                $array = $data["results"];
+            }          
+           echo json_encode($data);*/
+       } else {
+           echo 0;
+        }
+
+}
+
+
+
+
+
+
 }
 
 ?>
