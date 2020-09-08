@@ -45,7 +45,6 @@ class Anonymous {
      public $frecuencia_respiratoria;
      public $temperatura;
      public $tension_arterial;
-     public $saturacion;
      public $talla;
      public $peso;
      public $descripcion;
@@ -69,19 +68,18 @@ class Anonymous {
                  $this->frecuencia_respiratoria = $array[4] ;
                  $this->temperatura =$array[5] ;
                  $this->tension_arterial = $array[6] ;
-                 $this->saturacion = $array[7];
-                 $this->talla = $array[8] ;
-                 $this->peso = $array[9] ;
-                 $this->descripcion = $array[10] ;
-                 $this->diagnostico =$array[11];
-                 $this->tratamiento = $array[12] ;
-                 $this->ambulancia = $array[13] ;
-                 $this->referenciado = $array[14] ;
-                 $this->observaciones = $array[15] ;
-                 $this->lugar_referencia = $array[16] ;
-                 $this->fecha_consulta = $array[17] ;
-                 $this->hora_consulta = $array[18] ;
-                 $this->id_medico = $array[19] ;
+                 $this->talla = $array[7] ;
+                 $this->peso = $array[8] ;
+                 $this->descripcion = $array[9] ;
+                 $this->diagnostico =$array[10];
+                 $this->tratamiento = $array[11] ;
+                 $this->ambulancia = $array[12] ;
+                 $this->referenciado = $array[13] ;
+                 $this->observaciones = $array[14] ;
+                 $this->lugar_referencia = $array[15] ;
+                 $this->fecha_consulta = $array[16] ;
+                 $this->hora_consulta = $array[17] ;
+                 $this->id_medico = $array[18] ;
 
      }
     };
@@ -91,12 +89,10 @@ public function poblacionClass($array){
     return new class($array){
      public $id_consulta;
      public $id_poblacion_riesgo;
-     public $observaciones;
 
      public function __construct($array) {
                  $this->id_consulta = $array[0];
                  $this->id_poblacion_riesgo = $array[1];
-                 $this->observaciones =  $array[2];
      }
     };
 }

@@ -51,12 +51,12 @@
 
     getConsultorios() {
         let count = 1;
-        console.log("getconsultorios");
+        //console.log("getconsultorios");
         $.post(URL + "Consultas/getConsultorios",
             {}, (response) => {
                 try {
                     let item = JSON.parse(response);
-                    console.log("item");
+                    //console.log("item");
                     $("#selectConsultorio").prepend(
                         "<option value='0' disabled selected='selected'  >Elige una opción</option>"
                     );
@@ -74,15 +74,16 @@
                     }
                 } catch (error) { }
             });
-
     }
+
+
     getDatos() {
-        console.log("getconsultorios");
+        //console.log("getconsultorios");
         $.post(URL + "Consultas/getConsultasDatos",
             {}, (response) => {
                 try {
                     let item = JSON.parse(response);
-                    console.log("item");
+                    //console.log("item");
                     $("#consultasDatos").html(response);
 
                 } catch (error) { }
@@ -100,9 +101,9 @@
                 try {
                     let item = JSON.parse(response);
                     if (item.results.length == 1) {
-                        //estamos obteniendo datos
-                        /*alert("JSON::" + item.results.length + "::" + item.results[0].nombre_tipo_atencion + ":padre:" + item.results[0].padre);
-                       */
+                       // alert("JSON::" + item.results.length + "::" + item.results[0].nombre_tipo_atencion + ":padre:" + item.results[0].padre);
+                        /*guardamos el tipo atencion2*/
+                       // $id_tipo_atencion2 = item.results[0].id_tipo_atencion;
                         $("#tipoAtencion2").prepend(
                             "<option value='0' disabled selected>" + item.results[0].nombre_tipo_atencion + "</option>"
                         );
@@ -114,7 +115,6 @@
                                     try {
                                         let item2 = JSON.parse(response);
                                         if (item2.results.length == 1) {
-                                            //estamos obteniendo datos
                                             $("#tipoAtencion").prepend(
                                                 "<option value='0' disabled selected='selected'>" + item2.results[0].nombre_tipo_atencion + "</option>"
                                             );
@@ -132,7 +132,7 @@
             { "id_consulta": id_consulta }, (response) => {
                 try {
                     item = JSON.parse(response);
-                    alert("Población de riesgo longitud::" + item.results.length);
+                   // alert("Población de riesgo longitud::" + item.results.length);
                     if (item.results.length > 0) {
                         for (let i = 0; i < item.results.length; i++) {
                             //estamos obteniendo id de la población para el value                           
@@ -154,7 +154,7 @@
             { "id_consulta": id_consulta }, (response) => {
                 try {
                     item = JSON.parse(response);
-                    alert("Medicina Preventiva longitud:" + item.results.length);
+                    //alert("Medicina Preventiva longitud:" + item.results.length);
                     if (item.results.length > 0) {
                         for (let i = 0; i < item.results.length; i++) {
                             //estamos obteniendo datos                            
@@ -327,9 +327,7 @@
         lugarReferencia,
         fecha_consulta,
         horaConsulta,
-        userId,
-        otraPoblacion,
-        saturacion
+        userId
     ) {
         var data = new FormData();
         //datos de la consulta
@@ -355,8 +353,6 @@
         data.append("poblacion_riesgo", poblacionRiesgo);
         data.append("medicina_prev", medicinaPreventiva);
         data.append("ompreventiva", ompreventiva);
-        data.append("otraPob" , otraPoblacion);
-        data.append("saturacion" , saturacion);
         //alert("Medicina preventiva:" + ompreventiva);
         $.ajax({
             url: URL + "Consultas/registrarConsulta",
@@ -433,18 +429,18 @@
 
         /*$('#ambula input[type="radio"]').prop('checked', false);
         $('#refer input[type="radio"]').prop('checked', false);*/
-        alert("vaciado");
+        //alert("vaciado");
     }
 
     getRepConsultasSemanal(id_consultorio, fechaRango) {
-        console.log("getconsultorios");
+        //console.log("getconsultorios");
         var data = new FormData();
 
         //dia,mes/año
         var fecha = new Date(fechaRango);
         fecha.setDate(fecha.getDate() + 6);
         var fechaFin = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-        alert("fechaIni" + fechaRango + ":FechaFin:" + fechaFin);
+        //alert("fechaIni" + fechaRango + ":FechaFin:" + fechaFin);
         data.append("id_consultorio", id_consultorio);
         data.append("fechaInicio", fechaRango);
         data.append("fechaFin", fechaFin);
@@ -486,6 +482,61 @@
             }catch(error){
                 console.log(error)
             }
+            }
+        });
+    }
+
+
+    getImpConsultasSemanal(id_consultorio, fechaRango) {
+        // console.log("getImpconsultorios");
+        var data = new FormData();
+
+        //dia,mes/año
+        var fecha = new Date(fechaRango);
+        fecha.setDate(fecha.getDate() + 6);
+        var fechaFin = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
+       // alert("fechaIni" + fechaRango + ":FechaFin:" + fechaFin);
+        data.append("id_consultorio", id_consultorio);
+        data.append("fechaInicio", fechaRango);
+        data.append("fechaFin", fechaFin);
+
+        $.ajax({
+            url: URL + "Consultas/reporteConsultas",
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: "POST",
+            success: (response) => {
+                try {
+                    if (response == 0) {
+                        console.log("No hay nada");
+                    } else if (response == 1) {
+                        console.log("DATOS");
+                    }
+
+                    let item = JSON.parse(response);
+                    if (item.results.length > 0) {//si jhay consultas en el criterio
+                        // $("#historial_consulta").html(response);
+                        console.log("Son")
+                        // this.vaciarFormulario();
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Busqueda hecha',
+                            text: ""
+                        });
+                        getPacientesC();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response
+                        });
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
             }
         });
     }

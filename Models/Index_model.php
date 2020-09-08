@@ -8,8 +8,14 @@ class Index_model extends Conexion{
        $param = array('username' => $username);
        $response = $this->db->select1("*", 'usuario',$where,$param);
       if (is_array($response)){
-        $response = $response['results'];
-        if(count($response) != 0){
+        
+         if($response['results']=== false){
+            $data = array (
+               "id_usr" => 0
+            );
+            return $data;
+         } else {
+            $response = $response['results'];
             if(password_verify($password, $response[0]["password_usr"])){
                $wh = " WHERE usuario.id_usr = :id_usr AND usuario.id_usr = usuario_consultorio.id_usr AND
                usuario_consultorio.id_consultorio = consultorios.id_consultorio AND usuario.id_tipo_usuario = tipo_usuario.id_tipo_usuario";
@@ -32,14 +38,10 @@ class Index_model extends Conexion{
                );
                return $data;
             }
-        } else {
-           return "Nombre de usuario o contraseña incorrectos";
-        }
-        
-      } else {
-         return $response;   
          
          }
-      }
+      
+    }
    }
+}
 ?>

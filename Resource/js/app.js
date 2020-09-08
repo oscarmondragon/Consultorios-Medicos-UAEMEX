@@ -2,6 +2,7 @@
 var consultas = new Consultas();
 var pacientes = new Pacientes();
 var usuarios = new Usuarios();
+var reportes = new Reportes();
 
 var loginUser = () => {
     var username = document.getElementById("username").value;
@@ -85,7 +86,7 @@ $(function () {
             });
         }
 
-        console.log(poblacionRiesgo);
+        //console.log(poblacionRiesgo);
 
 
 
@@ -106,31 +107,27 @@ $(function () {
         let tratamiento = document.getElementById("tratamientoN").value;
 
         let observaciones = document.getElementById("observacionesN").value;
-
+         
         let ambulancia = $('input:radio[name=ambulanciaN]:checked').val();
         let referenciado = $('input:radio[name=referenciadoN]:checked').val();
         let lugarReferencia = document.getElementById("lugarreferenciaN").value;
 
         let horaConsulta = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
 
-        let opoblacionRiesgo = document.getElementById("otraPoblacionRiesgoN").value;
         let otraMedicina = document.getElementById("ompreventivaN").value;
-        let saturacion = document.getElementById("saturacionN").value;
-
-
 
         //mandamos los datos al metod registrarPaciente de Paciente.js
         if (nombre != "" && paterno != "" && materno != "" && fechaNac != "" && telefonoCel != ""
             && sexo != "Elige una opción" && estadoCiv != "Elige una opción" && centroCost != "Elige una opción"
-            && tipoPaciente != "Elige una opción" && tipoAtencion !="Elige una opción" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
-            && saturacion != "" && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
+            && tipoPaciente != "Elige una opción" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
+            && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
 
             pacientes.registrarPaciente(nombre, paterno, materno, fechaNac, sexo, otro_sexo,
                 telefonoCel, estadoCiv, centroCost, tipoPaciente, nivelAcademico, departamento, fecha_alta_pac, userId,
                 edad, tipoAtencion, poblacionRiesgo, medicinaPreventiva, fcardiaca, frespiratoria, temperatura,
                 tarterial, talla, peso, descripcion, diagnostico, tratamiento, observaciones,
-                ambulancia, referenciado, lugarReferencia, horaConsulta, otraMedicina, opoblacionRiesgo, saturacion);
+                ambulancia, referenciado, lugarReferencia, horaConsulta, otraMedicina);
 
             return false; //para evitar reenvio de formulario
         } else {
@@ -174,7 +171,6 @@ $(function () {
                 poblacionRiesgo.push($(this).val());
             });
         }
-        let opoblacionRiesgo = document.getElementById("otraPoblacionRiesgo").value;
 
         let medicinaPreventiva = [];
         $("input:checkbox[name=medicinaPrev]:checked").each(function () {
@@ -187,7 +183,6 @@ $(function () {
         let frespiratoria = document.getElementById("frecRespiratoria").value;
         let temperatura = document.getElementById("temperatura").value;
         let tarterial = document.getElementById("tarterial").value;
-        let saturacion = document.getElementById("saturacion").value;
         let talla = document.getElementById("talla").value;
         let peso = document.getElementById("peso").value;
 
@@ -203,17 +198,16 @@ $(function () {
 
         let horaConsulta = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
 
-
         //mandamos los datos al metod registrarPaciente de Paciente.js
         if (edad != "" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
-            && temperatura != "" && fcardiaca != "" && frespiratoria != ""&& saturacion != "" && descripcion != ""
+            && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
             //alert("aqui todo bien");
             //validar que inserten referenciado
             consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva, ompreventiva,
                 fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
                 tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
-                fecha_consulta, horaConsulta, userId, opoblacionRiesgo, saturacion);
+                fecha_consulta, horaConsulta, userId);
             return false; //para evitar reenvio de formulario
         } else {
             Swal.fire({
@@ -224,18 +218,20 @@ $(function () {
         }
     });
     $("#btnMuestraReporte").click(function () {
-        alert("Vamos a hacer el reporte");
+        //console.log("Vamos a hacer el reporte");
         let consultorios = document.getElementById("selectConsultorio");  
         let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
- 
+        let nombre_consultorio = consultorios.options[consultorios.selectedIndex].text;
+        //console.log("Vamos a hacer el reporte" + nombre_consultorio);
          let rango = document.getElementById("selectRango");
          let fechaRango = rango.options[rango.selectedIndex].value;
-         alert("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
+         //console.log("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
 
-        //mandamos los datos al metod registrarPaciente de Paciente.js
-         if (id_consultorio != 0 && fechaRango != 0 ) {
-             alert("aqui todo bien");
-             consultas.getRepConsultasSemanal(id_consultorio,fechaRango);           
+        //mandamos los datos al metodo Reportes
+        
+         if ((id_consultorio != 0 || id_conusltorio != null) && (fechaRango != 0 || fechaRango != null)) {
+             //console.log("aqui todo bien");
+             reportes.getRepConsultasSemanal(id_consultorio, fechaRango, nombre_consultorio);           
              return false; //para evitar reenvio de formulario
          } else {
              Swal.fire({
@@ -244,17 +240,45 @@ $(function () {
  
              })
          }
-        consultas.getDatos();
+        reportes.getDatos();
     });
+   /* $("#btnImprimeReporte").click(function () {
+        console.log("Vamos a imprimir el reporte");
+        let consultorios = document.getElementById("selectConsultorio");
+        let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
+
+        let rango = document.getElementById("selectRango");
+        let fechaRango = rango.options[rango.selectedIndex].value;
+        console.log("consultorio id;" + id_consultorio + ":fechaRango:" + fechaRango);
+
+        //mandamos los datos al metodo Reportes
+
+        if ((id_consultorio != 0 || id_conusltorio != null) && (fechaRango != 0 || fechaRango != null)) {
+            console.log("aqui todo bien");
+            reportes.getImpConsultasSemanal(id_consultorio, fechaRango);
+            return false; //para evitar reenvio de formulario
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: 'Elige una opcion para cada criterio',
+
+            })
+        }
+        reportes.getDatos();
+    });*/
 
 });
 //inicializar Select consultas y select semanas para el reporte*/
 
 var iniciaConsultoriosSemanas = () => {
-    alert("Inicializamos select");
-    consultas.getConsultorios();
-    console.log("LLEGUE3");
-    consultas.getRangosFecha();
+    //console.log("Inicializamos select");
+    reportes.getConsultorios();
+    //console.log("Inicializa rango de fechas semanales");
+    reportes.getRangosFecha();
+
+
+/* Ocultamos el boton descarga */
+    document.getElementById('oculta').style.display = 'none';
 }
 
 
@@ -285,43 +309,35 @@ var getPacientesC = () => {
 
     // evento para el input radio del "si referenciado"
     document.getElementById('referenciado').addEventListener('click', function (e) {
-        console.log('Vamos a habilitar el input text');
+       // console.log('Vamos a habilitar el input text');
         lugarreferencia.disabled = false;
     });
 
     // evento para el input radio del "no referenciado"
     document.getElementById('noreferenciado').addEventListener('click', function (e) {
-        console.log('Vamos a deshabilitar el input text');
         lugarreferencia.value = "";
         lugarreferencia.disabled = true;
     });
 
     document.getElementById('ninguna').addEventListener('change', function (e) {
-        if (document.getElementById('ninguna').checked) {
-            console.log('Vamos a habilitar los checkPR');
+        if (document.getElementById('ninguna').checked) {            
             $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
             $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
-             //deshabilitar campo para otra poblacion riesgo
-             $('#otraPoblacionRiesgo').val("");
-             $('#otraPoblacionRiesgo').attr("disabled", true);
         } else {
             $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
-            $('#otraPoblacionRiesgo').attr("disabled", false);
         }
 
     }
     );
-
     let valor = document.getElementById("filtrarPacienteC").value;
-
-    //alert("hola");
     consultas.getPacientesConsulta(valor);
 
 }
 
 /*Entra a la pagina de reportes*/
 var getReportes = () => {
-    alert("estamos en la pagina de reportes PRINCIPAL");
+    //alert("estamos en la pagina de reportes PRINCIPAL");
+    //console.log("estamos en la pagina de reportes PRINCIPAL")
     /*  console.log("LLEGUE");
       try{
           consultas.getConsultorios();
@@ -337,7 +353,7 @@ var getReportes = () => {
 
 //funcion para obtener datos del paciente para editar
 var dataPaciente = (data) => {
-    console.log(data);
+    //console.log(data);
     //pacientes.editarPaciente(data);
 }
 
@@ -346,7 +362,7 @@ var pacienteNuevaConsulta = (data) => {
     consultas.reestablecerUsuario();
     consultas.vaciarFormularioConsulta();
     consultas.nombrePaciente(data);
-    console.log(data);
+    //console.log(data);
     var cambiaBoton = document.getElementById('btnRConsulta');
     if (cambiaBoton != null) {
         /*Oculta el botón del formulario*/
@@ -359,11 +375,29 @@ var pacienteNuevaConsulta = (data) => {
 var pacienteHistorial = (data) => {
     consultas.vaciarFormularioConsulta();
     consultas.nombrePacienteDetalleConsulta(data);
-    console.log("datosVERTODAS");
-    console.log(data);
+   // console.log("datosVERTODAS");
+    //console.log(data);
     //pacientes.editarPaciente(data);
 }
 
+/*
+var borraPDF = () =>{
+    $.ajax({
+        url: 'Consultas/borra',
+        type: 'post',
+        dataType: 'json'
+    })
+        .done(function () {
+            alert("Eliminado correctamente!");
+        })
+        .fail(function () {
+            alert("Ha ocurrido un error");
+        })
+        .always(function () {
+
+        });
+}
+*/
 var mostrarConsulta = (data) => {
     consultas.vaciarFormularioConsulta();
     //Se borra el boton del fromulario(RGISTRO)
@@ -372,9 +406,9 @@ var mostrarConsulta = (data) => {
         /*Oculta el botón del formulario*/
         cambiaBoton.style.visibility = 'hidden';
     }
-    alert("muestra datos:" + data);
-    console.log(data);
-    console.log(data.edad);
+   // alert("muestra datos:" + data);
+   // console.log(data);
+   // console.log(data.edad);
     /*Se llenan datos del paciente*/
     let nombre_paciente = localStorage.getItem("nombreCompletoPac");
     document.getElementById("nombrePaciente").value = nombre_paciente;
@@ -440,11 +474,6 @@ $().ready(() => {
 
     switch (URLactual) {
         case PATHNAME + "Principal/principal":
-            if(localStorage.getItem("user") != null){
-                let user = JSON.parse(localStorage.getItem("user"));
-            document.getElementById('messageBienvenida').innerHTML = "Bienvenid@ " +
-             "<strong>" +user.nombre_usr + "</strong> al Sistema de Control de Consultorios UAEM";
-            }
             break;
         case PATHNAME + "Pacientes/pacientes":
             getPacientes();
