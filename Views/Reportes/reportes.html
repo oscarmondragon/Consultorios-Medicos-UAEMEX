@@ -63,28 +63,38 @@
                         <label>Selecciona rango de fecha a consultar</label>
                     </div>
                 </div>
-                <div class="input-field col s0">
-                    <!--href="#modalConsulta"-->
-                    <a class="waves-effect waves-ligth btn modal-trigger"
-                    id="btnMuestraReporte">Reporte semanal por consultorio</a>
-        
+                <div class="row">
+                    <div class="input-field col s9">
+                        <!--href="#modalConsulta"-->
+                        <a class="waves-effect waves-ligth btn modal-trigger"
+                           id="btnMuestraReporte">Ver Reporte</a>
+
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Edad</th>
+                                <th>Tipo de atención</th>
+                                <th>Paciente de Riesgo</th>
+                                <!--th>Diagnostico</th-->
+                                <th>Fecha de Consulta</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reporte">
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="row">
-                        <table class="table">
-                            <thead>
-                                <tr>                                    
-                                    <th>Fecha de Consulta</th>
-                                    <th>Hra. consulta</th>
-                                    <th>Tipo Atención</th>
-                                    <th>Detalles</th>
-                                </tr>
-                            </thead>
-                            <tbody id="reporte">
-                            </tbody>
-                        </table>
-                    </div>
-
+            </div>
+            <div id="oculta" class="modal-footer">
+                
+                <!--label id="Total" class="text-left Message"></label-->
+                <!--button id="btnPDFReporte" class="waves-effect waves-light btn">
+        Reporte PDF
+    </button-->
             </div>
         </form>
         <!--Moidal que muestra el reporte-->
