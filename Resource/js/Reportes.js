@@ -84,7 +84,9 @@
 
     getRepConsultasSemanal(id_consultorio, fechaRango, nombre_consultorio) {
         //console.log("getRepConsultasSemanal en Reportes.js");
+        document.getElementById('oculta').innerHTML = "";
         document.getElementById('oculta').style.display = 'block';
+        
         //document.getElementById('btnPDFReporte').style.display = 'block';
         var data = new FormData();
 

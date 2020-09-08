@@ -1,7 +1,8 @@
-/*Codigo de usuarios*/
+﻿/*Codigo de usuarios*/
 var consultas = new Consultas();
 var pacientes = new Pacientes();
 var usuarios = new Usuarios();
+var reportes = new Reportes();
 
 var loginUser = () => {
     var username = document.getElementById("username").value;
@@ -85,7 +86,7 @@ $(function () {
             });
         }
 
-        console.log(poblacionRiesgo);
+        //console.log(poblacionRiesgo);
 
 
 
@@ -224,18 +225,20 @@ $(function () {
         }
     });
     $("#btnMuestraReporte").click(function () {
-        alert("Vamos a hacer el reporte");
+                //console.log("Vamos a hacer el reporte");
         let consultorios = document.getElementById("selectConsultorio");  
         let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
- 
+        let nombre_consultorio = consultorios.options[consultorios.selectedIndex].text;
+        //console.log("Vamos a hacer el reporte" + nombre_consultorio);
          let rango = document.getElementById("selectRango");
          let fechaRango = rango.options[rango.selectedIndex].value;
-         alert("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
+         //console.log("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
 
-        //mandamos los datos al metod registrarPaciente de Paciente.js
-         if (id_consultorio != 0 && fechaRango != 0 ) {
-             alert("aqui todo bien");
-             consultas.getRepConsultasSemanal(id_consultorio,fechaRango);           
+        //mandamos los datos al metodo Reportes
+        
+         if ((id_consultorio != 0 || id_conusltorio != null) && (fechaRango != 0 || fechaRango != null)) {
+             //console.log("aqui todo bien");
+             reportes.getRepConsultasSemanal(id_consultorio, fechaRango, nombre_consultorio);           
              return false; //para evitar reenvio de formulario
          } else {
              Swal.fire({
@@ -244,16 +247,16 @@ $(function () {
  
              })
          }
-        consultas.getDatos();
+        reportes.getDatos();
     });
 
 });
 //inicializar Select consultas y select semanas para el reporte*/
 
 var iniciaConsultoriosSemanas = () => {
-    alert("Inicializamos select");
+   // alert("Inicializamos select");
     consultas.getConsultorios();
-    console.log("LLEGUE3");
+    //console.log("LLEGUE3");
     consultas.getRangosFecha();
 }
 
@@ -285,20 +288,20 @@ var getPacientesC = () => {
 
     // evento para el input radio del "si referenciado"
     document.getElementById('referenciado').addEventListener('click', function (e) {
-        console.log('Vamos a habilitar el input text');
+        //console.log('Vamos a habilitar el input text');
         lugarreferencia.disabled = false;
     });
 
     // evento para el input radio del "no referenciado"
     document.getElementById('noreferenciado').addEventListener('click', function (e) {
-        console.log('Vamos a deshabilitar el input text');
+        //console.log('Vamos a deshabilitar el input text');
         lugarreferencia.value = "";
         lugarreferencia.disabled = true;
     });
 
     document.getElementById('ninguna').addEventListener('change', function (e) {
         if (document.getElementById('ninguna').checked) {
-            console.log('Vamos a habilitar los checkPR');
+            //console.log('Vamos a habilitar los checkPR');
             $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
             $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
              //deshabilitar campo para otra poblacion riesgo
@@ -321,7 +324,7 @@ var getPacientesC = () => {
 
 /*Entra a la pagina de reportes*/
 var getReportes = () => {
-    alert("estamos en la pagina de reportes PRINCIPAL");
+    //alert("estamos en la pagina de reportes PRINCIPAL");
     /*  console.log("LLEGUE");
       try{
           consultas.getConsultorios();
@@ -337,7 +340,7 @@ var getReportes = () => {
 
 //funcion para obtener datos del paciente para editar
 var dataPaciente = (data) => {
-    console.log(data);
+    //console.log(data);
     //pacientes.editarPaciente(data);
 }
 
@@ -346,7 +349,7 @@ var pacienteNuevaConsulta = (data) => {
     consultas.reestablecerUsuario();
     consultas.vaciarFormularioConsulta();
     consultas.nombrePaciente(data);
-    console.log(data);
+   // console.log(data);
     var cambiaBoton = document.getElementById('btnRConsulta');
     if (cambiaBoton != null) {
         /*Oculta el botón del formulario*/
@@ -359,8 +362,8 @@ var pacienteNuevaConsulta = (data) => {
 var pacienteHistorial = (data) => {
     consultas.vaciarFormularioConsulta();
     consultas.nombrePacienteDetalleConsulta(data);
-    console.log("datosVERTODAS");
-    console.log(data);
+   // console.log("datosVERTODAS");
+   // console.log(data);
     //pacientes.editarPaciente(data);
 }
 
@@ -372,9 +375,9 @@ var mostrarConsulta = (data) => {
         /*Oculta el botón del formulario*/
         cambiaBoton.style.visibility = 'hidden';
     }
-    alert("muestra datos:" + data);
-    console.log(data);
-    console.log(data.edad);
+   // alert("muestra datos:" + data);
+   // console.log(data);
+   // console.log(data.edad);
     /*Se llenan datos del paciente*/
     let nombre_paciente = localStorage.getItem("nombreCompletoPac");
     document.getElementById("nombrePaciente").value = nombre_paciente;

@@ -132,7 +132,7 @@
             { "id_consulta": id_consulta }, (response) => {
                 try {
                     item = JSON.parse(response);
-                    alert("Población de riesgo longitud::" + item.results.length);
+                   // alert("Población de riesgo longitud::" + item.results.length);
                     if (item.results.length > 0) {
                         for (let i = 0; i < item.results.length; i++) {
                             //estamos obteniendo id de la población para el value                           
@@ -154,7 +154,7 @@
             { "id_consulta": id_consulta }, (response) => {
                 try {
                     item = JSON.parse(response);
-                    alert("Medicina Preventiva longitud:" + item.results.length);
+                   // alert("Medicina Preventiva longitud:" + item.results.length);
                     if (item.results.length > 0) {
                         for (let i = 0; i < item.results.length; i++) {
                             //estamos obteniendo datos                            
@@ -195,7 +195,7 @@
                             );
 
                             /* document.getElementById("tipoAtencion").options[count].onclick = function () {
-                                 alert(item.results[i].id_tipo_atencion);
+                                 //alert(item.results[i].id_tipo_atencion);
                              };*/
                             count++;
                             $("select").formSelect();
@@ -226,7 +226,7 @@
                             );
 
                             /* document.getElementById("tipoAtencion").options[count].onclick = function () {
-                                 alert(item.results[i].id_tipo_atencion);
+                                 //alert(item.results[i].id_tipo_atencion);
                              };*/
                             count++;
                             $("select").formSelect();
@@ -433,18 +433,18 @@
 
         /*$('#ambula input[type="radio"]').prop('checked', false);
         $('#refer input[type="radio"]').prop('checked', false);*/
-        alert("vaciado");
+       // alert("vaciado");
     }
 
     getRepConsultasSemanal(id_consultorio, fechaRango) {
-        console.log("getconsultorios");
+        //console.log("getconsultorios");
         var data = new FormData();
 
         //dia,mes/año
         var fecha = new Date(fechaRango);
         fecha.setDate(fecha.getDate() + 6);
         var fechaFin = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
-        alert("fechaIni" + fechaRango + ":FechaFin:" + fechaFin);
+        //alert("fechaIni" + fechaRango + ":FechaFin:" + fechaFin);
         data.append("id_consultorio", id_consultorio);
         data.append("fechaInicio", fechaRango);
         data.append("fechaFin", fechaFin);
@@ -459,15 +459,15 @@
             success: (response) => {
                 try{
                     if (response == 0) {
-                        console.log("No hay nada");
+                        //console.log("No hay nada");
                     }else if (response == 1){
-                        console.log("DATOS");
+                        //console.log("DATOS");
                     }
 
                 let item = JSON.parse(response);
                 if (item.results.length > 0) {//si jhay consultas en el criterio
                    // $("#historial_consulta").html(response);
-                    console.log("Son")
+                    //console.log("Son")
                     // this.vaciarFormulario();
 
                     Swal.fire({
