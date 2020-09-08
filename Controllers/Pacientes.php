@@ -69,6 +69,7 @@ class Pacientes extends Controllers {
             $_POST["edad"],$_POST["id_tipo_atencion"],
             $_POST["frecuencia_cardiaca"],$_POST["frecuencia_respiratoria"],
             $_POST["temperatura"],$_POST["tension_arterial"],
+            $_POST["saturacion"],
             $_POST["talla"],$_POST["peso"],
             $_POST["descripcion"],$_POST["diagnostico"],
             $_POST["tratamiento"],$_POST["ambulancia"],
@@ -94,7 +95,7 @@ class Pacientes extends Controllers {
                          foreach ($poblacionRiesgo as $valor) {
                              $valores = array(
                                  $idConsulta,
-                                 $valor
+                                 $valor, NULL
                              );
                             $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($valores));
                             if($dataPoblacion != 0){
@@ -126,6 +127,16 @@ class Pacientes extends Controllers {
                     $otraMedicinaPrev = array($idConsulta,$idOtraMedicina,$_POST["otraMedicina"]); // arreglo para mandar a registrar
                 //insertamos valores de otra medicina
                 $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($otraMedicinaPrev));
+
+                 }
+
+                  //guardamos en una variable la otra poblacion riesgo
+                 // el id para otra poblacion siempre será 0, posteriormente podemos hacer el metodo para obtener el id desde la db
+                 if($_POST["otraPoblacion"] != ""){
+                    $idOtraPoblacion = 0;
+                    $otraPobRiesgo = array($idConsulta,$idOtraPoblacion,$_POST["otraPoblacion"]); // arreglo para mandar a registrar
+                //insertamos valores de otra medicina
+                $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($otraPobRiesgo));
 
                  }
                    

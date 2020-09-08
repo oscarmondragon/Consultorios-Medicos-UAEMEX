@@ -113,20 +113,24 @@ $(function () {
 
         let horaConsulta = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
 
+        let opoblacionRiesgo = document.getElementById("otraPoblacionRiesgoN").value;
         let otraMedicina = document.getElementById("ompreventivaN").value;
+        let saturacion = document.getElementById("saturacionN").value;
+
+
 
         //mandamos los datos al metod registrarPaciente de Paciente.js
         if (nombre != "" && paterno != "" && materno != "" && fechaNac != "" && telefonoCel != ""
             && sexo != "Elige una opción" && estadoCiv != "Elige una opción" && centroCost != "Elige una opción"
-            && tipoPaciente != "Elige una opción" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
-            && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
+            && tipoPaciente != "Elige una opción" && tipoAtencion !="Elige una opción" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
+            && saturacion != "" && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
 
             pacientes.registrarPaciente(nombre, paterno, materno, fechaNac, sexo, otro_sexo,
                 telefonoCel, estadoCiv, centroCost, tipoPaciente, nivelAcademico, departamento, fecha_alta_pac, userId,
                 edad, tipoAtencion, poblacionRiesgo, medicinaPreventiva, fcardiaca, frespiratoria, temperatura,
                 tarterial, talla, peso, descripcion, diagnostico, tratamiento, observaciones,
-                ambulancia, referenciado, lugarReferencia, horaConsulta, otraMedicina);
+                ambulancia, referenciado, lugarReferencia, horaConsulta, otraMedicina, opoblacionRiesgo, saturacion);
 
             return false; //para evitar reenvio de formulario
         } else {
@@ -170,6 +174,7 @@ $(function () {
                 poblacionRiesgo.push($(this).val());
             });
         }
+        let opoblacionRiesgo = document.getElementById("otraPoblacionRiesgo").value;
 
         let medicinaPreventiva = [];
         $("input:checkbox[name=medicinaPrev]:checked").each(function () {
@@ -182,6 +187,7 @@ $(function () {
         let frespiratoria = document.getElementById("frecRespiratoria").value;
         let temperatura = document.getElementById("temperatura").value;
         let tarterial = document.getElementById("tarterial").value;
+        let saturacion = document.getElementById("saturacion").value;
         let talla = document.getElementById("talla").value;
         let peso = document.getElementById("peso").value;
 
@@ -197,16 +203,17 @@ $(function () {
 
         let horaConsulta = hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
 
+
         //mandamos los datos al metod registrarPaciente de Paciente.js
         if (edad != "" && poblacionRiesgo.length != 0 && peso != "" && talla != "" && tarterial != ""
-            && temperatura != "" && fcardiaca != "" && frespiratoria != "" && descripcion != ""
+            && temperatura != "" && fcardiaca != "" && frespiratoria != ""&& saturacion != "" && descripcion != ""
             && diagnostico != "" && tratamiento != "" && ambulancia != undefined && referenciado != undefined) {
             //alert("aqui todo bien");
             //validar que inserten referenciado
             consultas.registrarConsulta(id_paciente, edad, tipoAtencion2, poblacionRiesgo, medicinaPreventiva, ompreventiva,
                 fcardiaca, frespiratoria, temperatura, tarterial, talla, peso, descripcion, diagnostico,
                 tratamiento, observaciones, ambulancia, referenciado, lugarReferencia,
-                fecha_consulta, horaConsulta, userId);
+                fecha_consulta, horaConsulta, userId, opoblacionRiesgo, saturacion);
             return false; //para evitar reenvio de formulario
         } else {
             Swal.fire({
@@ -294,8 +301,12 @@ var getPacientesC = () => {
             console.log('Vamos a habilitar los checkPR');
             $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
             $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
+             //deshabilitar campo para otra poblacion riesgo
+             $('#otraPoblacionRiesgo').val("");
+             $('#otraPoblacionRiesgo').attr("disabled", true);
         } else {
             $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
+            $('#otraPoblacionRiesgo').attr("disabled", false);
         }
 
     }
@@ -429,6 +440,11 @@ $().ready(() => {
 
     switch (URLactual) {
         case PATHNAME + "Principal/principal":
+            if(localStorage.getItem("user") != null){
+                let user = JSON.parse(localStorage.getItem("user"));
+            document.getElementById('messageBienvenida').innerHTML = "Bienvenid@ " +
+             "<strong>" +user.nombre_usr + "</strong> al Sistema de Control de Consultorios UAEM";
+            }
             break;
         case PATHNAME + "Pacientes/pacientes":
             getPacientes();

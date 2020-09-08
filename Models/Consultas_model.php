@@ -107,6 +107,7 @@ class Consultas_model extends Conexion{
         frecuencia_respiratoria,
         temperatura,
         tension_arterial,
+        saturacion,
         talla,
         peso,
         descripcion,
@@ -127,6 +128,7 @@ class Consultas_model extends Conexion{
         :frecuencia_respiratoria,
         :temperatura,
         :tension_arterial,
+        :saturacion,
         :talla,
         :peso,
         :descripcion,
@@ -152,10 +154,12 @@ class Consultas_model extends Conexion{
      //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
 
        $value = " (id_consulta,
-        id_poblacion_riesgo
+        id_poblacion_riesgo,
+        observaciones
         ) VALUES (
         :id_consulta,
-        :id_poblacion_riesgo
+        :id_poblacion_riesgo,
+        :observaciones
         )";
         $data = $this->db->insert('consulta_poblacion_riesgo',$poblacionRiesgo,$value);
         if($data == 1){
@@ -169,10 +173,11 @@ class Consultas_model extends Conexion{
     //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
 
       $value = " (id_consulta,
-       id_medicina_preventiva
+       id_medicina_preventiva, observaciones
        ) VALUES (
        :id_consulta,
-       :id_medicina_preventiva
+       :id_medicina_preventiva,
+       :observaciones
        )";
        $data = $this->db->insert('consulta_medicina_preventiva',$medicinaPreventiva,$value);
        if($data == 1){
@@ -200,6 +205,24 @@ class Consultas_model extends Conexion{
        }
   }
 
+  
+  function registroOPoblacionRiesgo($poblacionRiesgo){
+    //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
+
+      $value = " (id_consulta,
+       id_poblacion_riesgo, observaciones 
+       ) VALUES (
+       :id_consulta,
+       :id_poblacion_riesgo,
+       :observaciones
+       )";
+       $data = $this->db->insert('consulta_poblacion_riesgo',$poblacionRiesgo,$value);
+       if($data == 1){
+           return 0;
+       } else {
+           return $data;
+       }
+  }
 
   /*Reportes*/
   function getRconsultas($id_consultorio,$fechaInicial, $fechaFinal){
