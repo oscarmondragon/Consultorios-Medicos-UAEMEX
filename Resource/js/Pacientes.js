@@ -168,7 +168,9 @@ getTipoAtencion2N(padre) {
     referenciado,
     lugarReferencia,
     horaConsulta,
-    otraMedicina
+    otraMedicina,
+    otraPoblacion,
+    saturacion
   ) {
     var data = new FormData();
     data.append("nombre_pac", nombre);
@@ -207,6 +209,8 @@ getTipoAtencion2N(padre) {
     data.append("poblacion_riesgo", poblacionRiesgo);
     data.append("medicina_prev", medicinaPreventiva);
     data.append("otraMedicina" , otraMedicina);
+    data.append("otraPoblacion" , otraPoblacion);
+    data.append("saturacion" , saturacion);
 
     $.ajax({
       url: URL + "Pacientes/registrarPaciente",

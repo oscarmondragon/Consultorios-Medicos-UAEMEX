@@ -130,6 +130,7 @@ class Pacientes_model extends Conexion{
         frecuencia_respiratoria,
         temperatura,
         tension_arterial,
+        saturacion,
         talla,
         peso,
         descripcion,
@@ -150,6 +151,7 @@ class Pacientes_model extends Conexion{
         :frecuencia_respiratoria,
         :temperatura,
         :tension_arterial,
+        :saturacion,
         :talla,
         :peso,
         :descripcion,
@@ -175,10 +177,12 @@ class Pacientes_model extends Conexion{
      //insertamos los datos a tabla consulta_poblacion_riesgoforeach ($poblacionRiesgo as &$valor) {
 
        $value = " (id_consulta,
-        id_poblacion_riesgo
+        id_poblacion_riesgo,
+        observaciones
         ) VALUES (
         :id_consulta,
-        :id_poblacion_riesgo
+        :id_poblacion_riesgo,
+        :observaciones
         )";
         $data = $this->db->insert('consulta_poblacion_riesgo',$poblacionRiesgo,$value);
         if($data == 1){

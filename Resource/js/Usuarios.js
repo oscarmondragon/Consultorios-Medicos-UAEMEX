@@ -60,7 +60,7 @@ userData(URLactual){
 
                 document.getElementById("name1").innerHTML = user.nombre_usr + " " + user.apPaterno_usr + " " + user.apMaterno_usr;
                 document.getElementById("consultorio1").innerHTML = user.nombre_consultorio;
-                document.getElementById("role1").innerHTML = user.username;
+                document.getElementById("role1").innerHTML = user.tipoUsuario;
 
                 document.getElementById("name2").innerHTML = user.nombre_usr + " " + user.apPaterno_usr + " " + user.apMaterno_usr;
                 document.getElementById("consultorio2").innerHTML = user.nombre_consultorio;

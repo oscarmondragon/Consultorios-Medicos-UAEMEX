@@ -38,9 +38,13 @@ if (deshabilitarPoblacion != null) {
         if (deshabilitarPoblacion.checked) {
             $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
             $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
+            //deshabilitar campo para otra poblacion riesgo
+            $('#otraPoblacionRiesgoN').val("");
+            $('#otraPoblacionRiesgoN').attr("disabled", true);
 
         } else {
             $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
+            $('#otraPoblacionRiesgoN').attr("disabled", false);
         }
     }
 }

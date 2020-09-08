@@ -188,6 +188,7 @@ function getConsultasDatos(){
             $_POST["edad"],$_POST["id_tipo_atencion"],
             $_POST["frecuencia_cardiaca"],$_POST["frecuencia_respiratoria"],
             $_POST["temperatura"],$_POST["tension_arterial"],
+            $_POST["saturacion"],
             $_POST["talla"],$_POST["peso"],
             $_POST["descripcion"],$_POST["diagnostico"],
             $_POST["tratamiento"],$_POST["ambulancia"],
@@ -213,7 +214,7 @@ function getConsultasDatos(){
                     if($poblacionRiesgo[0] != null){
                          foreach ($poblacionRiesgo as $valor) 
                          {
-                            $valores = array($idConsulta, $valor);
+                            $valores = array($idConsulta, $valor, NULL);
                             $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($valores));
                             if($dataPoblacion != 0){
                                 $dataPoblacion = 1;
@@ -233,6 +234,7 @@ function getConsultasDatos(){
                                }
                          }
                     }
+                    //Registro de otra medicina preventiva
                     $omp = $_POST["ompreventiva"] ;
                     
                     if($omp != "" or $omp != NULL){//verificamos que exista otra medicina preventiva
@@ -242,7 +244,18 @@ function getConsultasDatos(){
                             if($dataPoblacion != 0){
                                 $dataPoblacion = 1;
                             }
-                    }                           
+                    }   
+                    //Registro de otra poblacion risgo
+                    $oPobRiesgo = $_POST["otraPob"] ;
+                    
+                    if($oPobRiesgo != "" or $oPobRiesgo != NULL){//verificamos que exista otra medicina preventiva
+                    
+                        $valores = array($idConsulta, 0,$oPobRiesgo);                        
+                        $dataPoblacion = $this->model->registroOPoblacionRiesgo($this->poblacionClass($valores));
+                            if($dataPoblacion != 0){
+                                $dataPoblacion = 1;
+                            }
+                    }    
                     echo 0;
                 }
         } else{

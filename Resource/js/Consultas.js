@@ -327,7 +327,9 @@
         lugarReferencia,
         fecha_consulta,
         horaConsulta,
-        userId
+        userId,
+        otraPoblacion,
+        saturacion
     ) {
         var data = new FormData();
         //datos de la consulta
@@ -353,6 +355,8 @@
         data.append("poblacion_riesgo", poblacionRiesgo);
         data.append("medicina_prev", medicinaPreventiva);
         data.append("ompreventiva", ompreventiva);
+        data.append("otraPob" , otraPoblacion);
+        data.append("saturacion" , saturacion);
         //alert("Medicina preventiva:" + ompreventiva);
         $.ajax({
             url: URL + "Consultas/registrarConsulta",
