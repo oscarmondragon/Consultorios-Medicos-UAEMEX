@@ -1,0 +1,161 @@
+<div class="container2">
+  <h4>Consultas</h4>
+  <div class="row">
+    <div class="input-field col s0">
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Registrar</a>
+    </div>
+    <div class="input-field col s6">
+      <input placeholder="Buscar consulta" id="filtrar" type="text" onkeyup="">
+      <label for="filtrar">Buscar consulta</label>
+    </div>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <form class="col s12" id="validate" method="POST">
+      <div class="modal-content">
+        <center>
+          <h5>Registrar consulta</h5>
+        </center>
+        <div class="row">
+          <div class="row">
+            <div class="input-field col s9">
+              <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+              <label for="disabled">Nombre del Paciente</label>
+            </div>
+            <div class="input-field col s3">
+              <input placeholder="Edad" name="edad" id="edad" type="number" min="0" class="validate" required />
+              <label class="error" for="paterno">Edad</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="sexo" required>
+                <option value="" disabled selected>Elige una opción</option>
+                <option value="1">Biológico</option>
+                <option value="2">Mental</option>
+                <option value="3">Lesiones</option>
+                <option value="4">Contusiones</option>
+                <option value="5">Urgencias</option>
+              </select>
+              <label>Tipo de atención</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <input placeholder="FC" name="frecCardiaca" id="frecCardiaca" type="text" class="validate" required />
+              <label class="error" for="fechaNac">Frecuencia Cardiaca</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="FR" name="frecRespiratoria" id="frecRespiratoria" type="text" class="validate"
+                required />
+              <label class="error" for="telefonoCel">Frecuencia Respiratoria</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="°C" name="temperatura" id="temperatura" type="text" class="validate" required />
+              <label class="error" for="telefonoCel">Temperatura</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s4">
+              <input placeholder="T/A" name="tarterial" id="tarterial" type="text" class="validate" required />
+              <label class="error" for="telefonoCel">Tensión Arterial</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="cm" name="talla" id="talla" type="text" class="validate" required />
+              <label class="error" for="telefonoCel">Talla</label>
+            </div>
+            <div class="input-field col s4">
+              <input placeholder="kg" name="peso" id="peso" type="text" class="validate" required />
+              <label class="error" for="telefonoCel">Peso</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="descripcion" class="materialize-textarea"></textarea>
+              <label class="error" for="descripcion">Descripción</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="diagnostico" class="materialize-textarea"></textarea>
+              <label class="error" for="diagnostico">Diagnóstico</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="tratamiento" class="materialize-textarea"></textarea>
+              <label class="error" for="tratamiento">Tratamiento</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <select id="sexo" required>
+                <option value="" disabled selected>Elige una opción</option>
+                <option value="1">Biológico</option>
+                <option value="2">Mental</option>
+                <option value="3">Lesiones</option>
+                <option value="3">Contusiones</option>
+                <option value="3">Urgencias</option>
+              </select>
+              <label>Medicina preventiva</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="describe" name="ompreventiva" id="ompreventiva" type="text" class="validate" />
+              <label class="error" for="ompreventiva">Otra medicina preventiva</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <P>Ambulancia</P>
+              <form action="#" id="ambulancia">
+                <p>
+                  <label class="radio-inline">
+                    <input name="ambulancia" type="radio" />
+                    <span>Si</span>
+                  </label>
+                  <label class="radio-inline">
+                    <input name="ambulancia" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <div class="input-field col s3">
+              <P>Referenciado</P>
+              <form action="#" id="referenciado">
+                <p>
+                  <label class="radio-inline">
+                    <input name="referenciado" type="radio" />
+                    <span>Si</span>
+                  </label>
+                </p>
+                <p>
+                  <label class="radio-inline">
+                    <input name="referenciado" type="radio" />
+                    <span>No</span>
+                  </label>
+                </p>
+              </form>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="describe" name="lugarreferencia" id="lugarreferencia" type="text" class="validate"
+                required />
+              <label class="error" for="lugarreferencia">Lugar de referencia</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="descripcion" class="materialize-textarea"></textarea>
+              <label class="error" for="descripcion">Observaciones</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <label id="registrarMessage" class="text-left"></label>
+        <button id="btnLogin" class="waves-effect waves-light btn">
+          Registrar
+        </button>
+        <button id="btnLogin" class="waves-effect waves-light btn">
+          Salir
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
