@@ -1,0 +1,322 @@
+<div class="container2">
+    <h5>Registro de historia clínica</h5>
+  
+    <div class="row">
+      <div class="input-field col s0">
+        <a onclick="restablecerPaciente();" class="waves-effect waves-ligth btn modal-trigger" href="#modalNPaciente">Nuevo</a>
+      </div>
+      <div class="input-field col s6">
+        <input id="filtrarPaciente" type="text" placeholder="Buscar paciente" onkeyup="getPacientes()" id="" />
+        <label for="filtrar">Buscar paciente</label>
+      </div>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nombre</th>
+          <th>Ap. Paterno</th>
+          <th> Ap. Materno</th>
+          <th>Centro de Costos</th>
+          <th>Tipo Paciente</th>
+         <!--  <th> Opciones</th> -->
+        </tr>
+      </thead>
+      <tbody id="resultPaciente">
+  
+      </tbody>
+    </table>
+    <!--Modal Structure-->
+    <div id="modalNPaciente" class="modal modal-fixed-footer">
+      <form id="formularioPaciente" class="col s12" id="validate" method="POST">
+        <div class="modal-content">
+          <center>
+            <h4>Historia Clínica</h4>
+          </center>
+          <div class="row">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="consultorio" name="consultorio" id="consultorio" type="text" class="validate" required
+/>
+                <label class="error" for="consultorio">Unidad Médica</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Expediente" name="expediente" id="expediente" type="text" class="validate" required
+                  />
+                <label  class="error" for="consultorio">Expediente</label>
+              </div>
+           
+                <div class="input-field col s4">
+                  <input placeholder="Fecha de elaboración" name="fecha" id="fecha" type="date" class="validate" required />
+                  <label class="error" for="fecha">Fecha de elaboración</label>
+                </div>
+                <div class="input-field col s4">
+                  <input placeholder="Hora de elaboración" name="hora" id="hora" type="date" class="validate"
+                    required />
+                  <label class="error" for="hora">Hora de elaboración</label>
+                </div>
+                <div class="input-field col s4">
+                  <select id="tInterrogatorio" required ">
+                    <option value="" disabled selected>Elige una opción</option>
+                    <option value="1">Directo</option>
+                    <option value="2">Indirecto</option>
+                  </select>
+                  <label>Tipo de interrogatorio</label>
+                </div>
+            </div>
+            <h5>Ficha de identificación</h5>
+            <hr>
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Nombre" name="nombreHis" id="nombreHis" type="text" class="validate" required
+                  />
+                <label class="error" for="nombreHis">Nombre</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Apellido paterno" name="paternoHis" id="paternoHis" type="text" class="validate" required
+                 />
+                <label class="error" for="paternoHis">Apellido Paterno</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder=" Apellido materno" name="maternoHis" id="maternoHis" type="text" class="validate"
+                  required />
+                <label class="error" for="maternoHis">Apellido Materno</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Fecha de nacimiento" name="fechaNacHis" id="fechaNacHis" type="date" class="validate"
+                  required />
+                <label class="error" for="fechaNacHis">Fecha de nacimiento</label>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="input-field col s6">
+                <select id="sexo" required onchange="habilitarSexo();">
+                  <option value="" disabled selected>Elige una opción</option>
+                  <option value="1">Mujer</option>
+                  <option value="2">Hombre</option>
+                  <option value="3">Otro</option>
+                </select>
+                <label>Sexo</label>
+              </div>
+  
+              <div class="input-field col s6">
+                <input placeholder="Otro sexo" id="otro_sexo" name="otro_sexo" type="text" class="validate" disabled />
+                <label class="error" for="otro_sexo">Otro sexo</label>
+              </div>
+  
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea placeholder="Calle, Localidad, C.P, etc..." name="domicilio" id="domicilio" class="materialize-textarea"
+                  required></textarea>
+                <label class="error" for="domicilio">Domicilio</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea placeholder="Nombre del padre o tutor" id="nombrePadre" name="nombrePadre" class="materialize-textarea" required></textarea>
+                <label class="error" for="nombrePadre">Nombre del padre o tutor en caso de ser menor de edad o persona con capacidades diferentes</label>
+              </div>
+              <div class="input-field col s12">
+                <textarea placeholder="Parentesco" id="parentesto" name="parentesco" class="materialize-textarea" required></textarea>
+                <label class="error" for="parentesco">Parentesco con el paciente</label>
+              </div>
+            </div>
+
+            <h5>En caso de emergencia contactar a</h5>
+           
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Nombre y apellidos" name="nombreEmergencia" id="nombreEmergencia" type="text" class="validate" required
+                  onkeyup="copiarNombre()" />
+                <label class="error" for="nombreEmergencia">Nombre completo</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Telefono" name="telefonoEmergencia" id="telefonoEmergencia" type="number" class="validate" required
+                   />
+                <label class="error" for="telefonoEmergencia">Telefono</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="Parentesco con el paciente" name="parentescoEmergencia" id="parentescoEmergencia" type="text" class="validate" required
+               />
+                <label class="error" for="parentescoEmergencia">Parentesco</label>
+              </div>
+
+               
+            </div>
+            <h5>Antecedentes heredo familiares</h5>
+          
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="anteHFaMiliares" name="anteHFaMiliares" class="materialize-textarea" required></textarea>
+               
+              </div>
+            </div>
+            <h5>Antecedentes personales no patológicos</h5>
+            
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="anteNoPatologicos" name="anteNoPatologicos" class="materialize-textarea" required></textarea>
+               
+              </div>
+            </div>
+            <h5>Antecedentes personales patológicos</h5>
+          
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="antePatologicos" name="antePatologicos" class="materialize-textarea" required></textarea>
+               
+              </div>
+            </div>
+            <h5>Antecedentes gineco-obstétricos</h5>
+          
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="anteGinecoObste" name="anteGinecoObste" class="materialize-textarea" required></textarea>
+               
+              </div>
+            </div>
+            <h5>Padecimiento actual</h5>
+          
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="padecimientoActual" name="padecimientoActual" class="materialize-textarea" required></textarea>
+               
+              </div>
+            </div>
+            <h5>Interrogatorio por aparatos y sistemas</h5>
+            <hr>
+            <div class="row">
+            <div class="input-field col s12">
+              <textarea placeholder="Cardiovascular" id="cardiovascular" name="cardiovascular" class="materialize-textarea" required></textarea>
+              <label class="error" for="cardiovascular">Cardiovascular</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Respiratorio" id="respiratorio" name="respiratorio" class="materialize-textarea" required></textarea>
+              <label class="error" for="respiratorio">Respiratorio</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Gastrointestinal" id="gastrointestinal" name="gastrointestinal" class="materialize-textarea" required></textarea>
+              <label class="error" for="gastrointestinal">Gastrointestinal</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Genitourinario" id="genitourinario" name="genitourinario" class="materialize-textarea" required></textarea>
+              <label class="error" for="genitourinario">Genitourinario</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Hemático y Linfático" id="hematicoLinfatico" name="hematicoLinfatico" class="materialize-textarea" required></textarea>
+              <label class="error" for="hematicoLinfatico">Hemático y Linfático</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Endócrino" id="endocrino" name="endocrino" class="materialize-textarea" required></textarea>
+              <label class="error" for="endocrino">Endócrino</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Nervioso" id="nervioso" name="nervioso" class="materialize-textarea" required></textarea>
+              <label class="error" for="nervioso">Nervioso</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Musculoesqueletico" id="musculoesqueletico" name="musculoesqueletico" class="materialize-textarea" required></textarea>
+              <label class="error" for="musculoesqueletico">Musculoesqueletico</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea placeholder="Piel, mucosas y anexos" id="pielMucosa" name="pielMucosa" class="materialize-textarea" required></textarea>
+              <label class="error" for="pielMucosa">Piel, mucosas y anexos</label>
+            </div>
+            </div>
+            <h5>Signos vitales</h5>
+            <hr>
+            <div class="row">
+              <div class="input-field col s4">
+                <input placeholder="FC" name="frecCardiacaHis" id="frecCardiacaHis" type="number" class="validate" required />
+                <label class="error" for="frecCardiacaHis">Frecuencia Cardiaca</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="FR" name="frecRespiratoriaHis" id="frecRespiratoriaHis" type="number" class="validate"
+                  required />
+                <label class="error" for="frecRespiratoriaHis">Frecuencia Respiratoria</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="°C" name="temperaturaHis" id="temperaturaHis" type="number" class="validate" required />
+                <label class="error" for="temperaturaHis">Temperatura</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s4">
+                <input placeholder="T/A" name="tarterialHis" id="tarterialHis" type="text" class="validate" required />
+                <label class="error" for="tarterialHis">Tensión Arterial</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="%" name="saturacionHis" id="saturacionHis" type="number" class="validate" required />
+                <label class="error" for="saturacionHis">Saturación</label>
+              </div>
+              <div class="input-field col s4">
+                <input placeholder="cm" name="tallaHis" id="tallaHis" type="number" class="validate" required />
+                <label class="error" for="tallaHis">Talla</label>
+              </div>
+            </div>
+            <h5>Exploración física</h5>
+            <hr>
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="Habitus exterior" name="habitus" id="habitus" type="text" class="validate" required />
+                <label class="error" for="habitus">Habitus exterior</label>
+              </div>
+              <div class="input-field col s12">
+                <input placeholder="Cabeza" name="cabeza" id="cabeza" type="text" class="validate" required />
+                <label class="error" for="cabeza">Cabeza</label>
+              </div>
+              <div class="input-field col s12">
+                <input placeholder="Cuello" name="cuello" id="cuello" type="text" class="validate" required />
+                <label class="error" for="cuello">Cuello</label>
+              </div>
+              <div class="input-field col s12">
+                <input placeholder="Tórax" name="torax" id="torax" type="text" class="validate" required />
+                <label class="error" for="torax">Tórax</label>
+              </div>
+              <div class="input-field col s12">
+                <input placeholder="Abdomen" name="abdomen" id="abdomen" type="text" class="validate" required />
+                <label class="error" for="abdomen">Abdomen</label>
+              </div>
+              <div class="input-field col s12">
+                <input placeholder="Genitales" name="genitales" id="genitales" type="text" class="validate" required />
+                <label class="error" for="genitales">Genitales</label>
+              </div>
+              <div class="input-field col s12">
+                <input placeholder="Extremidades" name="extremidades" id="extremidades" type="text" class="validate" required />
+                <label class="error" for="extremidades">Extremidades</label>
+              </div>
+              <div class="input-field col s12">
+                <input placeholder="Piel" name="piel" id="piel" type="text" class="validate" required />
+                <label class="error" for="piel">Piel</label>
+              </div>
+              </div>
+              <h5>Resultados previos y actuales de laboratorio, gabinete y otros</h5>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="resultadosLab" name="resultadosLab" class="materialize-textarea" required></textarea>
+               
+              </div>
+            </div>
+            <h5>Diagnosticos y problemas clínicos</h5>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="diagnosticos" name="diagnosticos" class="materialize-textarea" required></textarea>
+              </div>
+            </div>
+            <h5>Pronóstico</h5>
+            <div class="row">
+              <div class="input-field col s12">
+                <textarea  id="pronostico" name="pronostico" class="materialize-textarea" required></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <label id="registrarMessage" class="text-left Message"></label>
+          <button id="btnNuevaHistoria" class="waves-effect waves-light btn">
+            Registrar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>

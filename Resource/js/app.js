@@ -455,6 +455,9 @@ $().ready(() => {
         case PATHNAME + "Consultas/consultas":
             getPacientesC();
             break;
+            case PATHNAME + "Historia/historia":
+            getPacientesC();
+            break;
         case PATHNAME + "Reportes/reportes":
             getReportes();
             break;
