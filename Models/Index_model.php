@@ -22,7 +22,8 @@ class Index_model extends Conexion{
                   "apPaterno_usr" => $res[0]["apPaterno_usr"],
                   "apMaterno_usr" => $res[0]["apMaterno_usr"],
                   "nombre_consultorio" => $res[0]["nombre_consultorio"],
-                  "tipoUsuario" => $res[0]["descripcion"]
+                  "tipoUsuario" => $res[0]["descripcion"],
+                  "idConsultorio" => $res[0]["id_consultorio"]
                ); 
                Session::setSession("User",$data); 
               return $data;

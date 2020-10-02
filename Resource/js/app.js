@@ -3,6 +3,8 @@ var consultas = new Consultas();
 var pacientes = new Pacientes();
 var usuarios = new Usuarios();
 var reportes = new Reportes();
+var historiasClinicas = new HistoriasClinicas();
+
 
 var loginUser = () => {
     var username = document.getElementById("username").value;
@@ -18,6 +20,9 @@ var sessionClose = () => {
 
 var restablecerPaciente = () => {
     pacientes.restablecerPaciente();
+}
+var restablecerHistoriaClinica = () => {
+    historiasClinicas.restablecerHistoriaClinica();
 }
 
 
@@ -249,8 +254,125 @@ $(function () {
          }
         reportes.getDatos();
     });
+    //BOTON DE REGISTRAR NUEVA HISTORIA CLINICA
+    $("#btnNuevaHistoria").click(function () {
+
+        //obtenemos id del usuario a registrar la historia clinica
+        let user = JSON.parse(localStorage.getItem("user"));
+        let userId = user.id_usr;
+
+        //obtenemos el id de consultorio
+        let idConsultorioHis = user.id_consultorio;
+
+        //obtenemos fecha y hora actual
+        let hoy = new Date();
+        let fechaHistoria = hoy.getFullYear() + "-" + (hoy.getMonth() + 1) + "-" + hoy.getDate();
+        let horaHistoria= hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
+
+
+        //DATOS DE LA historia clinica
+        let nombreHis = document.getElementById("nombreHis").value;
+        let paternoHis = document.getElementById("paternoHis").value;
+        let maternoHis = document.getElementById("maternoHis").value;
+        let fechaNacHis = document.getElementById("fechaNacHis").value;
+        
+
+        let sexos = document.getElementById("sexo");
+        let sexoHis = sexos.options[sexos.selectedIndex].text;
+        let otro_sexo_his = null;
+        if (sexoHis === "Otro") {
+            otro_sexo_his = document.getElementById("otro_sexo").value;
+        }
+
+        let centrosCostHis = document.getElementById("centroCostoHis");
+
+        let centroCostHis = centrosCostHis.options[centrosCostHis.selectedIndex].value;
+
+        let tiposPacienteHis = document.getElementById("tipoPacienteHis");
+        let tipoPacienteHis = tiposPacienteHis.options[tiposPaciente.selectedIndex].value;
+        
+        let domicilio = document.getElementById("domicilio").value;
+        let nombreTutor = document.getElementById("nombrePadre").value;
+        let parentescoTutor = document.getElementById("parentesto").value;
+
+        //En caso de emergencias
+        let nombreEmergencia = document.getElementById("nombreEmergencia").value;
+        let telefonoEmergencia = document.getElementById("telefonoEmergencia").value;
+        let parentescoEmergencia = document.getElementById("parentescoEmergencia").value;
+
+        let anteHFaMiliares = document.getElementById("anteHFaMiliares").value;
+        let anteNoPatologicos = document.getElementById("anteNoPatologicos").value;
+        let antePatologicos = document.getElementById("antePatologicos").value;
+        let anteGinecoObste = document.getElementById("anteGinecoObste").value;
+        let padecimientoActual = document.getElementById("padecimientoActual").value;
+
+        //interrogatorio por aparatos y sistemas
+        let cardiovascular = document.getElementById("cardiovascular").value;
+        let respiratorio = document.getElementById("respiratorio").value;
+        let gastrointestinal = document.getElementById("gastrointestinal").value;
+        let genitourinario = document.getElementById("genitourinario").value;
+        let hematicoLinfatico = document.getElementById("hematicoLinfatico").value;
+        let endocrino = document.getElementById("endocrino").value;
+        let nervioso = document.getElementById("nervioso").value;
+        let musculoesqueletico = document.getElementById("musculoesqueletico").value;
+        let pielMucosa = document.getElementById("pielMucosa").value;
+
+        //signos vitales
+        let fcardiacaHis = document.getElementById("frecCardiacaHis").value;
+        let frespiratoriaHis = document.getElementById("frecRespiratoriaHis").value;
+        let temperaturaHis = document.getElementById("temperaturaHis").value;
+        let tarterialHis = document.getElementById("tarterialHis").value;
+        let saturacionHis = document.getElementById("saturacionHis").value;
+        let tallaHis = document.getElementById("tallaHis").value;
+        let pesoHis = document.getElementById("pesoHis").value;
+        
+        //exploracion fisica
+        let habitus = document.getElementById("habitus").value;
+        let cabeza = document.getElementById("cabeza").value;
+        let cuello = document.getElementById("cuello").value;
+        let torax = document.getElementById("torax").value;
+        let abdomen = document.getElementById("abdomen").value;
+        let genitales = document.getElementById("genitales").value;
+        let extremidades = document.getElementById("extremidades").value;
+        let piel = document.getElementById("piel").value;
+
+        //resultados previos
+        let resultadosLab = document.getElementById("resultadosLab").value;
+        //diagnosticos
+        let diagnosticos = document.getElementById("diagnosticos").value;
+        //pronostico
+        let pronostico = document.getElementById("pronostico").value;
+
+        //el idPaciente sera 0 si no tiene coincidencias con algun paciente registrado
+       let idPaciente = 0;
+       
+
+        //mandamos los datos al metodo registrarHistoria de HistoriasClinicas.js
+      
+        if (nombreHis != "" ) {
+           
+            //validar que inserten referenciado
+            historiasClinicas.registrarHistoria(idPaciente, idConsultorioHis, fechaHistoria, horaHistoria, nombreHis, paternoHis,
+                maternoHis, fechaNacHis, sexoHis, otro_sexo_his, tipoPacienteHis, centroCostHis, domicilio, nombreTutor,
+                parentescoTutor, nombreEmergencia, telefonoEmergencia, parentescoEmergencia, anteHFaMiliares,
+                anteNoPatologicos, antePatologicos, anteGinecoObste, padecimientoActual, cardiovascular,
+                respiratorio,gastrointestinal,genitourinario,hematicoLinfatico,endocrino,nervioso,
+                musculoesqueletico,pielMucosa,fcardiacaHis, frespiratoriaHis,temperaturaHis,tarterialHis,
+                saturacionHis,tallaHis, pesoHis,habitus,cabeza,cuello, torax,abdomen,genitales,extremidades,
+                piel, resultadosLab, diagnosticos,pronostico, userId
+                );
+            return false; //para evitar reenvio de formulario
+        } else {
+            Swal.fire({
+                icon: 'error',
+                text: 'Completa todos los campos obligatorios!',
+
+            })
+        }
+    });
 
 });
+
 //inicializar Select consultas y select semanas para el reporte*/
 
 var iniciaConsultoriosSemanas = () => {
@@ -260,6 +382,20 @@ var iniciaConsultoriosSemanas = () => {
     consultas.getRangosFecha();
 }
 
+//metodo para llamar los pacientes que coicidan con nombre y fecha en formulario de historia clinica
+
+var getCoincidenciasPac = () => {
+
+    
+    let nombrePersona = document.getElementById("nombreHis").value;
+    let paternoPersona = document.getElementById("paternoHis").value;
+    let maternoPersona = document.getElementById("maternoHis").value;
+    let fechaNacPersona = document.getElementById("fechaNacHis").value;
+
+
+    historiasClinicas.getCoincidenciasPac(nombrePersona,paternoPersona,maternoPersona,fechaNacPersona);
+
+}
 
 // llama metodo para filtrar pacientes
 var getPacientes = () => {
