@@ -58,91 +58,83 @@ class HistoriasClinicas {
         fechaNac: fechaNacPersona
       },
         (response) => {
-          $("#resultCoincidencias").html(response);
-          // console.log(response);
+          if(response != 0){
+            $("#tableSugerencias").css("display", "block");
+
+            $("#resultCoincidencias").html(response);
+          
+          } else {
+            $("#tableSugerencias").css("display", "none");
+
+          }
+         
         }
       );
     }
   
-    registrarHistoria(
-      nombre,
-      paterno,
-      materno,
-      fechaNac,
-      sexo,
-      otro_sexo,
-      telefonoCel,
-      estadoCiv,
-      centroCost,
-      tipoPaciente,
-      nivelAcademico,
-      departamento,
-      fecha_alta_pac,
-      userId,
-      edad,
-      tipoAtencion,
-      poblacionRiesgo,
-      medicinaPreventiva,
-      fcardiaca,
-      frespiratoria,
-      temperatura,
-      tarterial,
-      talla,
-      peso,
-      descripcion,
-      diagnostico,
-      tratamiento,
-      observaciones,
-      ambulancia,
-      referenciado,
-      lugarReferencia,
-      horaConsulta,
-      otraMedicina,
-      otraPoblacion,
-      saturacion
+    registrarHistoria(idPaciente, idConsultorioHis, fechaHistoria, horaHistoria, nombreHis, paternoHis,
+      maternoHis, fechaNacHis, sexoHis, otro_sexo_his, tipoPacienteHis, centroCostHis, domicilio, nombreTutor,
+      parentescoTutor, nombreEmergencia, telefonoEmergencia, parentescoEmergencia, anteHFaMiliares,
+      anteNoPatologicos, antePatologicos, anteGinecoObste, padecimientoActual, cardiovascular,
+      respiratorio,gastrointestinal,genitourinario,hematicoLinfatico,endocrino,nervioso,
+      musculoesqueletico,pielMucosa,fcardiacaHis, frespiratoriaHis,temperaturaHis,tarterialHis,
+      saturacionHis,pesoHis,tallaHis,habitus,cabeza,cuello, torax,abdomen,genitales,extremidades,
+      piel, resultadosLab, diagnosticos,pronostico, userId
     ) {
       var data = new FormData();
-      data.append("nombre_pac", nombre);
-      data.append("apPaterno_pac", paterno);
-      data.append("apMaterno_pac", materno);
-      data.append("fecha_nacimiento_pac", fechaNac);
-      data.append("sexo_pac", sexo);
-      data.append("otro_sexo_pac", otro_sexo);
-      data.append("tel_cel_pac", telefonoCel);
-      data.append("id_estado_civil", estadoCiv);
-      data.append("id_centro_costos", centroCost);
-      data.append("id_tipo_paciente", tipoPaciente);
-      data.append("nivel_academico", nivelAcademico);
-      data.append("departamento", departamento);
-      data.append("fecha_alta_pac", fecha_alta_pac);
-      data.append("id_usuario_consultorio", userId);
-      //datos de la consulta
-      data.append("edad", edad);
-      data.append("id_tipo_atencion", tipoAtencion);
-      data.append("frecuencia_cardiaca", fcardiaca);
-      data.append("frecuencia_respiratoria", frespiratoria);
-      data.append("temperatura", temperatura);
-      data.append("tension_arterial", tarterial);
-      data.append("talla", talla);
-      data.append("peso", peso);
-      data.append("descripcion", descripcion);
-      data.append("diagnostico", diagnostico);
-      data.append("tratamiento", tratamiento);
-      data.append("ambulancia", ambulancia);
-      data.append("referenciado", referenciado);
-      data.append("observaciones", observaciones);
-      data.append("lugar_referencia", lugarReferencia);
-      data.append("fecha_consulta", fecha_alta_pac);
-      data.append("hora_consulta", horaConsulta);
-      data.append("id_medico", userId);
-      data.append("poblacion_riesgo", poblacionRiesgo);
-      data.append("medicina_prev", medicinaPreventiva);
-      data.append("otraMedicina" , otraMedicina);
-      data.append("otraPoblacion" , otraPoblacion);
-      data.append("saturacion" , saturacion);
-  
+      data.append("id_paciente", idPaciente);
+      data.append("unidad_medica", idConsultorioHis);
+      data.append("fec_elaboracion", fechaHistoria);
+      data.append("hra_elaboracion", horaHistoria);
+      data.append("nombre_hc", nombreHis);
+      data.append("apPaterno_hc", paternoHis);
+      data.append("apMaterno_hc", maternoHis);
+      data.append("fecNac_hc", fechaNacHis);
+      data.append("sexo_hc", sexoHis);
+      data.append("otro_sexo_hc", otro_sexo_his);
+      data.append("tipo_paciente", tipoPacienteHis);
+      data.append("id_centro_costos", centroCostHis);
+      data.append("domicilio", domicilio);
+      data.append("nombre_padre_tutor", nombreTutor);
+      data.append("parentesco", parentescoTutor);
+      data.append("contacto_emergencia", nombreEmergencia);
+      data.append("tel_contacto_emergencia", telefonoEmergencia);
+      data.append("parentesco_contacto_emergencia", parentescoEmergencia);
+      data.append("ant_heredo_familiares", anteHFaMiliares);
+      data.append("ant_personalesNO_pat", anteNoPatologicos);
+      data.append("ant_pesonales_pat", antePatologicos);
+      data.append("ant_gineco_obs", anteGinecoObste);
+      data.append("padecimiento_actual", padecimientoActual);
+      data.append("ipas_cardiovascular", cardiovascular);
+      data.append("ipas_respiratorio", respiratorio);
+      data.append("ipas_gastrointestinal", gastrointestinal);
+      data.append("ipas_genitourinario", genitourinario);
+      data.append("ipas_hematico_linfatico", hematicoLinfatico);
+      data.append("ipas_endocrino", endocrino);
+      data.append("ipas_nervioso", nervioso);
+      data.append("ipas_musculoesqueletico", musculoesqueletico);
+      data.append("ipas_piel_mucosas", pielMucosa);
+      data.append("fc", fcardiacaHis);
+      data.append("fr" , frespiratoriaHis);
+      data.append("temperatura" , temperaturaHis);
+      data.append("ta" , tarterialHis);
+      data.append("saturacion" , saturacionHis);
+      data.append("peso" , pesoHis);
+      data.append("talla" , tallaHis);
+      data.append("ef_habitus_ext" , habitus);
+      data.append("ef_cabeza" , cabeza);
+      data.append("ef_cuello" , cuello);
+      data.append("ef_torax" , torax);
+      data.append("ef_abdomen" , abdomen);
+      data.append("ef_genitales" , genitales);
+      data.append("ef_extremidades" , extremidades);
+      data.append("ef_piel" , piel);
+      data.append("resultados" , resultadosLab);
+      data.append("diagnostico" , diagnosticos);
+      data.append("pronostico" , pronostico);
+      data.append("id_usuario_consultorio" , userId);
       $.ajax({
-        url: URL + "Pacientes/registrarPaciente",
+        url: URL + "Historia/registrarHistoria",
         data: data,
         cache: false,
         contentType: false,
@@ -155,10 +147,10 @@ class HistoriasClinicas {
             this.vaciarFormulario();
             Swal.fire({
               icon: 'success',
-              title: 'Registro exitoso.',
+              title: 'Registro de historia clínica exitoso.',
               text: ""
             });
-            getPacientes();
+            //getPacientes();
           } else {
             Swal.fire({
               icon: 'error',
@@ -182,40 +174,63 @@ class HistoriasClinicas {
   
   
     vaciarFormulario() {
-      var instance = M.Modal.getInstance($('#modalNPaciente'));
+      var instance = M.Modal.getInstance($('#modalNHistoria'));
       instance.close();
-      document.getElementById("nombre").value = "";
-      document.getElementById("paterno").value = "";
-      document.getElementById("materno").value = "";
-      document.getElementById("fechaNac").value = "";
-      document.getElementById("telefonoCel").value = "";
-      document.getElementById("nombrePacienteN").value = "";
-      document.getElementById("departamento").value = "";
-      document.getElementById("edadPacienteN").value = "";
-      document.getElementById("frecCardiacaN").value = "";
-      document.getElementById("frecRespiratoriaN").value = "";
-      document.getElementById("temperaturaN").value = "";
-      document.getElementById("tarterialN").value = "";
-      document.getElementById("tallaN").value = "";
-      document.getElementById("pesoN").value = "";
-      document.getElementById("descripcionN").value = "";
-      document.getElementById("diagnosticoN").value = "";
-      document.getElementById("tratamientoN").value = "";
-      document.getElementById("lugarreferenciaN").value = "";
-      document.getElementById("observacionesN").value ="";
-      document.getElementById("ompreventivaN").value = "";
-      $('#sexo').prop('selectedIndex',0);
-      $('#nivelAcademico').prop('selectedIndex',0);
-      $('#tipoAtencionN').prop('selectedIndex',0);
-      $("#poblacion input[type=checkbox]").prop('checked', false);
-      $("#medicina input[type=checkbox]").prop('checked', false);
-      $('#ambula input[type="radio"]').prop('checked', false);
-      $('#refer input[type="radio"]').prop('checked', false);
-      $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
-      $("input:checkbox[name=medicinaPrev]").prop("checked", false);
-  
+       //DATOS DE LA historia clinica
+      document.getElementById("nombreHis").value = "";
+      document.getElementById("paternoHis").value = "";
+      document.getElementById("maternoHis").value = "";
+      document.getElementById("fechaNacHis").value = "";
+      document.getElementById("otro_sexo").value = "";
       
-  
+      document.getElementById("domicilio").value = "";
+      document.getElementById("nombrePadre").value = "";
+      document.getElementById("parentesto").value = "";
+      //En caso de emergencias
+      document.getElementById("nombreEmergencia").value = "";
+      document.getElementById("telefonoEmergencia").value = "";
+      document.getElementById("parentescoEmergencia").value = "";
+
+      document.getElementById("anteHFaMiliares").value = "";
+      document.getElementById("anteNoPatologicos").value = "";
+      document.getElementById("antePatologicos").value = "";
+      document.getElementById("anteGinecoObste").value = "";
+      document.getElementById("padecimientoActual").value = "";
+      //interrogatorio por aparatos y sistemas
+      document.getElementById("cardiovascular").value = "";
+      document.getElementById("respiratorio").value = "";
+      document.getElementById("gastrointestinal").value = "";
+      document.getElementById("genitourinario").value = "";
+      document.getElementById("hematicoLinfatico").value = "";
+      document.getElementById("endocrino").value = "";
+      document.getElementById("nervioso").value = "";
+      document.getElementById("musculoesqueletico").value = "";
+      document.getElementById("pielMucosa").value = "";
+      //signos vitales
+      document.getElementById("frecCardiacaHis").value = "";
+      document.getElementById("frecRespiratoriaHis").value = "";
+      document.getElementById("temperaturaHis").value = "";
+      document.getElementById("tarterialHis").value = "";
+      document.getElementById("saturacionHis").value = "";
+      document.getElementById("tallaHis").value = "";
+      document.getElementById("pesoHis").value = "";
+      //exploracion fisica
+      document.getElementById("habitus").value = "";
+      document.getElementById("cabeza").value = "";
+      document.getElementById("cuello").value = "";
+      document.getElementById("torax").value = "";
+      document.getElementById("abdomen").value = "";
+      document.getElementById("genitales").value = "";
+      document.getElementById("extremidades").value = "";
+      document.getElementById("piel").value = "";
+//resultados previos
+document.getElementById("resultadosLab").value = "";
+//diagnosticos
+document.getElementById("diagnosticos").value = "";
+//pronostico
+document.getElementById("pronostico").value = "";
+
+      $('#sexo').prop('selectedIndex',0);
       
     }
   }

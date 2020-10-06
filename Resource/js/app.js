@@ -257,12 +257,13 @@ $(function () {
     //BOTON DE REGISTRAR NUEVA HISTORIA CLINICA
     $("#btnNuevaHistoria").click(function () {
 
+
         //obtenemos id del usuario a registrar la historia clinica
         let user = JSON.parse(localStorage.getItem("user"));
         let userId = user.id_usr;
 
         //obtenemos el id de consultorio
-        let idConsultorioHis = user.id_consultorio;
+        let idConsultorioHis = user.idConsultorio;
 
         //obtenemos fecha y hora actual
         let hoy = new Date();
@@ -289,7 +290,7 @@ $(function () {
         let centroCostHis = centrosCostHis.options[centrosCostHis.selectedIndex].value;
 
         let tiposPacienteHis = document.getElementById("tipoPacienteHis");
-        let tipoPacienteHis = tiposPacienteHis.options[tiposPaciente.selectedIndex].value;
+        let tipoPacienteHis = tiposPacienteHis.options[tiposPacienteHis.selectedIndex].value;
         
         let domicilio = document.getElementById("domicilio").value;
         let nombreTutor = document.getElementById("nombrePadre").value;
@@ -323,8 +324,8 @@ $(function () {
         let temperaturaHis = document.getElementById("temperaturaHis").value;
         let tarterialHis = document.getElementById("tarterialHis").value;
         let saturacionHis = document.getElementById("saturacionHis").value;
-        let tallaHis = document.getElementById("tallaHis").value;
         let pesoHis = document.getElementById("pesoHis").value;
+        let tallaHis = document.getElementById("tallaHis").value;
         
         //exploracion fisica
         let habitus = document.getElementById("habitus").value;
@@ -344,7 +345,11 @@ $(function () {
         let pronostico = document.getElementById("pronostico").value;
 
         //el idPaciente sera 0 si no tiene coincidencias con algun paciente registrado
-       let idPaciente = 0;
+       let idPaciente = document.getElementById("idPacienteRelacionado").value;
+
+       console.log(idPaciente);
+
+
        
 
         //mandamos los datos al metodo registrarHistoria de HistoriasClinicas.js
@@ -358,7 +363,7 @@ $(function () {
                 anteNoPatologicos, antePatologicos, anteGinecoObste, padecimientoActual, cardiovascular,
                 respiratorio,gastrointestinal,genitourinario,hematicoLinfatico,endocrino,nervioso,
                 musculoesqueletico,pielMucosa,fcardiacaHis, frespiratoriaHis,temperaturaHis,tarterialHis,
-                saturacionHis,tallaHis, pesoHis,habitus,cabeza,cuello, torax,abdomen,genitales,extremidades,
+                saturacionHis,pesoHis,tallaHis,habitus,cabeza,cuello, torax,abdomen,genitales,extremidades,
                 piel, resultadosLab, diagnosticos,pronostico, userId
                 );
             return false; //para evitar reenvio de formulario
@@ -396,6 +401,20 @@ var getCoincidenciasPac = () => {
     historiasClinicas.getCoincidenciasPac(nombrePersona,paternoPersona,maternoPersona,fechaNacPersona);
 
 }
+//metodo que se ejecuta al presionar el boton de Relacionar  en el formulario de Historia clinica cuando hay sugerencia de pacientes registrados
+
+var relacionarPaciente = (data) => { 
+    
+    document.getElementById("idPacienteRelacionado").value = data.id_paciente;  
+    Swal.fire({
+        icon: 'success',
+        title: 'Relación exitosa.',
+        text: ""
+    });
+    document.getElementById("tableSugerencias").style.display = "none";
+
+}
+
 
 // llama metodo para filtrar pacientes
 var getPacientes = () => {

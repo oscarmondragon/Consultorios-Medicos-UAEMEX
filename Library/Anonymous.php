@@ -129,6 +129,122 @@ public function omedicinaClass($array){
     };
 }
 
+public function historiaClass($array){
+    return new class($array){
+     public $id_paciente;
+     public $unidad_medica;
+     public $num_expediente;
+     public $fec_elaboracion;
+     public $hra_elaboracion;
+     public $nombre_hc;
+     public $apPaterno_hc;
+     public $apMaterno_hc;
+     public $fecNac_hc;
+     public $sexo_hc;
+     public $otro_sexo_hc;
+     public $tipo_paciente;
+     public $id_centro_costos;
+     public $identificador_uaem;
+     public $domicilio;
+     public $nombre_padre_tutor;
+     public $parentesco;
+     public $contacto_emergencia;
+     public $tel_contacto_emergencia;
+     public $parentesco_contacto_emergencia;
+     public $ant_heredo_familiares;
+     public $ant_personalesNO_pat;
+     public $ant_pesonales_pat;
+     public $ant_gineco_obs;
+     public $padecimiento_actual;
+     public $ipas_cardiovascular;
+     public $ipas_respiratorio;
+     public $ipas_gastrointestinal;
+     public $ipas_genitourinario;
+     public $ipas_hematico_linfatico;
+     public $ipas_endocrino;
+     public $ipas_nervioso;
+     public $ipas_musculoesqueletico;
+     public $ipas_piel_mucosas;
+     public $fc;
+     public $fr;
+     public $temperatura;
+     public $ta;
+     public $saturacion;
+     public $peso;
+     public $talla;
+     public $ef_habitus_ext;
+     public $ef_cabeza;
+     public $ef_cuello;
+     public $ef_torax;
+     public $ef_abdomen;
+     public $ef_genitales;
+     public $ef_extremidades;
+     public $ef_piel;
+     public $resultados;
+     public $diagnostico;
+     public $pronostico;
+     public $id_usuario_consultorio;
+
+
+     public function __construct($array) {
+                 $this->id_paciente = $array[0];
+                 $this->unidad_medica = $array[1];
+                 $this->num_expediente = $array[2];
+                 $this->fec_elaboracion = $array[3];
+                 $this->hra_elaboracion =$array[4] ;
+                 $this->nombre_hc = $array[5] ;
+                 $this->apPaterno_hc = $array[6] ;
+                 $this->apMaterno_hc = $array[7] ;
+                 $this->fecNac_hc = $array[8] ;
+                 $this->sexo_hc =$array[9];
+                 $this->otro_sexo_hc =$array[10];
+                 $this->tipo_paciente = $array[11] ;
+                 $this->id_centro_costos = $array[12] ;
+                 $this->identificador_uaem = $array[13] ;
+                 $this->domicilio = $array[14] ;
+                 $this->nombre_padre_tutor = $array[15] ;
+                 $this->parentesco = $array[16] ;
+                 $this->contacto_emergencia = $array[17] ;
+                 $this->tel_contacto_emergencia = $array[18] ;
+                 $this->parentesco_contacto_emergencia = $array[19] ;
+                 $this->ant_heredo_familiares = $array[20] ;
+                 $this->ant_personalesNO_pat = $array[21] ;
+                 $this->ant_pesonales_pat = $array[22] ;
+                 $this->ant_gineco_obs = $array[23] ;
+                 $this->padecimiento_actual = $array[24] ;
+                 $this->ipas_cardiovascular = $array[25] ;
+                 $this->ipas_respiratorio = $array[26] ;
+                 $this->ipas_gastrointestinal = $array[27] ;
+                 $this->ipas_genitourinario = $array[28] ;
+                 $this->ipas_hematico_linfatico = $array[29] ;
+                 $this->ipas_endocrino = $array[30] ;
+                 $this->ipas_nervioso = $array[31] ;
+                 $this->ipas_musculoesqueletico = $array[32] ;
+                 $this->ipas_piel_mucosas = $array[33] ;
+                 $this->fc = $array[34] ;
+                 $this->fr = $array[35] ;
+                 $this->temperatura = $array[36] ;
+                 $this->ta = $array[37] ;
+                 $this->saturacion = $array[38] ;
+                 $this->peso = $array[39] ;
+                 $this->talla = $array[40] ;
+                 $this->ef_habitus_ext = $array[41] ;
+                 $this->ef_cabeza = $array[42] ;
+                 $this->ef_cuello = $array[43] ;
+                 $this->ef_torax = $array[44] ;
+                 $this->ef_abdomen = $array[45] ;
+                 $this->ef_genitales = $array[46] ;
+                 $this->ef_extremidades = $array[47] ;
+                 $this->ef_piel = $array[48] ;
+                 $this->resultados = $array[49] ;
+                 $this->diagnostico = $array[50] ;
+                 $this->pronostico = $array[51] ;
+                 $this->id_usuario_consultorio = $array[52] ;
+                 
+     }
+    };
+}
+
 }
 
 ?>

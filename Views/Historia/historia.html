@@ -3,7 +3,7 @@
   
     <div class="row">
       <div class="input-field col s0">
-        <a onclick="restablecerHistoriaClinica();" class="waves-effect waves-ligth btn modal-trigger" href="#modalNPaciente">Nuevo</a>
+        <a onclick="restablecerHistoriaClinica();" class="waves-effect waves-ligth btn modal-trigger" href="#modalNHistoria">Nuevo</a>
       </div>
       <div class="input-field col s6">
         <input id="filtrarPaciente" type="text" placeholder="Buscar paciente" onkeyup="getPacientes()" id="" />
@@ -27,8 +27,8 @@
       </tbody>
     </table>
     <!--Modal Structure-->
-    <div id="modalNPaciente" class="modal modal-fixed-footer">
-      <form id="formularioPaciente" class="col s12" id="validate" method="POST">
+    <div id="modalNHistoria" class="modal modal-fixed-footer">
+      <form id="formularioHistoria" class="col s12" id="validate" method="POST">
         <div class="modal-content">
           <center>
             <h4>Historia Clínica</h4>
@@ -264,14 +264,15 @@
                 <label class="error" for="saturacionHis">Saturación</label>
               </div>
               <div class="input-field col s4">
-                <input placeholder="cm" name="tallaHis" id="tallaHis" type="number" class="validate" required />
-                <label class="error" for="tallaHis">Talla</label>
+                <input placeholder="kg" name="peso" id="pesoHis" type="number" class="validate" required />
+                <label class="error" for="peso">Peso</label>
               </div>
             </div>
             <div class="row">
+              
               <div class="input-field col s4">
-                <input placeholder="kg" name="peso" id="pesoHis" type="number" class="validate" required />
-                <label class="error" for="peso">Peso</label>
+                <input placeholder="cm" name="tallaHis" id="tallaHis" type="number" class="validate" required />
+                <label class="error" for="tallaHis">Talla</label>
               </div>
             </div>
             <h5>Exploración física</h5>
@@ -329,9 +330,10 @@
                 <textarea  id="pronostico" name="pronostico" class="materialize-textarea" required></textarea>
               </div>
             </div>
-            <div class="input-field col s12">
+            <div id="tableSugerencias" class="input-field col s12">
+              <input  name="idPacienteRelacionado" id="idPacienteRelacionado" type="hidden" value="0" />
               <h6>Probablemente seas uno de ellos</h6>
-            <table class="table">
+            <table  class="table">
               <thead>
                 <tr>
                   <th>Id</th>
