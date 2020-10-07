@@ -170,7 +170,8 @@ getTipoAtencion2N(padre) {
     horaConsulta,
     otraMedicina,
     otraPoblacion,
-    saturacion
+      saturacion,
+    id_historial_clinico
   ) {
     var data = new FormData();
     data.append("nombre_pac", nombre);
@@ -210,8 +211,10 @@ getTipoAtencion2N(padre) {
     data.append("medicina_prev", medicinaPreventiva);
     data.append("otraMedicina" , otraMedicina);
     data.append("otraPoblacion" , otraPoblacion);
-    data.append("saturacion" , saturacion);
-
+      data.append("saturacion", saturacion);
+      data.append("id_historial_clinico", id_historial_clinico);
+      console.log("id_HIST222:" + id_historial_clinico);
+     // alert("id_HIST222:" + id_historial_clinico);
     $.ajax({
       url: URL + "Pacientes/registrarPaciente",
       data: data,

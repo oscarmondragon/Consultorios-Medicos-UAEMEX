@@ -224,6 +224,18 @@ class Pacientes_model extends Conexion{
         return $this->db->selectPacientes($where,$array);
 
     }
+
+    function getBanderaHistorial($idPaciente){
+        $where = " WHERE id_paciente =".$idPaciente;
+        return $response = $this->db->select1(" id_historial_clinico ","historial_clinico", $where, null);
+    }
+
+    function registraIdPaciente($idPaciente,$id_historialC){
+   // UPDATE historial_clinico SET id_paciente = '4' WHERE `id_historial_clinico` = 2
+        $set = " SET id_paciente = ".$idPaciente;
+        $where = " WHERE id_historial_clinico = ".$id_historialC;
+        return  $response = $this->db->Update("historial_clinico",$set,$where);    
+    }
     
 
 }

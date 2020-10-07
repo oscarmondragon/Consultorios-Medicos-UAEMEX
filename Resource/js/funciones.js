@@ -101,6 +101,15 @@ var copiarNombre = () => {
     let apMaterno = document.getElementById("materno").value;
 
     document.getElementById("nombrePacienteN").value = nombre + " " + apPaterno + " " + apMaterno;
+    /*apartado para coincidencias de historial clinico*/
+    let fechaNac = document.getElementById("fechaNac").value;
+    if (nombre != "" && apPaterno != "" && apMaterno != "" && fechaNac != "") {
+        let valor = nombre + " " + apPaterno + " " + apMaterno;
+        console.log(valor+"nombre");
+        //gethistoriasclinicas
+        historiasClinicas.getCoincidenciasHistorialClinico(nombre, apPaterno , apMaterno, fechaNac);
+        //pacientes.getCoincidencias
+    }
 }
 
 var calcularEdad = (fecha) => {
@@ -118,6 +127,25 @@ var calcularEdad = (fecha) => {
 
     edad = Math.floor(((fechaActual - fechaNace) / (1000 * 60 * 60 * 24) / 365));
     document.getElementById("edadPacienteN").value = edad;
+
+    /**/
+
+    let nombre = document.getElementById("nombre").value;
+    let apPaterno = document.getElementById("paterno").value;
+    let apMaterno = document.getElementById("materno").value;
+
+
+    /*Busca coincidencias de el nombre del paciente en la tabla historial clinico*/
+    let fechaNac = document.getElementById("fechaNac").value;
+    if (nombre != "" && apPaterno != "" && apMaterno != "" && fechaNac != "") {
+        let valor = nombre + " " + apPaterno + " " + apMaterno;
+        console.log(valor + "fecha");
+        //gethistoriasclinicas
+        historiasClinicas.getCoincidenciasHistorialClinico(nombre, apPaterno, apMaterno, fechaNac);
+        //pacientes.getCoincidencias
+    }
+
+/**/
 
 }
 

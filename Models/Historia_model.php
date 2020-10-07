@@ -168,6 +168,20 @@ class Historia_model extends Conexion{
 
     }
 
+    function getCoincidenciasHistorial($nombre, $paterno,$materno, $fechaNac){
+        $where = " WHERE nombre_hc = :nombre_pac AND apPaterno_hc = :apPaterno_pac 
+        AND apMaterno_hc = :apMaterno_pac AND fecNac_hc = :fecha_nacimiento_pac";
+        $array = array(
+            'nombre_pac' => $nombre,
+            'apPaterno_pac' => $paterno,
+            'apMaterno_pac' => $materno,
+            'fecha_nacimiento_pac' => $fechaNac
+        );
+
+        return $this->db->selectHistoriasClinicas($where,$array);
+
+    }
+
     function ultimoIdHistoria(){
         
        //buscamos el paciente anteriormente registrado para obtener su id
