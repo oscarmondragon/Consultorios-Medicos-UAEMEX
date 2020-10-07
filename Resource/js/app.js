@@ -128,7 +128,7 @@ $(function () {
         /*solo en caso de que exista una relacion con algún historial clinico*/
         
         let id_historial = localStorage.getItem("id_historial_clinico");
-        console.log("id_HIST:" + id_historial);
+        //console.log("id_HIST:" + id_historial);
         //alert("id_HIST:" + localStorage.getItem("id_historial_clinico"));
        // let id_historial = 2;
         //mandamos los datos al metod registrarPaciente de Paciente.js
@@ -262,7 +262,7 @@ $(function () {
     });
     //BOTON DE REGISTRAR NUEVA HISTORIA CLINICA
     $("#btnNuevaHistoria").click(function () {
-
+        alert("registro nueva historia");
 
         //obtenemos id del usuario a registrar la historia clinica
         let user = JSON.parse(localStorage.getItem("user"));
@@ -353,7 +353,7 @@ $(function () {
         //el idPaciente sera 0 si no tiene coincidencias con algun paciente registrado
        let idPaciente = document.getElementById("idPacienteRelacionado").value;
 
-       console.log(idPaciente);
+       console.log("id de paciente::"+idPaciente+"::");
 
 
        
@@ -370,7 +370,7 @@ $(function () {
             cabeza != "" &&  cuello != "" && torax != "" && abdomen != "" && genitales != "" && extremidades != "" && piel != "" && 
             resultadosLab != "" &&  diagnosticos != "" &&  pronostico != ""
         ) {
-           
+            console.log("entre a if de registrohistorialapp.js" + idPaciente + "::");
             //validar que inserten referenciado
             historiasClinicas.registrarHistoria(idPaciente, idConsultorioHis, fechaHistoria, horaHistoria, nombreHis, paternoHis,
                 maternoHis, fechaNacHis, sexoHis, otro_sexo_his, tipoPacienteHis, centroCostHis, domicilio, nombreTutor,
@@ -513,16 +513,42 @@ var getPacientesC = () => {
 var getHistoriasClinicas = () => {
     
     let valor = document.getElementById("filtrarHistoriaClinica").value;
-
     historiasClinicas.getHistoriasClinicas(valor);
 
-    alert("filtrar");
-    let id_pacPhist = localStorage.getItem("id_pacientePhistorial");
-    if (id_pacPhist != null) {
-        alert("si contiene algo");
-        $('#modalHmodalNHistoria').modal({
-            show: 'false'
-        });
+
+    try {
+        //se verifica si existe un id de paciente previo para crear historial
+        let id_pacPhist = localStorage.getItem("id_pacientePhistorial");
+        var array = JSON.parse(id_pacPhist);
+        //alert("filtrarHC":nombre:"+array.nombre_pac+":");
+        if (id_pacPhist != null) {
+            alert("si contiene algo");
+            var instance = M.Modal.getInstance($('#modalNHistoria'));
+            instance.open();
+            //inicializa valores de los combos
+            historiasClinicas.restablecerHistoriaClinica();
+
+            //deshabilita metodo que busca coincidencias de pacientes
+            var deshabilitaBusqueda = document.getElementById('fechaNacHis');
+            if (deshabilitaBusqueda != null) {
+                deshabilitaBusqueda.removeEventListener("change", getCoincidenciasPac());
+                alert("se quito onchange");
+            }
+            //llena los cmapos de nombre, edad y el id_paciente de acuerdo al paciente
+            //del que proviene lac reacion del historial
+            document.getElementById("nombreHis").value = array.nombre_pac;
+            document.getElementById("nombreHis").disabled = true;
+            document.getElementById("paternoHis").value = array.apPaterno_pac;
+            document.getElementById("paternoHis").disabled = true;
+            document.getElementById("maternoHis").value = array.apMaterno_pac;
+            document.getElementById("maternoHis").disabled = true;
+            document.getElementById("fechaNacHis").value = array.fecha_nacimiento_pac;
+            document.getElementById("fechaNacHis").disabled = true;
+            document.getElementById("idPacienteRelacionado").value = array.id_paciente;            
+        }
+        localStorage.removeItem("id_pacientePhistorial");
+    } catch (error) {
+        alert(error);
     }
 
 }
@@ -714,12 +740,12 @@ if(data.sexo_hc == "Mujer"){
     lugarreferencia.disabled = true;*./
 });*/
 
-var abrirmodal = (id_paciente) => {
+var abrirmodal = (data) => {
    // principal.linkPrincipal(URLactual);
-    alert("1:" + id_paciente + ":");
-    localStorage.setItem("id_pacientePhistorial", id_paciente);
-    $("#modalNHistoria").css("display", "block");
-    historiasClinicas.abrirmodal();
+    alert("Abrir modal:" + data.id_paciente + ":");
+    localStorage.setItem("id_pacientePhistorial", JSON.stringify(data));
+   // alert("variable:" + data + ":");
+
 }
 
 

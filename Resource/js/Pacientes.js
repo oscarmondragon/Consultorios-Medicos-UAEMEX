@@ -222,26 +222,28 @@ getTipoAtencion2N(padre) {
       contentType: false,
       processData: false,
       type: "POST",
-      success: (response) => {
+        success: (response) => {
 
+           // let item = JSON.parse(response);
+            //alert(item.indexOf("Folio"));
 
-        if (response == 0) {
-          this.vaciarFormulario();
-          Swal.fire({
-            icon: 'success',
-            title: 'Registro exitoso.',
-            text: ""
-          });
-          getPacientes();
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: response
-          });
+            if (response.includes("Folio")) {
+                this.vaciarFormulario();
+            
+                Swal.fire({
+                icon: 'success',
+                title: 'Registro exitoso.',
+                text: response
+                });
+                getPacientes();
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: response
+                });
+            }
         }
-
-      }
     });
   }
 

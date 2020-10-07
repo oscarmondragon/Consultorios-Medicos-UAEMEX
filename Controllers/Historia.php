@@ -197,11 +197,13 @@
         //llamamos metodo para registrar historia clinica
         $data = $this->model->registroHistoria($this->historiaClass($array));
 
-        if($data ===1){
+
+        if($data == 1){
             echo "Ya se ha registrado una historia clínica con ese nombre y fecha de nacimiento anteriormente.";
-        } else if($data=== 0){ //se registro la historia clinica
-         echo 0;
-         
+            
+        } else if($data === 0){ //se registro la historia clinica
+            echo 0;
+                 
         } else{
            echo $data;
         }

@@ -139,14 +139,13 @@ class Historia_model extends Conexion{
                 :id_usuario_consultorio
                 )";
                 $data = $this->db->insert('historial_clinico',$historiaClinica,$value);
-            if($data == true){
-                return 0;
+                if($data == true){
+                    return 0;              
+                } else {
+                    return $data;
+                }               
             } else {
-                return $data;
-            }
-               
-            } else {
-                return 1;//indica que ya esta registrado la historia clinica
+                return 1;//indica que ya esta registrado la historia clinica               
             }
         }  else {
             return $response;

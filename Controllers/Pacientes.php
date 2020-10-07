@@ -145,8 +145,8 @@ class Pacientes extends Controllers {
                     $dataHistorialclinico = $this->model->registraIdPaciente($dataCon,$_POST["id_historial_clinico"]);               
                  }
                    
-                           
-                echo 0;
+                         /*Eviamos el id de consulta*/  
+                echo "Folio de consulta : ".$idConsulta;
                       
              }
              } else{
@@ -173,22 +173,26 @@ class Pacientes extends Controllers {
                 $id_paciente = $value["id_paciente"];
                 $dataBanderaHC = $this->model->getBanderaHistorial($id_paciente);
                 if(is_array($dataBanderaHC)){
-                    $bandera = 0;
+                    $bandera = null;
                     $array1 = $dataBanderaHC["results"];
                     foreach ($array1 as $key1 => $valueBandera) {
                        $bandera = $valueBandera["id_historial_clinico"].":resultado";
                     }
                 }
                 $dataUser = json_encode($array[$count]);
-                if($bandera == 0){
+                
+                if($bandera == null){
+                    $arrayPaciente = array($value["id_paciente"],$value["nombre_pac"],
+                        $value["apPaterno_pac"], $value["apMaterno_pac"],$value["fecha_nacimiento_pac"]); 
                     $dataFilter.= "<tr>".
                     "<td>".$value["id_paciente"]."</td>".
                     "<td>".$value["nombre_pac"]."</td>".
                     "<td>".$value["apPaterno_pac"]."</td>".
                     "<td>".$value["apMaterno_pac"]."</td>".
                     "<td>".$value["des_centro_costos"]."</td>".
-                    "<td>".$value["tipo"]."</td>".
-                    "<td><a  href= 'http://localhost/consultorios/Historia/historia'  onclick='abrirmodal(".$value['id_paciente'].")' class='btn btn-success modal-trigger'>Agregar Historial Clínico</a></td>".                   
+                    //"<td>".$value["tipo"]."</td>".
+                    "<td>".$bandera."</td>".
+                    "<td><a  href= 'http://localhost/consultorios/Historia/historia'  onclick='abrirmodal(".$dataUser.")' class='btn btn-success modal-trigger'>Agregar Historial Clínico</a></td>".                   
                 "</tr>";
                     
                 }else{

@@ -170,7 +170,10 @@ class HistoriasClinicas {
       data.append("resultados" , resultadosLab);
       data.append("diagnostico" , diagnosticos);
       data.append("pronostico" , pronostico);
-      data.append("id_usuario_consultorio" , userId);
+        data.append("id_usuario_consultorio", userId);
+
+        console.log(data);
+
       $.ajax({
         url: URL + "Historia/registrarHistoria",
         data: data,
@@ -212,7 +215,7 @@ class HistoriasClinicas {
             //principal.linkPrincipal(URLactual);
         } catch (error) {
             console.log(error);
-            alert(error);
+            alert("Error abrir modal en hc.js"+error);
         }
     }
   
