@@ -153,6 +153,28 @@ class Historia_model extends Conexion{
         }
     }
     
+    function getHistoriasClinicas($filter){
+        $where = " WHERE id_historial_clinico  LIKE :id_historial_clinico  OR nombre_hc LIKE :nombre_hc
+        OR apPaterno_hc LIKE :apPaterno_hc OR apMaterno_hc LIKE :apMaterno_hc";
+        $array = array(
+            'id_historial_clinico' =>'%'.$filter.'%',
+            'nombre_hc' => '%'.$filter.'%',
+            'apPaterno_hc' => '%'.$filter.'%',
+            'apMaterno_hc' => '%'.$filter.'%'
+        );
+
+        return $this->db->selectHistoriasClinicas($where,$array);
+
+    }
+
+    function ultimoIdHistoria(){
+        
+       //buscamos el paciente anteriormente registrado para obtener su id
+        $response = $this->db->selectLastId();
+
+        return $response;
+
+    }
 
 }
 ?>

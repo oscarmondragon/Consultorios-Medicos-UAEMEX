@@ -18,8 +18,11 @@ class Principal {
             case PATHNAME + "Historia/historia":
                 document.getElementById("enlace4").classList.add('active');
             break;
-            case PATHNAME + "Reportes/reportes":
+            case PATHNAME + "Descargables/descargables":
                 document.getElementById("enlace5").classList.add('active');
+            break;
+            case PATHNAME + "Reportes/reportes":
+                document.getElementById("enlace6").classList.add('active');
             break;
 
         }

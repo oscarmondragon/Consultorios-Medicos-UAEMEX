@@ -71,6 +71,18 @@ class HistoriasClinicas {
         }
       );
     }
+    getHistoriasClinicas(valor) {
+      valor = valor != null ? valor : "";
+      $.post(
+        URL + "Historia/getHistoriasClinicas", {
+        filter: valor
+      },
+        (response) => {
+          $("#resultHistoria").html(response);
+          // console.log(response);
+        }
+      );
+    }
   
     registrarHistoria(idPaciente, idConsultorioHis, fechaHistoria, horaHistoria, nombreHis, paternoHis,
       maternoHis, fechaNacHis, sexoHis, otro_sexo_his, tipoPacienteHis, centroCostHis, domicilio, nombreTutor,

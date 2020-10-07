@@ -6,20 +6,22 @@
         <a onclick="restablecerHistoriaClinica();" class="waves-effect waves-ligth btn modal-trigger" href="#modalNHistoria">Nuevo</a>
       </div>
       <div class="input-field col s6">
-        <input id="filtrarPaciente" type="text" placeholder="Buscar paciente" onkeyup="getPacientes()" id="" />
+        <input id="filtrarHistoriaClinica" type="text" placeholder="Buscar historia clínica" onkeyup="getHistoriasClinicas()" id="" />
         <label for="filtrar">Buscar historia clínica</label>
       </div>
     </div>
     <table class="table">
       <thead>
         <tr>
-          <th>Id</th>
+          <th>Id HC</th>
+          <th>Num. Expediente</th>
+          <th>Id Paciente</th>
           <th>Nombre</th>
           <th>Ap. Paterno</th>
           <th> Ap. Materno</th>
           <th>Centro de Costos</th>
           <th>Tipo Paciente</th>
-         <!--  <th> Opciones</th> -->
+          <th> Opciones</th>
         </tr>
       </thead>
       <tbody id="resultHistoria">

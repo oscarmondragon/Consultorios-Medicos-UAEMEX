@@ -50,6 +50,22 @@ class QueryManager {
         $pdo = null; // cerrar la conexion
     }
 
+    function selectHistoriasClinicas($where,$param){
+        try {
+            $where = $where ?? "";
+            $query = "SELECT his.id_historial_clinico,his.num_expediente, his.id_paciente,his.nombre_hc,his.apPaterno_hc, his.apMaterno_hc,(select des_centro_costos FROM centro_costos centro where his.id_centro_costos = centro.id_centro_costos) AS des_centro_costos,
+            (select tipo FROM tipo_paciente tipo_pac where his.tipo_paciente = tipo_pac.id_tipo_paciente) AS tipo FROM historial_clinico his".$where;
+            $sth = $this->pdo->prepare($query);
+            $sth->execute($param);    
+            $response = $sth->fetchAll(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   
+            return array("results" => $response);
+        } catch (PDOException $e) {
+            return $e->getMessage();
+            //throw $th;
+        }
+        $pdo = null; // cerrar la conexion
+    }
+
     
     function insert($table,$param,$value){
         try {
@@ -78,6 +94,20 @@ class QueryManager {
             //throw $th;
         }
         $pdo = null; // cerrar la conexion
+    }
+
+   function selectLastId(){
+    try {
+        
+        $query = "SELECT MAX(id_historial_clinico ) AS id FROM historial_clinico";
+        $sth = $this->pdo->prepare($query);
+        $sth->execute();    
+        $response = $sth->fetchAll(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   
+        return array("results" => $response);
+    } catch (PDOException $e) {
+        return $e->getMessage();
+        //throw $th;
+    }
     }
 }
 ?>

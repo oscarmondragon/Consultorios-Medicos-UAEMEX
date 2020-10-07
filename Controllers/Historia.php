@@ -43,7 +43,48 @@
         }
        
      }
+     public function getHistoriasClinicas()
+     {
+         $count = 0;
+         $dataFilter = null;
+         $data = $this->model->getHistoriasClinicas($_POST["filter"]);
+         if(is_array($data)){
+             $array = $data["results"];
+             foreach ($array as $key => $value) {
+                 $dataUser = json_encode($array[$count]);
+                 if($value["id_paciente"] == 0){
+                     $value["id_paciente"] = "Sin asociar";
+                 }
+                 $dataFilter.= "<tr>".
+                     "<td>".$value["id_historial_clinico"]."</td>".
+                     "<td>".$value["num_expediente"]."</td>".
+                     "<td>".$value["id_paciente"]."</td>".
+                     "<td>".$value["nombre_hc"]."</td>".
+                     "<td>".$value["apPaterno_hc"]."</td>".
+                     "<td>".$value["apMaterno_hc"]."</td>".
+                     "<td>".$value["des_centro_costos"]."</td>".
+                     "<td>".$value["tipo"]."</td>".
+                     "<td>".
+                     "<a  href= '#modalNHistoria'  onclick='mostrarConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Detalles</a>".
+                     "</td>".
 
+                     /* "<td>".
+                     "<a  href= '#modal'  class='btn 
+                     btn-success modal-trigger'>Editar</a> |".
+                     
+                     "<a href= '#modal1' onclick='dataPaciente(".$dataUser.")'  class='btn red lighten-1'>Eliminar</a>".
+                     "</td>". */
+                 "</tr>";
+                 $count++;
+             }
+            echo $dataFilter;
+         //    echo $data["results"][0]['id_centro_costos'] ;
+         } else {
+             echo $data;
+         }
+        
+      }
+ 
      function registrarHistoria(){
 
 
@@ -51,7 +92,20 @@
         $identificadorUaem = 0;
 
         //generamos el numero de expediente
+        /* $expediente = "EXP-";
+        $nombre = $_POST["nombre_hc"];
+        $paterno = $_POST["apPaterno_hc"];
+        $materno = $_POST["apMaterno_hc"];
+        //obtenemos el ultimo id insertado en historia clinica
+        $dataId = $this->model->ultimoIdHistoria();
+        $lastId = $dataId["results"];
+        $ultimoID= $lastId[0][id] + 1;
+        $numeroExpediente =$expediente.$nombre[0].$paterno[0].$materno[0].$ultimoID;  */
         $numeroExpediente = 1;
+        //echo $numeroExpediente;
+        
+        
+
         //array para historia clinica
         $array = array(
            $_POST["id_paciente"],

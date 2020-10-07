@@ -477,6 +477,15 @@ var getPacientesC = () => {
 
 }
 
+// llama metodo para filtrar historias clinicas
+var getHistoriasClinicas = () => {
+    
+    let valor = document.getElementById("filtrarHistoriaClinica").value;
+
+    historiasClinicas.getHistoriasClinicas(valor);
+
+}
+
 /*Entra a la pagina de reportes*/
 var getReportes = () => {
     //alert("estamos en la pagina de reportes PRINCIPAL");
@@ -610,8 +619,11 @@ $().ready(() => {
         case PATHNAME + "Consultas/consultas":
             getPacientesC();
             break;
-            case PATHNAME + "Historia/historia":
-            getPacientesC();
+        case PATHNAME + "Historia/historia":
+            getHistoriasClinicas();
+            break;
+        case PATHNAME + "Descargables/descargables":
+            
             break;
         case PATHNAME + "Reportes/reportes":
             getReportes();
