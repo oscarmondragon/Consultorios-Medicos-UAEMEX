@@ -366,19 +366,19 @@
             processData: false,
             type: "POST",
             success: (response) => {
-                if (response == 0) {
+                if (response > 0) {
                     this.vaciarFormularioConsulta();
                     Swal.fire({
                         icon: 'success',
                         title: 'Registro exitoso.',
-                        text: ""
+                        text: "Consulta número: " + response
                     });
                     getPacientesC();
-                } else {
+                } else  {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: response
+                        text:  "Error: " + response
                     });
                 }
 

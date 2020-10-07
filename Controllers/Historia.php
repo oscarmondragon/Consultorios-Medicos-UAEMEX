@@ -24,7 +24,6 @@
             foreach ($array as $key => $value) {
                 $dataUser = json_encode($array[$count]);
                 $dataFilter.= "<tr>".
-                    "<td>".$value["id_paciente"]."</td>".
                     "<td>".$value["nombre_pac"]."</td>".
                     "<td>".$value["apPaterno_pac"]."</td>".
                     "<td>".$value["apMaterno_pac"]."</td>".
