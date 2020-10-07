@@ -100,7 +100,7 @@ footer.footerC {
     }
     .container2 {
         width: 76%;
-        margin: -400px 290px 0px;
+        margin: -450px 290px 0px;
     }
 }
 
@@ -114,3 +114,20 @@ footer.footerC {
 
 }
 
+/*Creates table with scrollable tbody*/
+tbody {
+    display:block;
+    height:600px;
+    overflow:auto;
+  }
+  thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+  }
+  thead {
+    width: calc( 100% - 1em )
+  }
+  table {
+    width:100%;
+  }

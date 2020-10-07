@@ -256,10 +256,11 @@ function getConsultasDatos(){
                                 $dataPoblacion = 1;
                             }
                     }    
-                    echo 0;
+                   
+                    echo $idConsulta;
                 }
         } else{
-            echo $dataConsulta;
+            echo dataConsulta;
         }
      }
 
@@ -328,15 +329,15 @@ function getConsultasDatos(){
         $pdf->SetMargins(20, 20 , 20);
         $pdf->AddPage('L');    
         $pdf->SetFont('Arial','B',14);
-        // Título
+        // Tï¿½tulo
         $pdf->Cell(30,10,utf8_decode('Reporte semanal de consultas de '.$nombre_consultorio));
-        // Salto de línea
+        // Salto de lï¿½nea
         $pdf->Ln(20);
         $pdf->SetFont('Arial','B',12);    
         $pdf->SetFillColor(2,157,116);//Fondo verde de celda
         //$pdf->SetTextColor(240, 255, 240); //Letra color blanco
         $pdf->Cell(18,7, "Edad",1 );
-        $pdf->Cell(160,7, "Tipo de Atención",1 );
+        $pdf->Cell(160,7, "Tipo de Atenciï¿½n",1 );
         $pdf->Cell(50,7, "Paciente de Riesgo",1);
         // $pdf->Cell(90,7, "Diagnostico");
         $pdf->Cell(30,7, "Fecha",1);
@@ -372,7 +373,7 @@ function getConsultasDatos(){
             $longitud = strlen($dataFilter);
             // $dataFilter .= "<tr><td>longitud".$longitud."::</td></tr>";
             if($longitud == 0){
-                $dataFilter .= "<tr><td>No existen consultas con tu criterio de búsqueda</td></tr>";
+                $dataFilter .= "<tr><td>No existen consultas con tu criterio de bï¿½squeda</td></tr>";
                 echo $dataFilter;
             }else{
                 $pdf->SetFont('Arial','B',14);
