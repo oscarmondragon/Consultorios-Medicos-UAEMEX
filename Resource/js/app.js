@@ -603,9 +603,11 @@ var mostrarConsulta = (data) => {
       document.getElementById("paternoHis").value = data.apPaterno_hc;
       document.getElementById("maternoHis").value = data.apMaterno_hc;
       document.getElementById("fechaNacHis").value = data.fecNac_hc;
-      if(data.otro_sexo_hc != "" || data.otro_sexo_hc != null){
+      if(data.otro_sexo_hc == "null"){
+        document.getElementById("otro_sexo").value = "";
+        
+      } else {
         document.getElementById("otro_sexo").value = data.otro_sexo_hc;
-      
       }
       
       document.getElementById("domicilio").value = data.domicilio;

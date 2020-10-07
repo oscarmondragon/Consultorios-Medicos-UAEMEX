@@ -58,6 +58,7 @@ userData(URLactual){
                 document.getElementById('menuNavbar1').style.display = 'block';
                 document.getElementById('menuNavbar2').style.display = 'block';
 
+
                 document.getElementById("name1").innerHTML = user.nombre_usr + " " + user.apPaterno_usr + " " + user.apMaterno_usr;
                 document.getElementById("consultorio1").innerHTML = user.nombre_consultorio;
                 document.getElementById("role1").innerHTML = user.tipoUsuario;
@@ -68,7 +69,16 @@ userData(URLactual){
 
                // document.getElementById("messageBienvenida").innerHTML = "Bienvenid@ " + "<strong>" +user.nombre_usr + "</strong> al Sistema de Control de Consultorios UAEM";
                 
-               
+               if(user.is_admin == 0){
+                document.getElementById('enlace6').style.display = 'none';
+                document.getElementById('is_admin').style.display = 'none';
+
+               } else if(user.is_admin == 1){
+                document.getElementById('enlace6').style.display = 'block';
+                document.getElementById('is_admin').style.display = 'none';
+
+               }
+
 
             }
 

@@ -93,7 +93,7 @@ class QueryManager {
     function selectDatosUsuario($where,$param){
         try {
             $where = $where ?? "";
-            $query = "SELECT usuario.id_usr,usuario.nombre_usr,usuario.apPaterno_usr,usuario.apMaterno_usr,consultorios.id_consultorio, consultorios.nombre_consultorio, tipo_usuario.descripcion FROM usuario,usuario_consultorio,consultorios,tipo_usuario".$where;
+            $query = "SELECT usuario.id_usr,usuario.nombre_usr,usuario.apPaterno_usr,usuario.apMaterno_usr, usuario.is_admin,consultorios.id_consultorio, consultorios.nombre_consultorio, tipo_usuario.descripcion FROM usuario,usuario_consultorio,consultorios,tipo_usuario".$where;
             $sth = $this->pdo->prepare($query);
             $sth->execute($param);    
             $response = $sth->fetchAll(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   
