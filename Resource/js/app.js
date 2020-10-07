@@ -354,7 +354,16 @@ $(function () {
 
         //mandamos los datos al metodo registrarHistoria de HistoriasClinicas.js
       
-        if (nombreHis != "" ) {
+        if (nombreHis != "" && paternoHis != "" && maternoHis != "" && fechaNacHis != "" && sexoHis != "Elige una opción" &&
+            otro_sexo_his != "" && tipoPacienteHis != "Elige una opción" && centroCostHis != "Elige una opción" && domicilio != "" && 
+            nombreTutor != "" && parentescoTutor != "" && nombreEmergencia != "" && telefonoEmergencia != "" && parentescoEmergencia != "" && 
+            anteHFaMiliares != "" && anteNoPatologicos != "" && antePatologicos != "" &&  anteGinecoObste != "" && padecimientoActual != "" && 
+            cardiovascular != "" &&  respiratorio != "" && gastrointestinal != "" && genitourinario != "" && hematicoLinfatico != "" && 
+            endocrino != "" && nervioso != "" && musculoesqueletico != "" && pielMucosa != "" && fcardiacaHis != "" && frespiratoriaHis
+            != "" && temperaturaHis != "" && tarterialHis != "" && saturacionHis != "" &&  pesoHis != "" && tallaHis != "" &&  habitus != "" && 
+            cabeza != "" &&  cuello != "" && torax != "" && abdomen != "" && genitales != "" && extremidades != "" && piel != "" && 
+            resultadosLab != "" &&  diagnosticos != "" &&  pronostico != ""
+        ) {
            
             //validar que inserten referenciado
             historiasClinicas.registrarHistoria(idPaciente, idConsultorioHis, fechaHistoria, horaHistoria, nombreHis, paternoHis,
@@ -370,7 +379,7 @@ $(function () {
         } else {
             Swal.fire({
                 icon: 'error',
-                text: 'Completa todos los campos obligatorios!',
+                text: 'Todos los campos son obligatorios. Por favor completalos!',
 
             })
         }
@@ -574,6 +583,92 @@ var mostrarConsulta = (data) => {
     }
     document.getElementById("lugarreferencia").value = data.lugar_referencia;
     document.getElementById("observaciones").value = data.observaciones;
+
+}
+
+//metodo que muestra los detalles de una historia clinica
+ var mostrarDetallesHistoria = (data) => {
+    historiasClinicas.vaciarFormulario();
+    historiasClinicas.restablecerHistoriaClinica();
+    //Se borra el boton del fromulario(REGISTRO)
+    let cambiaBoton = document.getElementById('btnNuevaHistoria');
+    if (cambiaBoton != null) {
+        /*Oculta el botón del formulario*/
+        cambiaBoton.style.visibility = 'hidden';
+    }
+    //ocultar tabla de sugerencias
+    $("#tableSugerencias").css("display", "none");
+    //document.getElementById("frecCardiaca").value = data.frecuencia_cardiaca;
+    document.getElementById("nombreHis").value = data.nombre_hc;
+      document.getElementById("paternoHis").value = data.apPaterno_hc;
+      document.getElementById("maternoHis").value = data.apMaterno_hc;
+      document.getElementById("fechaNacHis").value = data.fecNac_hc;
+      if(data.otro_sexo_hc != "" || data.otro_sexo_hc != null){
+        document.getElementById("otro_sexo").value = data.otro_sexo_hc;
+      
+      }
+      
+      document.getElementById("domicilio").value = data.domicilio;
+      document.getElementById("nombrePadre").value = data.nombre_padre_tutor;
+      document.getElementById("parentesto").value = data.parentesco;
+      //En caso de emergencias
+      document.getElementById("nombreEmergencia").value = data.contacto_emergencia;
+      document.getElementById("telefonoEmergencia").value = data.tel_contacto_emergencia;
+      document.getElementById("parentescoEmergencia").value = data.parentesco_contacto_emergencia;
+
+      document.getElementById("anteHFaMiliares").value = data.ant_heredo_familiares;
+      document.getElementById("anteNoPatologicos").value = data.ant_personalesNO_pat;
+      document.getElementById("antePatologicos").value = data.ant_pesonales_pat;
+      document.getElementById("anteGinecoObste").value = data.ant_gineco_obs;
+      document.getElementById("padecimientoActual").value = data.padecimiento_actual;
+      //interrogatorio por aparatos y sistemas
+      document.getElementById("cardiovascular").value = data.ipas_cardiovascular;
+      document.getElementById("respiratorio").value = data.ipas_respiratorio;
+      document.getElementById("gastrointestinal").value = data.ipas_gastrointestinal;
+      document.getElementById("genitourinario").value = data.ipas_genitourinario;
+      document.getElementById("hematicoLinfatico").value = data.ipas_hematico_linfatico;
+      document.getElementById("endocrino").value = data.ipas_endocrino;
+      document.getElementById("nervioso").value = data.ipas_nervioso;
+      document.getElementById("musculoesqueletico").value = data.ipas_musculoesqueletico;
+      document.getElementById("pielMucosa").value = data.ipas_piel_mucosas;
+      //signos vitales
+      document.getElementById("frecCardiacaHis").value = data.fc;
+      document.getElementById("frecRespiratoriaHis").value = data.fr;
+      document.getElementById("temperaturaHis").value = data.temperatura;
+      document.getElementById("tarterialHis").value = data.ta;
+      document.getElementById("saturacionHis").value = data.saturacion;
+      document.getElementById("tallaHis").value = data.talla;
+      document.getElementById("pesoHis").value = data.peso;
+      //exploracion fisica
+      document.getElementById("habitus").value = data.ef_habitus_ext;
+      document.getElementById("cabeza").value = data.ef_cabeza;
+      document.getElementById("cuello").value = data.ef_cuello;
+      document.getElementById("torax").value = data.ef_torax;
+      document.getElementById("abdomen").value = data.ef_abdomen;
+      document.getElementById("genitales").value = data.ef_genitales;
+      document.getElementById("extremidades").value = data.ef_extremidades;
+      document.getElementById("piel").value = data.ef_piel;
+//resultados previos
+document.getElementById("resultadosLab").value = data.resultados;
+//diagnosticos
+document.getElementById("diagnosticos").value = data.diagnostico;
+//pronostico
+document.getElementById("pronostico").value = data.pronostico;
+
+let sexoId = 0;
+if(data.sexo_hc == "Mujer"){
+    sexoId = 1;
+} else if(data.sexo_hc == "Hombre"){
+    sexoId = 2;
+} else if(data.sexo_hc == "Otro"){
+    sexoId = 3;
+}
+
+      $('#sexo').prop('selectedIndex',sexoId);
+      $('#centroCostoHis').prop('selectedIndex',data.id_centro_costos);
+      $('#tipoPacienteHis').prop('selectedIndex',data.tipo_paciente);
+
+
 
 }
 

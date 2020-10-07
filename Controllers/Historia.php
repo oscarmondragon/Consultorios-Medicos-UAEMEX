@@ -65,7 +65,7 @@
                      "<td>".$value["des_centro_costos"]."</td>".
                      "<td>".$value["tipo"]."</td>".
                      "<td>".
-                     "<a  href= '#modalNHistoria'  onclick='mostrarConsulta(".$dataUser.")' class='btn btn-success modal-trigger'>Detalles</a>".
+                     "<a  href= '#modalNHistoria'  onclick='mostrarDetallesHistoria(".$dataUser.")' class='btn btn-success modal-trigger'>Detalles</a>".
                      "</td>".
 
                      /* "<td>".
@@ -92,20 +92,18 @@
         $identificadorUaem = 0;
 
         //generamos el numero de expediente
-        /* $expediente = "EXP-";
+        $expediente = "EXP-";
         $nombre = $_POST["nombre_hc"];
         $paterno = $_POST["apPaterno_hc"];
         $materno = $_POST["apMaterno_hc"];
         //obtenemos el ultimo id insertado en historia clinica
         $dataId = $this->model->ultimoIdHistoria();
         $lastId = $dataId["results"];
-        $ultimoID= $lastId[0][id] + 1;
-        $numeroExpediente =$expediente.$nombre[0].$paterno[0].$materno[0].$ultimoID;  */
-        $numeroExpediente = 1;
+        $ultimoID= $lastId[0]["id"] + 1;
+        $numeroExpediente =$expediente.$nombre[0].$paterno[0].$materno[0].$ultimoID;  
+        //$numeroExpediente = 1;
         //echo $numeroExpediente;
-        
-        
-
+    
         //array para historia clinica
         $array = array(
            $_POST["id_paciente"],

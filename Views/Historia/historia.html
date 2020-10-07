@@ -85,7 +85,7 @@
                 <label class="error" for="maternoHis">Apellido Materno</label>
               </div>
               <div class="input-field col s6">
-                <input placeholder="Fecha de nacimiento" name="fechaNacHis" id="fechaNacHis" type="date" class="validate" onkeyup="getCoincidenciasPac()"
+                <input placeholder="Fecha de nacimiento" name="fechaNacHis" id="fechaNacHis" type="date" class="validate" onchange="getCoincidenciasPac()"
                   required />
                 <label class="error" for="fechaNacHis">Fecha de nacimiento</label>
               </div>
@@ -334,7 +334,7 @@
             </div>
             <div id="tableSugerencias" class="input-field col s12">
               <input  name="idPacienteRelacionado" id="idPacienteRelacionado" type="hidden" value="0" />
-              <h6>Probablemente seas uno de ellos</h6>
+              <h6>Sugerencias de pacientes registrados:</h6>
             <table  class="table">
               <thead>
                 <tr>

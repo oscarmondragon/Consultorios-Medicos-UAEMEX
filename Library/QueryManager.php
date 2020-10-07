@@ -53,7 +53,16 @@ class QueryManager {
     function selectHistoriasClinicas($where,$param){
         try {
             $where = $where ?? "";
-            $query = "SELECT his.id_historial_clinico,his.num_expediente, his.id_paciente,his.nombre_hc,his.apPaterno_hc, his.apMaterno_hc,(select des_centro_costos FROM centro_costos centro where his.id_centro_costos = centro.id_centro_costos) AS des_centro_costos,
+            $query = "SELECT his.id_historial_clinico, his.id_paciente,his.unidad_medica,his.num_expediente,his.nombre_hc,his.apPaterno_hc, his.apMaterno_hc, his.fecNac_hc,
+            his.sexo_hc, his.otro_sexo_hc, his.tipo_paciente, his.id_centro_costos, his.domicilio,
+            his.nombre_padre_tutor, his.parentesco, his.contacto_emergencia, his.tel_contacto_emergencia,
+            his.parentesco_contacto_emergencia, his.ant_heredo_familiares, his.ant_personalesNO_pat, his.ant_pesonales_pat,
+            his.ant_gineco_obs, his.padecimiento_actual, his.ipas_cardiovascular, his.ipas_respiratorio,
+            his.ipas_gastrointestinal, his.ipas_genitourinario, his.ipas_hematico_linfatico, his.ipas_endocrino,
+            his.ipas_nervioso, his.ipas_musculoesqueletico, his.ipas_piel_mucosas, his.fc, his.fr,
+            his.temperatura, his.ta, his.saturacion, his.peso, his.talla, his.ef_habitus_ext,
+            his.ef_cabeza, his.ef_cuello, his.ef_torax, his.ef_abdomen, his.ef_genitales, his.ef_extremidades,
+            his.ef_piel, his.resultados, his.diagnostico, his.pronostico, (select des_centro_costos FROM centro_costos centro where his.id_centro_costos = centro.id_centro_costos) AS des_centro_costos,
             (select tipo FROM tipo_paciente tipo_pac where his.tipo_paciente = tipo_pac.id_tipo_paciente) AS tipo FROM historial_clinico his".$where;
             $sth = $this->pdo->prepare($query);
             $sth->execute($param);    
