@@ -262,7 +262,7 @@ $(function () {
     });
     //BOTON DE REGISTRAR NUEVA HISTORIA CLINICA
     $("#btnNuevaHistoria").click(function () {
-        alert("registro nueva historia");
+       // alert("registro nueva historia");
 
         //obtenemos id del usuario a registrar la historia clinica
         let user = JSON.parse(localStorage.getItem("user"));
@@ -522,7 +522,7 @@ var getHistoriasClinicas = () => {
         var array = JSON.parse(id_pacPhist);
         //alert("filtrarHC":nombre:"+array.nombre_pac+":");
         if (id_pacPhist != null) {
-            alert("si contiene algo");
+           // alert("si contiene algo");
             var instance = M.Modal.getInstance($('#modalNHistoria'));
             instance.open();
             //inicializa valores de los combos
@@ -532,7 +532,7 @@ var getHistoriasClinicas = () => {
             var deshabilitaBusqueda = document.getElementById('fechaNacHis');
             if (deshabilitaBusqueda != null) {
                 deshabilitaBusqueda.removeEventListener("change", getCoincidenciasPac());
-                alert("se quito onchange");
+               // alert("se quito onchange");
             }
             //llena los cmapos de nombre, edad y el id_paciente de acuerdo al paciente
             //del que proviene lac reacion del historial
@@ -548,7 +548,8 @@ var getHistoriasClinicas = () => {
         }
         localStorage.removeItem("id_pacientePhistorial");
     } catch (error) {
-        alert(error);
+      //  alert(error);
+      console.log(error);
     }
 
 }
@@ -742,7 +743,7 @@ if(data.sexo_hc == "Mujer"){
 
 var abrirmodal = (data) => {
    // principal.linkPrincipal(URLactual);
-    alert("Abrir modal:" + data.id_paciente + ":");
+   // alert("Abrir modal:" + data.id_paciente + ":");
     localStorage.setItem("id_pacientePhistorial", JSON.stringify(data));
    // alert("variable:" + data + ":");
 

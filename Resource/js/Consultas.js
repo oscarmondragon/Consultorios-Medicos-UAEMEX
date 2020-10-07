@@ -371,7 +371,7 @@
                     Swal.fire({
                         icon: 'success',
                         title: 'Registro exitoso.',
-                        text: "Consulta número: " + response
+                        text: "Folio de consulta: " + response
                     });
                     getPacientesC();
                 } else  {

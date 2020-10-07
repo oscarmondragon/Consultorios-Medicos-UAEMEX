@@ -191,7 +191,7 @@ class HistoriasClinicas {
               title: 'Registro de historia clínica exitoso.',
               text: ""
             });
-            //getPacientes();
+            getHistoriasClinicas();
           } else {
             Swal.fire({
               icon: 'error',
@@ -206,7 +206,7 @@ class HistoriasClinicas {
   
     abrirmodal() {
         try {
-            alert("si");
+          //  alert("si");
             console.log("si entra ala funcion");
             var $myModal = $('#modalNHistoria');
             console.log("si entra ala funcion1.5");
@@ -215,7 +215,7 @@ class HistoriasClinicas {
             //principal.linkPrincipal(URLactual);
         } catch (error) {
             console.log(error);
-            alert("Error abrir modal en hc.js"+error);
+            //alert("Error abrir modal en hc.js"+error);
         }
     }
   
