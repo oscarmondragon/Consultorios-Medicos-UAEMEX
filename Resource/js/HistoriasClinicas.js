@@ -71,6 +71,7 @@ class HistoriasClinicas {
         }
       );
     }
+
     getHistoriasClinicas(valor) {
       valor = valor != null ? valor : "";
       $.post(
@@ -83,7 +84,32 @@ class HistoriasClinicas {
         }
       );
     }
-  
+
+    getCoincidenciasHistorialClinico(nombreH, paternoH, maternoH, fechaNacH) {
+        $.post(
+            URL + "Historia/getCoincidenciasHistorial", {
+            nombre: nombreH,
+            paterno: paternoH,
+            materno: maternoH,
+            fechaNac: fechaNacH
+        },
+            (response) => {
+                if (response != 0) {
+                    console.log("hay conicidencias");
+                    $("#tableSugerencias").css("display", "block");
+
+                    $("#registrosCHistorial").html(response);
+
+                } else {
+                    console.log("no hay conicidencias");
+                    $("#tableSugerencias").css("display", "none");
+
+                }
+
+            }
+        );
+    }
+
     registrarHistoria(idPaciente, idConsultorioHis, fechaHistoria, horaHistoria, nombreHis, paternoHis,
       maternoHis, fechaNacHis, sexoHis, otro_sexo_his, tipoPacienteHis, centroCostHis, domicilio, nombreTutor,
       parentescoTutor, nombreEmergencia, telefonoEmergencia, parentescoEmergencia, anteHFaMiliares,
@@ -175,8 +201,20 @@ class HistoriasClinicas {
       });
     }
   
-  
- 
+    abrirmodal() {
+        try {
+            alert("si");
+            console.log("si entra ala funcion");
+            var $myModal = $('#modalNHistoria');
+            console.log("si entra ala funcion1.5");
+            $('#modalNHistoria').modal();
+            console.log("si entra ala funcion2");
+            //principal.linkPrincipal(URLactual);
+        } catch (error) {
+            console.log(error);
+            alert(error);
+        }
+    }
   
     restablecerHistoriaClinica() {
      
@@ -186,7 +224,8 @@ class HistoriasClinicas {
   
   
     vaciarFormulario() {
-      var instance = M.Modal.getInstance($('#modalNHistoria'));
+        var instance = M.Modal.getInstance($('#modalNHistoria'));
+        
       instance.close();
        //DATOS DE LA historia clinica
       document.getElementById("nombreHis").value = "";

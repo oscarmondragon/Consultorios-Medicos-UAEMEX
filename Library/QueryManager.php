@@ -118,5 +118,38 @@ class QueryManager {
         //throw $th;
     }
     }
+
+
+     function selectCoincidenciasHistorial($where,$param){
+        try {
+            $where = $where ?? "";
+            $query = "SELECT pac.id_paciente,pac.nombre_pac,pac.apPaterno_pac, pac.apMaterno_pac,
+            pac.fecha_nacimiento_pac,pac.sexo_pac, pac.otro_sexo_pac, pac.tel_cel_pac,
+            pac.id_estado_civil,(select des_centro_costos FROM centro_costos centro where pac.id_centro_costos = centro.id_centro_costos) AS des_centro_costos,
+            (select tipo FROM tipo_paciente tipo_pac where pac.id_tipo_paciente = tipo_pac.id_tipo_paciente) AS tipo, pac.departamento FROM paciente pac".$where;
+            $sth = $this->pdo->prepare($query);
+            $sth->execute($param);    
+            $response = $sth->fetchAll(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   
+            return array("results" => $response);
+        } catch (PDOException $e) {
+            return $e->getMessage();
+            //throw $th;
+        }
+        $pdo = null; // cerrar la conexion
+    }
+
+       function Update($table,$set,$where){
+        try {
+
+            $query = "Update ".$table.$set.$where;
+            $sth = $this->pdo->prepare($query);
+            $sth->execute();
+            return true;
+        } catch (PDOException $e) {
+            //throw $th;
+            return $e->getMessage();
+        }
+        $pdo = null; // cerrar la conexion
+    }
 }
 ?>

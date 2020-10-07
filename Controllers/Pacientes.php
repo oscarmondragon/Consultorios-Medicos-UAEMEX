@@ -139,6 +139,11 @@ class Pacientes extends Controllers {
                 $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($otraPobRiesgo));
 
                  }
+                 //se verifica qeu no se cuente con un id de historial clinico, 
+                 //en caso contrario se alterna la columan en la tabla de historial con el id de paciente
+                 if($_POST["id_historial_clinico"] != null){
+                    $dataHistorialclinico = $this->model->registraIdPaciente($dataCon,$_POST["id_historial_clinico"]);               
+                 }
                    
                            
                 echo 0;
@@ -157,13 +162,37 @@ class Pacientes extends Controllers {
 
     public function getPacientes()
     {
+    $bandera = 0;
+        $id_paciente = "";
         $count = 0;
         $dataFilter = null;
         $data = $this->model->getPacientes($_POST["filter"]);
         if(is_array($data)){
             $array = $data["results"];
             foreach ($array as $key => $value) {
+                $id_paciente = $value["id_paciente"];
+                $dataBanderaHC = $this->model->getBanderaHistorial($id_paciente);
+                if(is_array($dataBanderaHC)){
+                    $bandera = 0;
+                    $array1 = $dataBanderaHC["results"];
+                    foreach ($array1 as $key1 => $valueBandera) {
+                       $bandera = $valueBandera["id_historial_clinico"].":resultado";
+                    }
+                }
                 $dataUser = json_encode($array[$count]);
+                if($bandera == 0){
+                    $dataFilter.= "<tr>".
+                    "<td>".$value["id_paciente"]."</td>".
+                    "<td>".$value["nombre_pac"]."</td>".
+                    "<td>".$value["apPaterno_pac"]."</td>".
+                    "<td>".$value["apMaterno_pac"]."</td>".
+                    "<td>".$value["des_centro_costos"]."</td>".
+                    "<td>".$value["tipo"]."</td>".
+                    "<td><a  href= 'http://localhost/consultorios/Historia/historia'  onclick='abrirmodal(".$value['id_paciente'].")' class='btn btn-success modal-trigger'>Agregar Historial Clínico</a></td>".                   
+                "</tr>";
+                    
+                }else{
+                
                 $dataFilter.= "<tr>".
                     "<td>".$value["id_paciente"]."</td>".
                     "<td>".$value["nombre_pac"]."</td>".
@@ -171,13 +200,9 @@ class Pacientes extends Controllers {
                     "<td>".$value["apMaterno_pac"]."</td>".
                     "<td>".$value["des_centro_costos"]."</td>".
                     "<td>".$value["tipo"]."</td>".
-                    /* "<td>".
-                    "<a  href= '#modal'  class='btn 
-                    btn-success modal-trigger'>Editar</a> |".
-                    
-                    "<a href= '#modal1' onclick='dataPaciente(".$dataUser.")'  class='btn red lighten-1'>Eliminar</a>".
-                    "</td>". */
+                    "<td>Historial Clínico completado</td>".                   
                 "</tr>";
+                }
                 $count++;
             }
            echo $dataFilter;

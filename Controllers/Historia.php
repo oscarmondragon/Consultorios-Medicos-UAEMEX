@@ -42,6 +42,39 @@
         }
        
      }
+
+     public function getCoincidenciasHistorial()
+    {
+        $count = 0;
+        $dataFilter = null;
+        $data = $this->model->getCoincidenciasHistorial($_POST["nombre"], $_POST["paterno"],
+        $_POST["materno"],$_POST["fechaNac"]);
+        if(is_array($data)){
+            $array = $data["results"];
+            foreach ($array as $key => $value) {
+                $dataUser = json_encode($array[$count]);
+                $dataFilter.= "<tr>".
+                   "<td>".$value["id_historial_clinico"]."</td>".
+                     "<td>".$value["num_expediente"]."</td>".
+                     "<td>".$value["id_paciente"]."</td>".
+                     "<td>".$value["nombre_hc"]."</td>".
+                     "<td>".$value["apPaterno_hc"]."</td>".
+                     "<td>".$value["apMaterno_hc"]."</td>".
+                     "<td>".$value["des_centro_costos"]."</td>".
+                    "<td>".
+                    "<a id='btnRelacionaHist' href= '#modalNPaciente'  onclick='relacionarHistorial(".$value['id_historial_clinico'].")' class='btn btn-success modal-trigger'>Relacionar Historial</a>".
+                    "</td>".
+                "</tr>";
+                $count++;
+            }
+           echo $dataFilter;
+        //    echo $data["results"][0]['id_centro_costos'] ;
+        } else {
+            echo 0; //envia 0 si no encuentra sugerenecias
+        }
+       
+     }
+
      public function getHistoriasClinicas()
      {
          $count = 0;

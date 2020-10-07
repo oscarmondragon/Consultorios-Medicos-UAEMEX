@@ -21,6 +21,9 @@ var sessionClose = () => {
 var restablecerPaciente = () => {
     pacientes.restablecerPaciente();
 }
+
+
+
 var restablecerHistoriaClinica = () => {
     historiasClinicas.restablecerHistoriaClinica();
 }
@@ -122,9 +125,12 @@ $(function () {
         let opoblacionRiesgo = document.getElementById("otraPoblacionRiesgoN").value;
         let otraMedicina = document.getElementById("ompreventivaN").value;
         let saturacion = document.getElementById("saturacionN").value;
-
-
-
+        /*solo en caso de que exista una relacion con algún historial clinico*/
+        
+        let id_historial = localStorage.getItem("id_historial_clinico");
+        console.log("id_HIST:" + id_historial);
+        //alert("id_HIST:" + localStorage.getItem("id_historial_clinico"));
+       // let id_historial = 2;
         //mandamos los datos al metod registrarPaciente de Paciente.js
         if (nombre != "" && paterno != "" && materno != "" && fechaNac != "" && telefonoCel != ""
             && sexo != "Elige una opción" && estadoCiv != "Elige una opción" && centroCost != "Elige una opción"
@@ -136,7 +142,7 @@ $(function () {
                 telefonoCel, estadoCiv, centroCost, tipoPaciente, nivelAcademico, departamento, fecha_alta_pac, userId,
                 edad, tipoAtencion, poblacionRiesgo, medicinaPreventiva, fcardiaca, frespiratoria, temperatura,
                 tarterial, talla, peso, descripcion, diagnostico, tratamiento, observaciones,
-                ambulancia, referenciado, lugarReferencia, horaConsulta, otraMedicina, opoblacionRiesgo, saturacion);
+                ambulancia, referenciado, lugarReferencia, horaConsulta, otraMedicina, opoblacionRiesgo, saturacion, id_historial);
 
             return false; //para evitar reenvio de formulario
         } else {
@@ -424,6 +430,23 @@ var relacionarPaciente = (data) => {
 
 }
 
+var relacionarHistorial = (id_historial_clinico) => {
+    console.log("RelacionarHistorial:" + id_historial_clinico);
+
+    /*Guarda el valor de id del historial para relacionarlo uan vez que se registre al paciente*/
+    localStorage.setItem("id_historial_clinico", id_historial_clinico);
+    var cambiaBoton = document.getElementById("btnRelacionaHist");
+    if (cambiaBoton != null) {
+        /*Oculta el botón del formulario*/
+        cambiaBoton.style.visibility = 'hidden';
+    }
+
+
+    
+    //document.getElementById("tableSugerencias").style.display = "none";
+
+}
+
 
 // llama metodo para filtrar pacientes
 var getPacientes = () => {
@@ -492,6 +515,15 @@ var getHistoriasClinicas = () => {
     let valor = document.getElementById("filtrarHistoriaClinica").value;
 
     historiasClinicas.getHistoriasClinicas(valor);
+
+    alert("filtrar");
+    let id_pacPhist = localStorage.getItem("id_pacientePhistorial");
+    if (id_pacPhist != null) {
+        alert("si contiene algo");
+        $('#modalHmodalNHistoria').modal({
+            show: 'false'
+        });
+    }
 
 }
 
@@ -682,7 +714,13 @@ if(data.sexo_hc == "Mujer"){
     lugarreferencia.disabled = true;*./
 });*/
 
-
+var abrirmodal = (id_paciente) => {
+   // principal.linkPrincipal(URLactual);
+    alert("1:" + id_paciente + ":");
+    localStorage.setItem("id_pacientePhistorial", id_paciente);
+    $("#modalNHistoria").css("display", "block");
+    historiasClinicas.abrirmodal();
+}
 
 
 
