@@ -61,7 +61,9 @@ class HistoriasClinicas {
           if(response != 0){
             $("#tableSugerencias").css("display", "block");
 
-            $("#resultCoincidencias").html(response);
+              $("#resultCoincidencias").html(response);
+          /*guardamos la coincidencia en el id de paciente*/
+              
           
           } else {
             $("#tableSugerencias").css("display", "none");
@@ -100,6 +102,9 @@ class HistoriasClinicas {
 
                     $("#registrosCHistorial").html(response);
 
+                    console.log("me regreso el id de paciente"+response);
+                    localStorage.setItem("id_historial_clinico", response);
+                    //document.getElementById("edadPacienteN").value = edad;
                 } else {
                     console.log("no hay conicidencias");
                     $("#tableSugerencias").css("display", "none");

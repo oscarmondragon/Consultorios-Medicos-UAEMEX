@@ -150,7 +150,8 @@
                         }
                     }
                 } catch (error) {
-                    //console.log(error);}
+                    //console.log(error);
+                }
             });
         /*Obtener datos de medicina preventiva*/
         $.post(URL + "Consultas/consultaMedicinaPreventiva",

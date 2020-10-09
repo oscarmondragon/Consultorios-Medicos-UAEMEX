@@ -434,12 +434,12 @@ var relacionarHistorial = (id_historial_clinico) => {
     //console.log("RelacionarHistorial:" + id_historial_clinico);
 
     /*Guarda el valor de id del historial para relacionarlo uan vez que se registre al paciente*/
-    localStorage.setItem("id_historial_clinico", id_historial_clinico);
-    var cambiaBoton = document.getElementById("btnRelacionaHist");
+   // localStorage.setItem("id_historial_clinico", id_historial_clinico);
+   /* var cambiaBoton = document.getElementById("btnRelacionaHist");
     if (cambiaBoton != null) {
-        /*Oculta el botón del formulario*/
+        //Oculta el botón del formulario
         cambiaBoton.style.visibility = 'hidden';
-    }
+    }*/
 
 
     
@@ -559,7 +559,7 @@ var getReportes = () => {
     //alert("estamos en la pagina de reportes PRINCIPAL");
     /*  console.log("LLEGUE");
       try{
-          consultas.getConsultorios();
+          cnsultas.getConsultorios();
           console.log("LLEGUE3");
       }catch(err){
           console.log(err);

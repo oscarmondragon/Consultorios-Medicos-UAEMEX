@@ -53,7 +53,7 @@
             $array = $data["results"];
             foreach ($array as $key => $value) {
                 $dataUser = json_encode($array[$count]);
-                $dataFilter.= "<tr>".
+                /* $dataFilter.= "<tr>".
                    "<td>".$value["id_historial_clinico"]."</td>".
                      "<td>".$value["num_expediente"]."</td>".
                      "<td>".$value["id_paciente"]."</td>".
@@ -64,7 +64,8 @@
                     "<td>".
                     "<a id='btnRelacionaHist' href= '#modalNPaciente'  onclick='relacionarHistorial(".$value['id_historial_clinico'].")' class='btn btn-success modal-trigger'>Relacionar Historial</a>".
                     "</td>".
-                "</tr>";
+                "</tr>";*/
+                $dataFilter.= $value["id_historial_clinico"];
                 $count++;
             }
            echo $dataFilter;
@@ -85,7 +86,7 @@
              foreach ($array as $key => $value) {
                  $dataUser = json_encode($array[$count]);
                  if($value["id_paciente"] == 0){
-                     $value["id_paciente"] = "Sin asociar";
+                     $value["id_paciente"] = "Sin consultas";
                  }
                  $dataFilter.= "<tr>".
                      "<td>".$value["id_historial_clinico"]."</td>".
