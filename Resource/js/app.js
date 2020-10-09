@@ -353,7 +353,7 @@ $(function () {
         //el idPaciente sera 0 si no tiene coincidencias con algun paciente registrado
        let idPaciente = document.getElementById("idPacienteRelacionado").value;
 
-       console.log("id de paciente::"+idPaciente+"::");
+       //console.log("id de paciente::"+idPaciente+"::");
 
 
        
@@ -370,7 +370,7 @@ $(function () {
             cabeza != "" &&  cuello != "" && torax != "" && abdomen != "" && genitales != "" && extremidades != "" && piel != "" && 
             resultadosLab != "" &&  diagnosticos != "" &&  pronostico != ""
         ) {
-            console.log("entre a if de registrohistorialapp.js" + idPaciente + "::");
+            //console.log("entre a if de registrohistorialapp.js" + idPaciente + "::");
             //validar que inserten referenciado
             historiasClinicas.registrarHistoria(idPaciente, idConsultorioHis, fechaHistoria, horaHistoria, nombreHis, paternoHis,
                 maternoHis, fechaNacHis, sexoHis, otro_sexo_his, tipoPacienteHis, centroCostHis, domicilio, nombreTutor,
@@ -431,7 +431,7 @@ var relacionarPaciente = (data) => {
 }
 
 var relacionarHistorial = (id_historial_clinico) => {
-    console.log("RelacionarHistorial:" + id_historial_clinico);
+    //console.log("RelacionarHistorial:" + id_historial_clinico);
 
     /*Guarda el valor de id del historial para relacionarlo uan vez que se registre al paciente*/
     localStorage.setItem("id_historial_clinico", id_historial_clinico);
@@ -549,7 +549,7 @@ var getHistoriasClinicas = () => {
         localStorage.removeItem("id_pacientePhistorial");
     } catch (error) {
       //  alert(error);
-      console.log(error);
+     // console.log(error);
     }
 
 }
@@ -616,11 +616,12 @@ var mostrarConsulta = (data) => {
     document.getElementById("edadPaciente").value = data.edad;
 
     /*Sellenan datos de consulta*/
-    //poblacion de riesgo
+   // document.getElementById("otraPoblacionRiesgo").value = data.;
     document.getElementById("frecCardiaca").value = data.frecuencia_cardiaca;
     document.getElementById("frecRespiratoria").value = data.frecuencia_respiratoria;
     document.getElementById("temperatura").value = data.temperatura;
     document.getElementById("tarterial").value = data.tension_arterial;
+    document.getElementById("saturacion").value = data.saturacion;
     document.getElementById("talla").value = data.talla;
     document.getElementById("peso").value = data.peso;
     document.getElementById("descripcion").value = data.descripcion;
@@ -629,15 +630,15 @@ var mostrarConsulta = (data) => {
     //trae datos para medicina preventiva, población de riesgo, tipo de atencion, otra medicina preventiva
     consultas.consultaAtencionRiesgoMedP(data.id_consulta, data.id_tipo_atencion);
     //ambulancia
-    if (data.ambulancia = 0) {
+    if (data.ambulancia == 0) {
         document.getElementById("ambulanciaNO").checked = true;
-    } else if (data.ambulancia = 1) {
+    } else if (data.ambulancia == 1) {
         document.getElementById("ambulanciaSI").checked = true;
     }
     //referenciado
-    if (data.referenciado = 0) {
+    if (data.referenciado == 0) {
         document.getElementById("noreferenciado").checked = true;
-    } else if (data.referenciado = 1) {
+    } else if (data.referenciado == 1) {
         document.getElementById("referenciado").checked = true;
     }
     document.getElementById("lugarreferencia").value = data.lugar_referencia;

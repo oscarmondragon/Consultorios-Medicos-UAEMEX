@@ -51,12 +51,12 @@
 
     getConsultorios() {
         let count = 1;
-        console.log("getconsultorios");
+        //console.log("getconsultorios");
         $.post(URL + "Consultas/getConsultorios",
             {}, (response) => {
                 try {
                     let item = JSON.parse(response);
-                    console.log("item");
+                    //console.log("item");
                     $("#selectConsultorio").prepend(
                         "<option value='0' disabled selected='selected'  >Elige una opción</option>"
                     );
@@ -82,7 +82,7 @@
             {}, (response) => {
                 try {
                     let item = JSON.parse(response);
-                    console.log("item");
+                    //console.log("item");
                     $("#consultasDatos").html(response);
 
                 } catch (error) { }
@@ -132,22 +132,25 @@
             { "id_consulta": id_consulta }, (response) => {
                 try {
                     item = JSON.parse(response);
-                   // alert("Población de riesgo longitud::" + item.results.length);
+                    //console.log("Población de riesgo longitud::" + response + "id_consulta:" + id_consulta);//
                     if (item.results.length > 0) {
                         for (let i = 0; i < item.results.length; i++) {
-                            //estamos obteniendo id de la población para el value                           
-                            if (item.results[i].id_poblacion_riesgo == 0) {
+                            //estamos obteniendo id de la población para el value    
+                            if (item.results[i].id_poblacion_riesgo == 0) {//otra_población de riesgo
+                                //console.log("otra población de riesgo(resultado):" + item.results[i].observaciones);//
+                                document.getElementById("otraPoblacionRiesgo").value = item.results[i].observaciones;
+                            }else if (item.results[i].id_poblacion_riesgo == 1) {//ninguna poblacion de riesgo
+                                //console.log("ninguna población(resultado):" + item.results[i].id_poblacion_riesgo);//
                                 document.getElementsByName("ninguna").item(value).checked = true;
-                            } else {
+                            } else {//elecciones de poblacion de riesgo
                                 value = item.results[i].id_poblacion_riesgo - 1;
+                                //console.log("Población de riesgo(value) " + value);//
                                 document.getElementsByName("poblacionRiesgo").item(value).checked = true;
                             }
-                            /*Se valida si el resultado es ninguna*/
-
-                            //falta validacion de cunado se elige otra población de riesgo(en proceso)
                         }
                     }
-                } catch (error) { }
+                } catch (error) {
+                    //console.log(error);}
             });
         /*Obtener datos de medicina preventiva*/
         $.post(URL + "Consultas/consultaMedicinaPreventiva",
@@ -405,12 +408,15 @@
         instance.close();
 
         // document.getElementById("tipoAtencion2").empty();
+        
         document.getElementById("nombrePaciente").value = "";
         document.getElementById("edadPaciente").value = "";
         document.getElementById("frecCardiaca").value = "";
+        document.getElementById("otraPoblacionRiesgo").value = "";
         document.getElementById("frecRespiratoria").value = "";
         document.getElementById("temperatura").value = "";
         document.getElementById("tarterial").value = "";
+        document.getElementById("saturacion").value = "";
         document.getElementById("talla").value = "";
         document.getElementById("peso").value = "";
         document.getElementById("descripcion").value = "";
@@ -484,7 +490,7 @@
                     });
                 }
             }catch(error){
-                console.log(error)
+                //console.log(error)
             }
             }
         });
