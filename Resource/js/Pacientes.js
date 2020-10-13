@@ -213,7 +213,7 @@ getTipoAtencion2N(padre) {
     data.append("otraPoblacion" , otraPoblacion);
       data.append("saturacion", saturacion);
       data.append("id_historial_clinico", id_historial_clinico);
-      console.log("id_HIST222:" + id_historial_clinico);
+      console.log("id_HIST_pacientes.js:" + id_historial_clinico);
      // alert("id_HIST222:" + id_historial_clinico);
     $.ajax({
       url: URL + "Pacientes/registrarPaciente",

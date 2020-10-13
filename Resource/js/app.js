@@ -128,7 +128,7 @@ $(function () {
         /*solo en caso de que exista una relacion con algún historial clinico*/
         
         let id_historial = localStorage.getItem("id_historial_clinico");
-        //console.log("id_HIST:" + id_historial);
+       // console.log("id_historial_clinico_relacionar:" + id_historial);
         //alert("id_HIST:" + localStorage.getItem("id_historial_clinico"));
        // let id_historial = 2;
         //mandamos los datos al metod registrarPaciente de Paciente.js
@@ -246,6 +246,10 @@ $(function () {
          //console.log("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
 
         //mandamos los datos al metodo Reportes
+
+        if (id_consultorio == 0) {
+            console.log("eligio todos los consultorios");
+        }
         
          if ((id_consultorio != 0 || id_conusltorio != null) && (fechaRango != 0 || fechaRango != null)) {
              //console.log("aqui todo bien");
@@ -394,7 +398,7 @@ $(function () {
 });
 
 //inicializar Select consultas y select semanas para el reporte*/
-
+//Boton de reportes
 var iniciaConsultoriosSemanas = () => {
    // alert("Inicializamos select");
     consultas.getConsultorios();

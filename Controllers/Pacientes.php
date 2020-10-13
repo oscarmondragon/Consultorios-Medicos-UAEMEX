@@ -50,6 +50,7 @@ class Pacientes extends Controllers {
             $_POST["id_usuario_consultorio"]
          );
          
+         $nombre =  $_POST["nombre_pac"]." ".$_POST["apPaterno_pac"]." ".$_POST["apMaterno_pac"];
          //llamamos metodo para registrar paciente
          $data = $this->model->registroPaciente($this->pacienteClass($array));
 
@@ -64,23 +65,23 @@ class Pacientes extends Controllers {
             }  else {
               
                   //array para dar alta consulta
-          $arrayConsulta = array(
-            $dataCon,
-            $_POST["edad"],$_POST["id_tipo_atencion"],
-            $_POST["frecuencia_cardiaca"],$_POST["frecuencia_respiratoria"],
-            $_POST["temperatura"],$_POST["tension_arterial"],
-            $_POST["saturacion"],
-            $_POST["talla"],$_POST["peso"],
-            $_POST["descripcion"],$_POST["diagnostico"],
-            $_POST["tratamiento"],$_POST["ambulancia"],
-            $_POST["referenciado"],$_POST["observaciones"],
-            $_POST["lugar_referencia"],$_POST["fecha_consulta"],
-            $_POST["hora_consulta"],$_POST["id_medico"]
+                $arrayConsulta = array(
+                $dataCon,
+                $_POST["edad"],$_POST["id_tipo_atencion"],
+                $_POST["frecuencia_cardiaca"],$_POST["frecuencia_respiratoria"],
+                $_POST["temperatura"],$_POST["tension_arterial"],
+                $_POST["saturacion"],
+                $_POST["talla"],$_POST["peso"],
+                $_POST["descripcion"],$_POST["diagnostico"],
+                $_POST["tratamiento"],$_POST["ambulancia"],
+                $_POST["referenciado"],$_POST["observaciones"],
+                $_POST["lugar_referencia"],$_POST["fecha_consulta"],
+                $_POST["hora_consulta"],$_POST["id_medico"]
 
-         ); 
-             $dataConsulta = $this->model->registroConsulta($this->consultaClass($arrayConsulta));
+                 ); 
+                $dataConsulta = $this->model->registroConsulta($this->consultaClass($arrayConsulta));
              
-             if($dataConsulta== 0){ // indica que se inserto el paciente y la consulta, falta poblacion_riesgo y medicina_prev
+                if($dataConsulta== 0){ // indica que se inserto el paciente y la consulta, falta poblacion_riesgo y medicina_prev
                     //enviamos arreglo de consulta, nos devuelve el id_consulta
                         $idConsulta = $this->model->obtenerIdConsulta($this->consultaClass($arrayConsulta)); 
                         if($idConsulta===0){ // si es igual a 0 no se encontro el id usuario
@@ -146,7 +147,9 @@ class Pacientes extends Controllers {
                  }
                    
                          /*Eviamos el id de consulta*/  
-                echo "Folio de consulta : ".$idConsulta;
+                echo "Folio de consulta : ".$idConsulta."\n Se ha vinculado al paciente ".
+                $nombre." con el historial clinico registrado previamente con el nombre, apellidos y fecha de nacimiento".
+                "  registrada en esta consulta. Si no es l misma persona, favor de ponerse en contacto con el administrador." ;
                       
              }
              } else{

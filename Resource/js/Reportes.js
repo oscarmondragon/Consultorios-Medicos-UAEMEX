@@ -7,7 +7,7 @@
     /*Obtiene consultorios*/
 
     getConsultorios() {
-        let count = 1;
+        let count = 2;
         //console.log("getconsultorios Reportes.js");
         $.post(URL + "Consultas/getConsultorios",
             {}, (response) => {
@@ -15,11 +15,18 @@
                     let item = JSON.parse(response);
                    // console.log("item".item);
                     $("#selectConsultorio").prepend(
-                        "<option value='0' disabled selected='selected'  >Elige una opción</option>"
+                        "<option value='0' disabled selected='selected'  >Elige una opción...</option>"
                     );
                     if (item.results.length > 0) {
+                        //añadimos la opcion de reportar consultas en todos los consultorios
+                        document.getElementById("selectConsultorio").options[1] = new Option(
+                            "Todos los consultorios",
+                            1
+                        );
+                        $("select").formSelect();
+
                         //estamos obteniendo datos
-                        for (let i = 0; i < item.results.length; i++) {
+                        for (let i = 1; i < item.results.length; i++) {
                             document.getElementById("selectConsultorio").options[count] = new Option(
                                 item.results[i].nombre_consultorio,
                                 item.results[i].id_consultorio
@@ -47,10 +54,10 @@
 
         var fechaActual = new Date();
         do {
-            fechaInicio = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+            fechaInicio = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 
             d.setDate(d.getDate() + 6);
-            fechaFin = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+            fechaFin = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
 
 
             document.getElementById("selectRango").options[count] = new Option(
