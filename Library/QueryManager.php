@@ -35,10 +35,11 @@ class QueryManager {
     function selectPacientes($where,$param){
         try {
             $where = $where ?? "";
-            $query = "SELECT pac.id_paciente,pac.nombre_pac,pac.apPaterno_pac, pac.apMaterno_pac,
+             $query = "SELECT pac.id_paciente,pac.nombre_pac,pac.apPaterno_pac, pac.apMaterno_pac,
             pac.fecha_nacimiento_pac,pac.sexo_pac, pac.otro_sexo_pac, pac.tel_cel_pac,
             pac.id_estado_civil,(select des_centro_costos FROM centro_costos centro where pac.id_centro_costos = centro.id_centro_costos) AS des_centro_costos,
-            (select tipo FROM tipo_paciente tipo_pac where pac.id_tipo_paciente = tipo_pac.id_tipo_paciente) AS tipo, pac.departamento FROM paciente pac".$where;
+            (select tipo FROM tipo_paciente tipo_pac where pac.id_tipo_paciente = tipo_pac.id_tipo_paciente) AS tipo, pac.departamento FROM paciente pac".$where; 
+         //    $query = "SELECT id_paciente FROM paciente".$where;
             $sth = $this->pdo->prepare($query);
             $sth->execute($param);    
             $response = $sth->fetchAll(PDO::FETCH_ASSOC); // ARREGLO DE LOS ELEMENTOS QUE OBTENEMOS DE LA TABLA   

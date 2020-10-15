@@ -2,7 +2,10 @@
 class Controllers extends Anonymous
 {
     public function __construct() {
-        Session::start();
+        $sessionHeader = [
+            'cookie_httponly' => true
+        ];
+        Session::start($sessionHeader);
         $this->view = new Views();
         $this->loadClassmodels();
     }

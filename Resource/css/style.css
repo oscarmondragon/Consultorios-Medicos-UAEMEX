@@ -117,7 +117,7 @@ footer.footerC {
 /*Creates table with scrollable tbody*/
 tbody {
     display:block;
-    height:600px;
+    height:300px;
     overflow:auto;
   }
   thead, tbody tr {

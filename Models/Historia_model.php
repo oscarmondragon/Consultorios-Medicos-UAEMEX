@@ -6,7 +6,7 @@ class Historia_model extends Conexion{
     
     function getCoincidenciasPac($nombre, $paterno,$materno, $fechaNac){
         $where = " WHERE nombre_pac = :nombre_pac AND apPaterno_pac = :apPaterno_pac 
-        AND apMaterno_pac = :apMaterno_pac AND fecha_nacimiento_pac = :fecha_nacimiento_pac";
+        AND apMaterno_pac = :apMaterno_pac AND fecha_nacimiento_pac = :fecha_nacimiento_pac LIMIT 1";
         $array = array(
             'nombre_pac' => $nombre,
             'apPaterno_pac' => $paterno,
@@ -15,6 +15,23 @@ class Historia_model extends Conexion{
         );
 
         return $this->db->selectPacientes($where,$array);
+
+        
+        //   if(is_array($response)){
+        //      $response = $response['results'];
+        //      if(count($response)===0){
+        //          return 0;
+        //      } else {
+        //         $idPaciente= $response[0]["id_paciente"];
+           
+        //         return $idPaciente;
+        //      }
+
+        //  } else {
+        //      return 0; // no se encontro el paciente
+        //  } 
+
+       
 
     }
 

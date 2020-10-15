@@ -58,16 +58,21 @@ class HistoriasClinicas {
         fechaNac: fechaNacPersona
       },
         (response) => {
-          if(response != 0){
-            $("#tableSugerencias").css("display", "block");
 
-              $("#resultCoincidencias").html(response);
+          if(response != 0){
+            //$("#tableSugerencias").css("display", "block");
+            $("#tableSugerencias").css("display", "none");
+
+           //   $("#resultCoincidencias").html(response);
           /*guardamos la coincidencia en el id de paciente*/
-              
+          document.getElementById("idPacienteRelacionado").value = response; 
+
+        //  console.log("Sin encontro coincidencias:" + response);
           
           } else {
             $("#tableSugerencias").css("display", "none");
-
+            document.getElementById("idPacienteRelacionado").value = 0; 
+           // console.log("No encontro coincidencias");
           }
          
         }
@@ -177,7 +182,7 @@ class HistoriasClinicas {
       data.append("pronostico" , pronostico);
         data.append("id_usuario_consultorio", userId);
 
-        console.log(data);
+       // console.log(data);
 
       $.ajax({
         url: URL + "Historia/registrarHistoria",
@@ -187,14 +192,24 @@ class HistoriasClinicas {
         processData: false,
         type: "POST",
         success: (response) => {
+  console.log(idPaciente);
+  console.log(response);
   
-  
-          if (response == 0) {
+          if (response == 0 && idPaciente == 0) {
             this.vaciarFormulario();
             Swal.fire({
               icon: 'success',
               title: 'Registro de historia clínica exitoso.',
               text: ""
+            });
+            getHistoriasClinicas();
+          } else if(response == 0 && idPaciente != 0) {
+            this.vaciarFormulario();
+            Swal.fire({
+              icon: 'success',
+              title: 'Registro de historia clínica exitoso.',
+              text: 'Se ha vinculado la historia clínica de ' +  nombreHis + " " + paternoHis + " " + maternoHis +
+              ' con el paciente registrado previamente con el nombre, apellidos y fecha de nacimiento registrada en esta historis clínica. Si no es l misma persona, favor de ponerse en contacto con el administrador.'
             });
             getHistoriasClinicas();
           } else {

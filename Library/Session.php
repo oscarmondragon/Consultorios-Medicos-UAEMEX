@@ -1,8 +1,8 @@
 <?php
 class Session {
     
-    static function start(){
-        @session_start();
+    static function start($params){
+        @session_start($params);
 
     }
     static function getSession($name){

@@ -355,6 +355,7 @@ $(function () {
         let pronostico = document.getElementById("pronostico").value;
 
         //el idPaciente sera 0 si no tiene coincidencias con algun paciente registrado
+    
        let idPaciente = document.getElementById("idPacienteRelacionado").value;
 
        //console.log("id de paciente::"+idPaciente+"::");
@@ -424,12 +425,7 @@ var getCoincidenciasPac = () => {
 
 var relacionarPaciente = (data) => { 
     
-    document.getElementById("idPacienteRelacionado").value = data.id_paciente;  
-    Swal.fire({
-        icon: 'success',
-        title: 'Relación exitosa.',
-        text: ""
-    });
+    document.getElementById("idPacienteRelacionado").value = data.id_paciente; 
     document.getElementById("tableSugerencias").style.display = "none";
 
 }

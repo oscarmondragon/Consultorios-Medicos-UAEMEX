@@ -21,7 +21,10 @@
         $_POST["materno"],$_POST["fechaNac"]);
         if(is_array($data)){
             $array = $data["results"];
-            foreach ($array as $key => $value) {
+            if(count($array)===0){
+                return 0;
+            }   else {
+            /* foreach ($array as $key => $value) {
                 $dataUser = json_encode($array[$count]);
                 $dataFilter.= "<tr>".
                     "<td>".$value["nombre_pac"]."</td>".
@@ -34,14 +37,15 @@
                     "</td>".
                 "</tr>";
                 $count++;
-            }
-           echo $dataFilter;
+            } */
+           echo $array[0]["id_paciente"];
         //    echo $data["results"][0]['id_centro_costos'] ;
-        } else {
-            echo 0; //envia 0 si no encuentra sugerenecias
         }
-       
-     }
+    }  else {
+        echo 0; //envia 0 si no encuentra sugerenecias
+    }
+
+}
 
      public function getCoincidenciasHistorial()
     {
