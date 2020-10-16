@@ -44,9 +44,9 @@ class Pacientes_model extends Conexion{
                 departamento,
                 fecha_alta_pac,
                 id_usuario_consultorio) VALUES (
-                :nombre_pac,
-                :apPaterno_pac,
-                :apMaterno_pac,
+                UPPER(:nombre_pac),
+                UPPER(:apPaterno_pac),
+                UPPER(:apMaterno_pac),
                 :fecha_nacimiento_pac,
                 :sexo_pac,
                 :otro_sexo_pac,

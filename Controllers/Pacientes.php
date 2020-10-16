@@ -148,7 +148,7 @@ class Pacientes extends Controllers {
                    
                          /*Eviamos el id de consulta*/  
                 echo "Folio de consulta : ".$idConsulta."\n Se ha vinculado al paciente ".
-                $nombre." con el historial clinico registrado previamente con el nombre, apellidos y fecha de nacimiento".
+                $nombre." con la historía clinica registrada previamente con el nombre, apellidos y fecha de nacimiento".
                 "  registrada en esta consulta. Si no es l misma persona, favor de ponerse en contacto con el administrador." ;
                       
              }
@@ -195,7 +195,7 @@ class Pacientes extends Controllers {
                     "<td>".$value["des_centro_costos"]."</td>".
                     //"<td>".$value["tipo"]."</td>".
                     "<td>".$bandera."</td>".
-                    "<td><a  href= 'http://localhost/consultorios/Historia/historia'  onclick='abrirmodal(".$dataUser.")' class='btn btn-success modal-trigger'>Agregar Historial Clínico</a></td>".                   
+                    "<td><a  href= 'http://localhost/consultorios/Historia/historia'  onclick='abrirmodal(".$dataUser.")' class='btn btn-success modal-trigger'>Agregar Historia Clínica</a></td>".                   
                 "</tr>";
                     
                 }else{
@@ -207,7 +207,7 @@ class Pacientes extends Controllers {
                     "<td>".$value["apMaterno_pac"]."</td>".
                     "<td>".$value["des_centro_costos"]."</td>".
                     "<td>".$value["tipo"]."</td>".
-                    "<td>Historial Clínico completado</td>".                   
+                    "<td>Historia Clínica completada</td>".                   
                 "</tr>";
                 }
                 $count++;
