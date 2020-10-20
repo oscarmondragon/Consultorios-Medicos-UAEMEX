@@ -61,7 +61,7 @@ class HistoriasClinicas {
 
           if(response != 0){
             //$("#tableSugerencias").css("display", "block");
-            $("#tableSugerencias").css("display", "none");
+           // $("#tableSugerencias").css("display", "none");
 
            //   $("#resultCoincidencias").html(response);
           /*guardamos la coincidencia en el id de paciente*/
@@ -70,7 +70,7 @@ class HistoriasClinicas {
         //  console.log("Sin encontro coincidencias:" + response);
           
           } else {
-            $("#tableSugerencias").css("display", "none");
+            //$("#tableSugerencias").css("display", "none");
             document.getElementById("idPacienteRelacionado").value = 0; 
            // console.log("No encontro coincidencias");
           }
@@ -101,18 +101,16 @@ class HistoriasClinicas {
             fechaNac: fechaNacH
         },
             (response) => {
-                if (response != 0) {
-                    console.log("hay conicidencias");
-                    $("#tableSugerencias").css("display", "block");
+                if (response != 0) {                
 
-                    $("#registrosCHistorial").html(response);
-
-                    console.log("me regreso el id de paciente"+response);
+                  //  console.log(" hay conicidencias me regreso el id de paciente"+response);
                     localStorage.setItem("id_historial_clinico", response);
                     //document.getElementById("edadPacienteN").value = edad;
                 } else {
-                    console.log("no hay conicidencias");
-                    $("#tableSugerencias").css("display", "none");
+                   // console.log("no hay conicidencias");
+                    localStorage.setItem("id_historial_clinico", 0
+                    );
+                   // $("#tableSugerencias").css("display", "none");
 
                 }
 
@@ -192,8 +190,8 @@ class HistoriasClinicas {
         processData: false,
         type: "POST",
         success: (response) => {
-  console.log(idPaciente);
-  console.log(response);
+        // console.log(idPaciente);
+        // console.log(response);
   
           if (response == 0 && idPaciente == 0) {
             this.vaciarFormulario();
@@ -227,14 +225,14 @@ class HistoriasClinicas {
     abrirmodal() {
         try {
           //  alert("si");
-            console.log("si entra ala funcion");
+           // console.log("si entra ala funcion");
             var $myModal = $('#modalNHistoria');
-            console.log("si entra ala funcion1.5");
+            //console.log("si entra ala funcion1.5");
             $('#modalNHistoria').modal();
-            console.log("si entra ala funcion2");
+            //console.log("si entra ala funcion2");
             //principal.linkPrincipal(URLactual);
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             //alert("Error abrir modal en hc.js"+error);
         }
     }

@@ -128,7 +128,9 @@ $(function () {
         /*solo en caso de que exista una relacion con algún historial clinico*/
         
         let id_historial = localStorage.getItem("id_historial_clinico");
-       // console.log("id_historial_clinico_relacionar:" + id_historial);
+        localStorage.removeItem("id_historial_clinico");
+        //console.log("vale"+id_historial);
+       // console.log("id_historial_clinico_relacionar:" + id_his.torial);
         //alert("id_HIST:" + localStorage.getItem("id_historial_clinico"));
        // let id_historial = 2;
         //mandamos los datos al metod registrarPaciente de Paciente.js

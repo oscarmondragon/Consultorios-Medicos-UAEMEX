@@ -309,7 +309,7 @@ function getConsultasDatos(){
 
  /*apartado de reportes**/
     function reporteConsultas(){  
-        require 'fpdf\fpdf.php';
+        require 'fpdf/fpdf.php';
 
          $dataFilter = null;
         $total = null;

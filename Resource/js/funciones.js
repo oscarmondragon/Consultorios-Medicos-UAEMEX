@@ -105,7 +105,7 @@ var copiarNombre = () => {
     let fechaNac = document.getElementById("fechaNac").value;
     if (nombre != "" && apPaterno != "" && apMaterno != "" && fechaNac != "") {
         let valor = nombre + " " + apPaterno + " " + apMaterno;
-        console.log(valor+"nombre");
+        //console.log(valor+"nombre");
         //gethistoriasclinicas
         historiasClinicas.getCoincidenciasHistorialClinico(nombre, apPaterno , apMaterno, fechaNac);
         //pacientes.getCoincidencias
@@ -139,7 +139,7 @@ var calcularEdad = (fecha) => {
     let fechaNac = document.getElementById("fechaNac").value;
     if (nombre != "" && apPaterno != "" && apMaterno != "" && fechaNac != "") {
         let valor = nombre + " " + apPaterno + " " + apMaterno;
-        console.log(valor + "fecha");
+        //console.log(valor + "fecha");
         //gethistoriasclinicas
         historiasClinicas.getCoincidenciasHistorialClinico(nombre, apPaterno, apMaterno, fechaNac);
         //pacientes.getCoincidencias

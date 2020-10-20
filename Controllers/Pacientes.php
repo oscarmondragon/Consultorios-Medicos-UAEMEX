@@ -40,6 +40,7 @@ class Pacientes extends Controllers {
 
      function registrarPaciente(){
          //array para paciente
+
          $array = array(
             $_POST["nombre_pac"],$_POST["apPaterno_pac"],
             $_POST["apMaterno_pac"],$_POST["fecha_nacimiento_pac"],$_POST["sexo_pac"],
@@ -83,84 +84,77 @@ class Pacientes extends Controllers {
              
                 if($dataConsulta== 0){ // indica que se inserto el paciente y la consulta, falta poblacion_riesgo y medicina_prev
                     //enviamos arreglo de consulta, nos devuelve el id_consulta
-                        $idConsulta = $this->model->obtenerIdConsulta($this->consultaClass($arrayConsulta)); 
-                        if($idConsulta===0){ // si es igual a 0 no se encontro el id usuario
-                            echo "No se registro la consulta en la Base de datos";
-                        }  else {
-                            //convertimos en arreglo los id de poblacion_riesgo y medicina_prev
-                            $poblacionRiesgo = explode(",", $_POST["poblacion_riesgo"]);
-                            $medicinaPreventiva = explode(",",$_POST["medicina_prev"]);
+                    $vinculo="";
+                    $idConsulta = $this->model->obtenerIdConsulta($this->consultaClass($arrayConsulta)); 
+                    if($idConsulta===0){ // si es igual a 0 no se encontro el id usuario
+                        echo "No se registro la consulta en la Base de datos";
+                    }  else {
+                        //convertimos en arreglo los id de poblacion_riesgo y medicina_prev
+                        $poblacionRiesgo = explode(",", $_POST["poblacion_riesgo"]);
+                        $medicinaPreventiva = explode(",",$_POST["medicina_prev"]);
                         
                        //insertamos los valore de poblacion de riesgo
-                       if($poblacionRiesgo[0] != null){
-                         foreach ($poblacionRiesgo as $valor) {
-                             $valores = array(
-                                 $idConsulta,
-                                 $valor, NULL
-                             );
-                            $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($valores));
-                            if($dataPoblacion != 0){
-                                $dataPoblacion = 1;
-                            break;
-                            }
-                         }
-                        }
-                        
-                  //insertamos valores de medicina preventiva
-                  if($medicinaPreventiva[0] != 0){
-                         foreach ($medicinaPreventiva as $valor) {
-                            $valores = array(
+                        if($poblacionRiesgo[0] != null){
+                            foreach ($poblacionRiesgo as $valor) {
+                                $valores = array(
                                 $idConsulta,
                                 $valor, NULL
-                            );
-                           $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($valores));
-                           if($dataMedicina != 0){
-                               $dataMedicina = 1;
-                           break;
-                           }
+                                );
+                                $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($valores));
+                                if($dataPoblacion != 0){
+                                    $dataPoblacion = 1;
+                                    break;
+                                }
+                            }
                         }
-                  } 
-
-                  //guardamos en una variable la otra medicina preventiva
-                 // el id para otra medicina siempre será 0, posteriormente podemos hacer el metodo para obtener el id desde la db
-                 if($_POST["otraMedicina"] != ""){
-                    $idOtraMedicina = 0;
-                    $otraMedicinaPrev = array($idConsulta,$idOtraMedicina,$_POST["otraMedicina"]); // arreglo para mandar a registrar
-                //insertamos valores de otra medicina
-                $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($otraMedicinaPrev));
-
-                 }
-
-                  //guardamos en una variable la otra poblacion riesgo
-                 // el id para otra poblacion siempre será 0, posteriormente podemos hacer el metodo para obtener el id desde la db
-                 if($_POST["otraPoblacion"] != ""){
-                    $idOtraPoblacion = 0;
-                    $otraPobRiesgo = array($idConsulta,$idOtraPoblacion,$_POST["otraPoblacion"]); // arreglo para mandar a registrar
-                //insertamos valores de otra medicina
-                $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($otraPobRiesgo));
-
-                 }
-                 //se verifica qeu no se cuente con un id de historial clinico, 
-                 //en caso contrario se alterna la columan en la tabla de historial con el id de paciente
-                 if($_POST["id_historial_clinico"] != null){
-                    $dataHistorialclinico = $this->model->registraIdPaciente($dataCon,$_POST["id_historial_clinico"]);               
-                 }
-                   
+                        
+                        //insertamos valores de medicina preventiva
+                        if($medicinaPreventiva[0] != 0){
+                            foreach ($medicinaPreventiva as $valor) {
+                                $valores = array(
+                                    $idConsulta,
+                                    $valor, NULL
+                                    );
+                                $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($valores));
+                                if($dataMedicina != 0){
+                                    $dataMedicina = 1;
+                                    break;
+                                }
+                            }
+                        } 
+                        //guardamos en una variable la otra medicina preventiva
+                        // el id para otra medicina siempre será 0, posteriormente podemos hacer el metodo para obtener el id desde la db
+                        if($_POST["otraMedicina"] != ""){
+                            $idOtraMedicina = 0;
+                            $otraMedicinaPrev = array($idConsulta,$idOtraMedicina,$_POST["otraMedicina"]); // arreglo para mandar a registrar
+                            //insertamos valores de otra medicina
+                            $dataMedicina = $this->model->registroMedicinaPreventiva($this->medicinaClass($otraMedicinaPrev));
+                         }
+                        //guardamos en una variable la otra poblacion riesgo
+                        // el id para otra poblacion siempre será 0, posteriormente podemos hacer el metodo para obtener el id desde la db
+                        if($_POST["otraPoblacion"] != ""){
+                            $idOtraPoblacion = 0;
+                            $otraPobRiesgo = array($idConsulta,$idOtraPoblacion,$_POST["otraPoblacion"]); // arreglo para mandar a registrar
+                            //insertamos valores de otra medicina
+                            $dataPoblacion = $this->model->registroPoblacionRiesgo($this->poblacionClass($otraPobRiesgo));
+                        }
+                        //se verifica qeu no se cuente con un id de historial clinico, 
+                        //en caso contrario se alterna la columan en la tabla de historial con el id de paciente
+                        if($_POST["id_historial_clinico"] != 0){
+                            $dataHistorialclinico = $this->model->registraIdPaciente($dataCon,$_POST["id_historial_clinico"]);    
+                            $vinculo = "Se ha vinculado al paciente ".$nombre." con la historía clinica registrada previamente con el nombre, apellidos y fecha de nacimiento".
+                            "  registrada en esta consulta. Si no es l misma persona, favor de ponerse en contacto con el administrador." ;           
+                        }
                          /*Eviamos el id de consulta*/  
-                echo "Folio de consulta : ".$idConsulta."\n Se ha vinculado al paciente ".
-                $nombre." con la historía clinica registrada previamente con el nombre, apellidos y fecha de nacimiento".
-                "  registrada en esta consulta. Si no es l misma persona, favor de ponerse en contacto con el administrador." ;
-                      
-             }
-             } else{
-                 echo $dataConsulta;
-             }
-
+                        echo "Folio de consulta : ".$idConsulta."\n ".$vinculo;
+                    }
+                } else{
+                    echo $dataConsulta;
+                }
             }
-          
-         } else{
-            echo $data;
-         }
+        } else{
+           echo $data;
+        }
      }
 
     public function getPacientes()
