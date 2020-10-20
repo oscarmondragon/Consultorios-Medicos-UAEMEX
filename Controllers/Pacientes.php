@@ -187,8 +187,8 @@ class Pacientes extends Controllers {
                     "<td>".$value["apPaterno_pac"]."</td>".
                     "<td>".$value["apMaterno_pac"]."</td>".
                     "<td>".$value["des_centro_costos"]."</td>".
-                    //"<td>".$value["tipo"]."</td>".
-                    "<td>".$bandera."</td>".
+                    "<td>".$value["tipo"]."</td>".
+                    //"<td>".$bandera."</td>".
                     "<td><a  href= 'http://localhost/consultorios/Historia/historia'  onclick='abrirmodal(".$dataUser.")' class='btn btn-success modal-trigger'>Agregar Historia Clínica</a></td>".                   
                 "</tr>";
                     
