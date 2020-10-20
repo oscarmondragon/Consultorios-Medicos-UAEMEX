@@ -75,7 +75,7 @@ userData(URLactual){
 
                } else if(user.is_admin == 1){
                 document.getElementById('enlace6').style.display = 'block';
-                document.getElementById('is_admin').style.display = 'none';
+                document.getElementById('is_admin').style.display = 'block';
 
                }
 
