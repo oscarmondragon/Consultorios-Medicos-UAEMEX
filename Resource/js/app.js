@@ -651,13 +651,15 @@ var mostrarConsulta = (data) => {
 //metodo que muestra los detalles de una historia clinica
  var mostrarDetallesHistoria = (data) => {
     historiasClinicas.vaciarFormulario();
-    historiasClinicas.restablecerHistoriaClinica();
+   // historiasClinicas.restablecerHistoriaClinica();
     //Se borra el boton del fromulario(REGISTRO)
     let cambiaBoton = document.getElementById('btnNuevaHistoria');
     if (cambiaBoton != null) {
         /*Oculta el botón del formulario*/
         cambiaBoton.style.visibility = 'hidden';
     }
+    console.log(data.des_centro_costos);
+    console.log(data.tipo);
     //ocultar tabla de sugerencias
     $("#tableSugerencias").css("display", "none");
     //document.getElementById("frecCardiaca").value = data.frecuencia_cardiaca;
@@ -729,8 +731,11 @@ if(data.sexo_hc == "Mujer"){
 }
 
       $('#sexo').prop('selectedIndex',sexoId);
-      $('#centroCostoHis').prop('selectedIndex',data.id_centro_costos);
-      $('#tipoPacienteHis').prop('selectedIndex',data.tipo_paciente);
+    //  $('#centroCostoHis').prop('selectedIndex',3);
+    //  $('#tipoPacienteHis').prop('selectedIndex',2);
+      $('#centroCostoHis').prepend("<option value='1' >"+data.des_centro_costos +"</option>");
+      $('#tipoPacienteHis').prepend("<option value='1' >"+data.tipo +"</option>");
+
 
 
 
