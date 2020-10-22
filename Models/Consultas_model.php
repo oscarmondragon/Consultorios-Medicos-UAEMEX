@@ -238,7 +238,11 @@ class Consultas_model extends Conexion{
     LEFT JOIN tipo_atencion ta ON c.id_tipo_atencion = ta.id_tipo_atencion 
     LEFT JOIN consulta_poblacion_riesgo conpr ON c.id_consulta = conpr.id_consulta ";
 
-    $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') AND uc.id_consultorio = ".$id_consultorio." GROUP by c.id_consulta;";
+    if($id_consultorio == 100){
+         $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') GROUP by c.id_consulta;";
+    }else{
+        $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') AND uc.id_consultorio = ".$id_consultorio." GROUP by c.id_consulta;";
+    }
     return $response = $this->db->select1($Select,$From, $where, null);
     
     

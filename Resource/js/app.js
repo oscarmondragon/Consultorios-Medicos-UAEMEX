@@ -238,7 +238,7 @@ $(function () {
         }
     });
     $("#btnMuestraReporte").click(function () {
-                //console.log("Vamos a hacer el reporte");
+              // console.log("Vamos a hacer el reporte");
         let consultorios = document.getElementById("selectConsultorio");  
         let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
         let nombre_consultorio = consultorios.options[consultorios.selectedIndex].text;
@@ -249,13 +249,13 @@ $(function () {
 
         //mandamos los datos al metodo Reportes
 
-        if (id_consultorio == 0) {
-            console.log("eligio todos los consultorios");
-        }
+        
         
          if ((id_consultorio != 0 || id_conusltorio != null) && (fechaRango != 0 || fechaRango != null)) {
              //console.log("aqui todo bien");
-             reportes.getRepConsultasSemanal(id_consultorio, fechaRango, nombre_consultorio);           
+             //console.log("eligio todos los consultorios"+fechaRango);
+             reportes.getRepConsultasSemanal(id_consultorio, fechaRango, nombre_consultorio);       
+            // reportes.getPDF(id_consultorio, fechaRango, nombre_consultorio);
              return false; //para evitar reenvio de formulario
          } else {
              Swal.fire({
@@ -397,16 +397,17 @@ $(function () {
             })
         }
     });
-
 });
+
+
 
 //inicializar Select consultas y select semanas para el reporte*/
 //Boton de reportes
 var iniciaConsultoriosSemanas = () => {
-   // alert("Inicializamos select");
-    consultas.getConsultorios();
+    //alert("Inicializamos select");
+    reportes.getConsultorios();
     //console.log("LLEGUE3");
-    consultas.getRangosFecha();
+    reportes.getRangosFecha();
 }
 
 //metodo para llamar los pacientes que coicidan con nombre y fecha en formulario de historia clinica
@@ -558,6 +559,8 @@ var getHistoriasClinicas = () => {
 
 /*Entra a la pagina de reportes*/
 var getReportes = () => {
+   // alert("hola");
+    //console.log("Hola");
     //alert("estamos en la pagina de reportes PRINCIPAL");
     /*  console.log("LLEGUE");
       try{
@@ -658,8 +661,8 @@ var mostrarConsulta = (data) => {
         /*Oculta el botón del formulario*/
         cambiaBoton.style.visibility = 'hidden';
     }
-    console.log(data.des_centro_costos);
-    console.log(data.tipo);
+    //console.log(data.des_centro_costos);
+    //console.log(data.tipo);
     //ocultar tabla de sugerencias
     $("#tableSugerencias").css("display", "none");
     //document.getElementById("frecCardiaca").value = data.frecuencia_cardiaca;

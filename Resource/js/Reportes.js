@@ -4,29 +4,26 @@
 
     }
 
-    /*Obtiene consultorios*/
-
+/*Obtiene consultorios*/
     getConsultorios() {
         let count = 2;
-        //console.log("getconsultorios Reportes.js");
+        //console.log("getconsultorios");
         $.post(URL + "Consultas/getConsultorios",
             {}, (response) => {
                 try {
                     let item = JSON.parse(response);
-                   // console.log("item".item);
+                    //console.log("item");
                     $("#selectConsultorio").prepend(
-                        "<option value='0' disabled selected='selected'  >Elige una opción...</option>"
+                        "<option value='0' disabled selected='selected'  >Elige una opción</option>"
                     );
                     if (item.results.length > 0) {
-                        //añadimos la opcion de reportar consultas en todos los consultorios
                         document.getElementById("selectConsultorio").options[1] = new Option(
                             "Todos los consultorios",
-                            1
+                            100
                         );
                         $("select").formSelect();
-
                         //estamos obteniendo datos
-                        for (let i = 1; i < item.results.length; i++) {
+                        for (let i = 0; i < item.results.length; i++) {
                             document.getElementById("selectConsultorio").options[count] = new Option(
                                 item.results[i].nombre_consultorio,
                                 item.results[i].id_consultorio
@@ -41,7 +38,76 @@
 
     }
 
+
+/*    getConsultorios() {
+        let count = 2;
+        console.log("getconsultorios Reportes.js");
+        $.post(URL + "Consultas/getConsultorios",
+            {}, (response) => {
+                try {
+                    let item = JSON.parse(response);
+                   // console.log("item".item);
+                    $("#selectConsultorio").prepend(
+                        "<option value='101' disabled selected='selected'  >Elige una opción...</option>"
+                    );
+                    if (item.results.length > 0) {
+                        //añadimos la opcion de reportar consultas en todos los consultorios
+                        document.getElementById("selectConsultorio").options[1] = new Option(
+                            "Todos los consultorios",
+                            100
+                        );
+                        $("select").formSelect();
+
+                        //estamos obteniendo datos
+                        for (let i = 1; i < item.results.length; i++) {
+                            console.log(count);
+                            document.getElementById("selectConsultorio").options[count] = new Option(
+                                item.results[i].nombre_consultorio,
+                                item.results[i].id_consultorio
+                            );
+                            console.log(count);
+                            count++;
+                            $("select").formSelect();
+                        }
+                    }
+                } catch (error) { }
+            });
+
+    }*/
+
     /*Obtiene Rango sd e fechas desde agosto 2020 semanales*/
+    getRangosFecha() {
+        //console.log("fechas");
+        let count = 1;
+        $("#selectRango").prepend(
+            "<option value='0' disabled selected='selected'  >Elige una opción</option>"
+        );
+
+        var d = new Date('Aug 9, 2020');
+        var num = 0;
+        var fechaInicioMostrar, fechaInicioInterna, fechaFinMostrar ;
+
+        var fechaActual = new Date();
+        do {
+            fechaInicioMostrar = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+            fechaInicioInterna = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+            d.setDate(d.getDate() + 6);
+            fechaFinMostrar = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+
+
+            document.getElementById("selectRango").options[count] = new Option(
+                fechaInicioMostrar + " al " + fechaFinMostrar,
+                fechaInicioInterna
+            );
+            num = d.getDate() + 1;
+            d.setDate(num);
+            count++;
+            $("select").formSelect();
+        } while (d < fechaActual);
+
+    }
+    /*
+
     getRangosFecha() {
         let count = 1;
         $("#selectRango").prepend(
@@ -54,10 +120,10 @@
 
         var fechaActual = new Date();
         do {
-            fechaInicio = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+            fechaInicio = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 
             d.setDate(d.getDate() + 6);
-            fechaFin = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+            fechaFin = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
 
 
             document.getElementById("selectRango").options[count] = new Option(
@@ -71,7 +137,7 @@
         } while (d < fechaActual);
 
     }
-
+    */
     /* jhnfasd */
 
     getDatos() {
@@ -99,6 +165,7 @@
 
         //dia,mes/año
         var fecha = new Date(fechaRango);
+        //alert(fecha);
         fecha.setDate(fecha.getDate() + 6);
         var fechaFin = fecha.getFullYear() + "-" + (fecha.getMonth() + 1) + "-" + fecha.getDate();
         //alert("fechaIni" + fechaRango + ":FechaFin:" + fechaFin);
@@ -115,10 +182,13 @@
             processData: false,
             type: "POST",
             success: (response) => {
+               // console.log(response);
+                
                 $("#reporte").html(response);
                 $("#clonar").clone().appendTo("#oculta");
                 document.getElementById('clonar').style.display = 'none';
-               
+                window.open('../Controllers/pdfReporte.php?id=' + id_consultorio + '&fecha='
+                    + fechaRango + '&nomC=' + nombre_consultorio + '&fechaF=' + fechaFin);
                 // try {
                // let item = JSON.parse(response);
                // console.log(item);
@@ -146,6 +216,11 @@
              //   }
             }
         });
+        //id_consultorio, fechaRango, nombre_consultorio
+      /*  console.log("otra cosa"+URL);
+
+        window.open(URL+'pdfReporte.php?id=' + id_consultorio + '&fecha='
+            + fechaRango + '&nomC=' + nombre_consultorio + '&fechaF=' + fechaFin);*/
     }
 
     /*Obtiene Reporte semanal por consultorios*/

@@ -135,16 +135,24 @@
                     //console.log("Población de riesgo longitud::" + response + "id_consulta:" + id_consulta);//
                     if (item.results.length > 0) {
                         for (let i = 0; i < item.results.length; i++) {
+                            console.log("id_consulta" + id_consulta+"id_poblacion riesgo" + item.results[i].id_poblacion_riesgo);
                             //estamos obteniendo id de la población para el value    
                             if (item.results[i].id_poblacion_riesgo == 0) {//otra_población de riesgo
                                 //console.log("otra población de riesgo(resultado):" + item.results[i].observaciones);//
                                 document.getElementById("otraPoblacionRiesgo").value = item.results[i].observaciones;
                             }else if (item.results[i].id_poblacion_riesgo == 1) {//ninguna poblacion de riesgo
                                 //console.log("ninguna población(resultado):" + item.results[i].id_poblacion_riesgo);//
-                                document.getElementsByName("ninguna").item(value).checked = true;
+                                console.log("Estas en poblacionde riesgo = 1 ");
+                                document.getElementsByName("ninguna").item(0).checked = true;
+                                $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
+                                $("input:checkbox[name=poblacionRiesgo]").prop("disabled", true);
+                                //deshabilitar campo para otra poblacion riesgo
+                                $('#otraPoblacionRiesgoN').val("");
+                                $('#otraPoblacionRiesgoN').attr("disabled", true);
                             } else {//elecciones de poblacion de riesgo
-                                value = item.results[i].id_poblacion_riesgo - 1;
-                                //console.log("Población de riesgo(value) " + value);//
+                                value = item.results[i].id_poblacion_riesgo - 2;
+                                console.log("Población de riesgo(ite.results) " + item.results[i].id_poblacion_riesgo);
+                                console.log("Población de riesgo(value) " + value);
                                 document.getElementsByName("poblacionRiesgo").item(value).checked = true;
                             }
                         }

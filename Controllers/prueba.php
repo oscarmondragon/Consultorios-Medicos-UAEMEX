@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 class Consultas extends Controllers {
 
     public function __construct() {
@@ -15,7 +15,7 @@ class Consultas extends Controllers {
         
     }
 function getConsultasDatos(){
-   // alert("estas en controlador");
+    alert("estas en controlador");
     $count = 0;
     $dataFilter = null;
     $data = $this->model->getConsultasDatos();
@@ -308,8 +308,8 @@ function getConsultasDatos(){
 
 
  /*apartado de reportes**/
-   function reporteConsultas(){  
-       
+    function reporteConsultas(){  
+        require 'fpdf/fpdf.php';
 
          $dataFilter = null;
         $total = null;
@@ -320,7 +320,28 @@ function getConsultasDatos(){
         $nombre_consultorio = $_POST["nombre_consultorio"];
 
 
-       
+        $random = rand(1, 300000);
+
+        $pdf=new FPDF();
+        //cabecera
+        $pdf -> SetTitle('Reporte de consultas');
+        $pdf->AliasNbPages();
+        $pdf->SetMargins(20, 20 , 20);
+        $pdf->AddPage('L');    
+        $pdf->SetFont('Arial','B',14);
+        // T�tulo
+        $pdf->Cell(30,10,utf8_decode('Reporte semanal de consultas de '.$nombre_consultorio));
+        // Salto de l�nea
+        $pdf->Ln(20);
+        $pdf->SetFont('Arial','B',12);    
+        $pdf->SetFillColor(2,157,116);//Fondo verde de celda
+        //$pdf->SetTextColor(240, 255, 240); //Letra color blanco
+        $pdf->Cell(18,7, "Edad",1 );
+        $pdf->Cell(160,7, "Tipo de Atenci�n",1 );
+        $pdf->Cell(50,7, "Paciente de Riesgo",1);
+        // $pdf->Cell(90,7, "Diagnostico");
+        $pdf->Cell(30,7, "Fecha",1);
+        $pdf->SetFont('Arial','',10); 
    
 
         $data = $this->model->getRconsultas($id_consultorio,$fechaInicial, $fechaFinal);
@@ -334,7 +355,13 @@ function getConsultasDatos(){
                     $poblacion_riesgo = "si";
                 }else{
                     $poblacion_riesgo = "no";
-                }           
+                }
+
+                $pdf->Ln();
+                $pdf->Cell(18,7, $value["edad"] );
+                $pdf->Cell(160,7, utf8_decode($value["nombre_tipo_atencion"]) );
+                $pdf->Cell(50,7, $poblacion_riesgo);
+                $pdf->Cell(30,7, $value["fecha_consulta"]);
 
                 $dataFilter.= "<tr>".                    
                 "<td>".$value["edad"]."</td>".
@@ -348,42 +375,23 @@ function getConsultasDatos(){
             if($longitud == 0){
                 $dataFilter .= "<tr><td>No existen consultas con tu criterio de b�squeda</td></tr>";
                 echo $dataFilter;
-            }else{               
+            }else{
+                $pdf->SetFont('Arial','B',14);
+                $pdf->Ln(20);
+                $pdf->Cell(30,10,'Total '.$longitudArray.' registros');
                // $dataFilter .= "<tr><th>Total</th><th>".$longitudArray." registros</th></tr>";
                 $total .= "Total ".$longitudArray." registros";
                 $dataFilter .= "<tr><td><div id='clonar'> <div class='input-field col s6'style='margin: 0rem 0rem;'>
-                    <label id='Total' style='color: #000000; font-size: 1.5rem;'>".$total."</label></div>
-                    </div></td></tr>";
+                    <label id='Total' style='color: #000000; font-size: 1.5rem;'>".$total."</label></div><div class='input-field col s6' style='margin: 0rem 0rem;'>
+                    <a href='../reporte_semanal_consultorio".$random.".pdf' download='reporte_semanal_consultorio' onclick='borraPDF()' class='btn btn-success modal-trigger'>Descargar Archivo</a></div></div></td></tr>";
                 echo $dataFilter;            
-            }           
+            }
+            $nombrePDF = 'reporte_semanal_consultorio'.$random.'.pdf';
+            $pdf->Output('F',$nombrePDF, true);
         } else {
             echo $data;
         }
     }
-    
-   /* function reporteConsultas(){  
-        
-         $dataFilter = null;
-        $total = null;
-        $longitud = 0;
-        $id_consultorio = $_POST["id_consultorio"];
-        $fechaInicial= $_POST["fechaInicio"];
-        $fechaFinal= $_POST["fechaFin"];
-        $nombre_consultorio = $_POST["nombre_consultorio"];
-
-
-        
-   
-
-        $data = $this->model->getRconsultas($id_consultorio,$fechaInicial, $fechaFinal);
-        if(is_array($data)){
-            // echo json_encode($data);           
-            echo json_encode($data);   
-           
-        } else {
-            echo $data;
-        }
-    }*/
 
     
 
@@ -408,7 +416,24 @@ function getConsultasDatos(){
     }
 
 
+    public function TablaBasica($header)
+    {
+    //Cabecera
+    foreach($header as $col){
+        $this->Cell(40,7,$col,1);}
+        $this->Ln();
    
+        $this->Cell(40,5,"hola",1);
+        $this->Cell(40,5,"hola2",1);
+        $this->Cell(40,5,"hola3",1);
+        $this->Cell(40,5,"hola4",1);
+         $this->Ln();
+        $this->Cell(40,5,"linea ",1);
+        $this->Cell(40,5,"linea 2",1);
+        $this->Cell(40,5,"linea 3",1);
+        $this->Cell(40,5,"linea 4",1);
+    }
+
 
 
 
