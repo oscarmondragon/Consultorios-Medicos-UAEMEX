@@ -57,6 +57,7 @@
                 try {
                     let item = JSON.parse(response);
                     //console.log("item");
+
                     $("#selectConsultorio").prepend(
                         "<option value='0' disabled selected='selected'  >Elige una opción</option>"
                     );
@@ -103,11 +104,20 @@
                         //estamos obteniendo datos
                         /*alert("JSON::" + item.results.length + "::" + item.results[0].nombre_tipo_atencion + ":padre:" + item.results[0].padre);
                        */
-                        $("#tipoAtencion2").prepend(
+                       // $("#at2").remove();
+                        let var2 = "<div class='input-field col s6' id ='at2'>"
+                            + "<label for='ta2'>Tipo de atención 2</label><br>"
+                            + "<input  id='ta2' type='text'/></div >";
+                      //value='I am not editable'
+                        $("#at2").replaceWith(var2);
+                        $('#ta2').val(item.results[0].nombre_tipo_atencion);
+                        $('#ta2').attr("disabled", true);
+                       
+                    
+                       /* $("#tipoAtencion2").prepend(
                             "<option value='0' disabled selected>" + item.results[0].nombre_tipo_atencion + "</option>"
                         );
-                        //  $("#tipoAtencion2").remove();
-                        //$('#tipoAtencion2').prop('selectedIndex', 1);
+                        */
                         if (item.results[0].padre != null) {
                             $.post(URL + "Consultas/consultaTipoAtencion",
                                 { "id_tipo_atencion": item.results[0].padre }, (response) => {
@@ -115,9 +125,16 @@
                                         let item2 = JSON.parse(response);
                                         if (item2.results.length == 1) {
                                             //estamos obteniendo datos
-                                            $("#tipoAtencion").prepend(
+                                           /* $("#tipoAtencion").prepend(
                                                 "<option value='0' disabled selected='selected'>" + item2.results[0].nombre_tipo_atencion + "</option>"
-                                            );
+                                            );*/
+                                            let var1 = "<div class='input-field col s6' id ='at1'>"
+                                                + "<label for='ta1'>Tipo de atención 2</label><br>"
+                                                + "<input  id='ta1' type='text'/></div >";
+                                            //value='I am not editable'
+                                            $("#at1").replaceWith(var1);
+                                            $('#ta1').val(item2.results[0].nombre_tipo_atencion);
+                                            $('#ta1').attr("disabled", true);
                                         }
                                     } catch (error) { }
                                 });
@@ -440,6 +457,7 @@
         $('#tipoAtencion2').empty();
         $('#tipoAtencion2').prop('selectedIndex', 0);
         $('#tipoAtencion2').children('option').remove();
+        $("input:checkbox[name=poblacionRiesgo]").prop("disabled", false);
         $("input:checkbox[name=poblacionRiesgo]:checked").prop('checked', false);
         $("input:checkbox[name=medicinaPrev]:checked").prop('checked', false);
         $("input:checkbox[name=ninguna]:checked").prop('checked', false);

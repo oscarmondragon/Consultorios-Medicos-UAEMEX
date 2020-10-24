@@ -583,6 +583,18 @@ var dataPaciente = (data) => {
 
 /*funcion que envia datos de paciente para generar NUEVA consulta*/
 var pacienteNuevaConsulta = (data) => {
+   // alert("YA ENTRO");
+    var var2 = "<div class='input-field col s6' id='at2'>"
+        + "<select id='tipoAtencion2' required></select ><label>Tipo de atención 2</label></div >";
+    var var1 = "<div class='input-field col s6' id='at1'><select id ='tipoAtencion' onchange = 'selectatencion2();' required>"
+        + "</select><label>Tipo de atención</label></div >";
+    try {
+        $("#at2").replaceWith(var2);
+        $("#at1").replaceWith(var1);
+    } catch (error) {
+        console.log("Error:" +error);
+    }
+
     consultas.reestablecerUsuario();
     consultas.vaciarFormularioConsulta();
     consultas.nombrePaciente(data);
