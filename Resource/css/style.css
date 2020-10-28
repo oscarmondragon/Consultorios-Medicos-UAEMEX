@@ -46,8 +46,9 @@ footer.footerC {
     background-image: url("/consultorios/Resource/images/pie.png");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-color: white;
+    background-size: 96% 100%;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -68,7 +69,14 @@ footer.footerC {
     color: brown;
 }
 
-
+.nav-wrapper.greenBG {
+    background-image: url("/consultorios/Resource/images/encabezado.png");
+    background-repeat: no-repeat;
+    background-position: center;
+   /* background-size: contain;*/
+    background-color: white;
+    background-size: 96% 100%;
+}
 
 @media(max-width: 1024px){
     .side-nav{
@@ -77,17 +85,7 @@ footer.footerC {
     .container2 {
         margin: 10px 10px 10px;
     }
-    .nav-wrapper.greenBG {
-    background-image: url("/consultorios/Resource/images/encabezado.png");
-    background-repeat: no-repeat;
-    background-position: center;
-   /* background-size: contain;*/
-    background-color: white;
-    background-size: cover;
-    width: 100% !important;
-    height: 100% !important;
-   
-}
+    
 }
 
 
@@ -99,22 +97,10 @@ footer.footerC {
     .side-nav{
         max-width: 13%;
         display: block;
-        margin-top: 50px ;
     }
     .container2 {
         width: 76%;
-        margin: -500px 290px 0px;
-    }
-    .nav-wrapper.greenBG {
-        background-image: url("/consultorios/Resource/images/encabezado.png");
-        background-repeat: no-repeat;
-        background-position: center;
-       /* background-size: contain;*/
-        background-color: white;
-        background-size: cover;
-        width: 100% !important;
-        height: 135% !important;
-       
+        margin: -450px 290px 0px;
     }
 }
 
