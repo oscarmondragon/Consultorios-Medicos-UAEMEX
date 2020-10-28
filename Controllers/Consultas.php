@@ -318,29 +318,22 @@ function getConsultasDatos(){
         $fechaInicial= $_POST["fechaInicio"];
         $fechaFinal= $_POST["fechaFin"];
         $nombre_consultorio = $_POST["nombre_consultorio"];
-
-
-       
    
-
+   echo $id_consultorio;
+   echo "-".$fechaInicial."-".$fechaFinal;
         $data = $this->model->getRconsultas($id_consultorio,$fechaInicial, $fechaFinal);
         if(is_array($data)){
-            // echo json_encode($data);
+            echo json_encode($data);
             $array = $data["results"];
             $longitudArray = count($array);
 
             foreach ($array as $key => $value) {  
-                if($value["id_poblacion_riesgo"] != null){
-                    $poblacion_riesgo = "si";
-                }else{
-                    $poblacion_riesgo = "no";
-                }           
-
+                  
                 $dataFilter.= "<tr>".                    
-                "<td>".$value["edad"]."</td>".
-                "<td>".$value["nombre_tipo_atencion"]."</td>".
-                "<td>".$poblacion_riesgo."</td>".
-                "<td>".$value["fecha_consulta"]."</td>".                
+                "<td>".$value["id_centro_costo"]."</td>".
+                "<td>".$value["des_centro_costos"]."</td>".
+                "<td>".$value["nombre_consultorio"]."</td>".
+                "<td>".$value["count(con.id_consultorio)"]."</td>".                
                 "</tr>";             
             }
             $longitud = strlen($dataFilter);

@@ -242,14 +242,12 @@ $(function () {
         let consultorios = document.getElementById("selectConsultorio");  
         let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
         let nombre_consultorio = consultorios.options[consultorios.selectedIndex].text;
-        //console.log("Vamos a hacer el reporte" + nombre_consultorio);
+        console.log("Vamos a hacer el reporte" + nombre_consultorio + ":id:" + id_consultorio);
          let rango = document.getElementById("selectRango");
          let fechaRango = rango.options[rango.selectedIndex].value;
          //console.log("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
 
-        //mandamos los datos al metodo Reportes
-
-        
+        //mandamos los datos al metodo Reportes       
         
          if ((id_consultorio != 0 || id_conusltorio != null) && (fechaRango != 0 || fechaRango != null)) {
              //console.log("aqui todo bien");

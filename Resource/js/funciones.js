@@ -84,7 +84,7 @@ var selectatencion2 = () => {
 
     $(document).on('change', '#tipoAtencion', function (event) {
         let tipoAtencion = $("#tipoAtencion option:selected").val();
-      //  alert("El tipo de atencion es:" + tipoAtencion);
+        //alert("El tipo de atencion es:" + tipoAtencion);
         consulta.reestablecerUsuario2(tipoAtencion);
         /* if (sexo === "Otro") {
              $('#otro_sexo').attr("disabled", false);

@@ -7,12 +7,13 @@
 /*Obtiene consultorios*/
     getConsultorios() {
         let count = 2;
-        //console.log("getconsultorios");
+       // console.log("getconsultorios");
         $.post(URL + "Consultas/getConsultorios",
             {}, (response) => {
                 try {
+                    //console.log(response);
                     let item = JSON.parse(response);
-                    //console.log("item");
+                    console.log("item");
                     $("#selectConsultorio").prepend(
                         "<option value='0' disabled selected='selected'  >Elige una opción</option>"
                     );
@@ -32,8 +33,12 @@
                             count++;
                             $("select").formSelect();
                         }
+                    } else {
+                       // console.log(response);
                     }
-                } catch (error) { }
+                } catch (error) {
+                    //console.log("error"+error);
+                }
             });
 
     }
@@ -173,6 +178,7 @@
         data.append("fechaInicio", fechaRango);
         data.append("fechaFin", fechaFin);
         data.append("nombre_consultorio", nombre_consultorio);
+        console.log(id_consultorio + "" + fechaRango + "" + fechaFin+"" + nombre_consultorio);
 
         $.ajax({
             url: URL + "Consultas/reporteConsultas",
@@ -182,13 +188,15 @@
             processData: false,
             type: "POST",
             success: (response) => {
-               // console.log(response);
-                
+               console.log(response);
+                let user = JSON.parse(localStorage.getItem("user"));
+                let nomUser = user.nombre_usr + " " + user.apPaterno_usr + " " + user.apMaterno_usr;
+                console.log("nombre de usuario" + nomUser);
                 $("#reporte").html(response);
                 $("#clonar").clone().appendTo("#oculta");
                 document.getElementById('clonar').style.display = 'none';
                 window.open('../Controllers/pdfReporte.php?id=' + id_consultorio + '&fecha='
-                    + fechaRango + '&nomC=' + nombre_consultorio + '&fechaF=' + fechaFin);
+                    + fechaRango + '&nomC=' + nombre_consultorio + '&fechaF=' + fechaFin+'&nomU='+nomUser);
                 // try {
                // let item = JSON.parse(response);
                // console.log(item);
