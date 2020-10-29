@@ -207,7 +207,7 @@ class HistoriasClinicas {
               icon: 'success',
               title: 'Registro de historia clínica exitoso.',
               text: 'Se ha vinculado la historia clínica de ' +  nombreHis + " " + paternoHis + " " + maternoHis +
-              ' con el paciente registrado previamente con el nombre, apellidos y fecha de nacimiento registrada en esta historis clínica. Si no es l misma persona, favor de ponerse en contacto con el administrador.'
+              ' con el paciente registrado previamente con el nombre, apellidos y fecha de nacimiento registrada en esta historia clínica. Si no es la misma persona, favor de ponerse en contacto con el administrador.'
             });
             getHistoriasClinicas();
           } else {
