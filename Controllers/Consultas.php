@@ -333,7 +333,7 @@ function getConsultasDatos(){
                 "<td>".$value["id_centro_costo"]."</td>".
                 "<td>".$value["des_centro_costos"]."</td>".
                 "<td>".$value["nombre_consultorio"]."</td>".
-                "<td>".$value["count(con.id_consultorio)"]."</td>".                
+                "<td>".$value["count(c.id_consulta)"]."</td>".                
                 "</tr>";             
             }
             $longitud = strlen($dataFilter);

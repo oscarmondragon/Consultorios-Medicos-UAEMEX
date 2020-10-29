@@ -241,22 +241,20 @@ class Consultas_model extends Conexion{
     
 
     if($id_consultorio == 100){
+   
 
-
-     $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(con.id_consultorio) ";
-    $From =" consultorios con
-            INNER JOIN centro_costos cc on cc.id_centro_costos = con.id_centro_costo
-            LEFT JOIN usuario_consultorio uc on uc.id_usr = con.id_consultorio
-            LEFT join consulta c on uc.id_usr = c.id_medico ";
-         $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') GROUP by con.id_consultorio;";
+      $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(c.id_consulta) ";
+        $From ="consulta c inner join usuario_consultorio uc on uc.id_usr = c.id_medico 
+          inner join consultorios con on con.id_consultorio=uc.id_consultorio 
+          inner join centro_costos cc on cc.id_centro_costos = con.id_centro_costo ";
+        $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') GROUP by uc.id_consultorio;";
     }else{
-     $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(con.id_consultorio) ";
-    $From =" consultorios con
-            INNER JOIN centro_costos cc on cc.id_centro_costos = con.id_centro_costo
-            LEFT JOIN usuario_consultorio uc on uc.id_usr = con.id_consultorio
-            LEFT join consulta c on uc.id_usr = c.id_medico ";
-        //$where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') AND uc.id_consultorio = ".$id_consultorio." GROUP by c.id_consulta;";
-         $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') and con.id_consultorio = ".$id_consultorio." GROUP by con.id_consultorio;";
+     $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(c.id_consulta)";
+        $From =" consulta c inner join usuario_consultorio uc on uc.id_usr = c.id_medico 
+    inner join consultorios con on con.id_consultorio=uc.id_consultorio 
+    inner join centro_costos cc on cc.id_centro_costos = con.id_centro_costo ";
+        $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaInicial."' and '".$fechaFinal."') 
+        and con.id_consultorio = ".$id_consultorio." GROUP by uc.id_consultorio;";
     }
     return $response = $this->db->select1($Select,$From, $where, null);
     

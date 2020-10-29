@@ -221,28 +221,29 @@ return $nl;
         LEFT JOIN centro_costos cc ON cc.id_centro_costos = con.id_centro_costo ";
          $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaI."' and '".$fechaF."') GROUP by c.id_consulta;";
          */
-        $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(con.id_consultorio) ";
-        $From ="consultorios con
-            INNER JOIN centro_costos cc on cc.id_centro_costos = con.id_centro_costo
-            LEFT JOIN usuario_consultorio uc on uc.id_usr = con.id_consultorio
-            LEFT join consulta c on uc.id_usr = c.id_medico ";
-        $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaI."' and '".$fechaF."') GROUP by con.id_consultorio;";
+         
+        $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(c.id_consulta) ";
+        $From ="consulta c inner join usuario_consultorio uc on uc.id_usr = c.id_medico 
+          inner join consultorios con on con.id_consultorio=uc.id_consultorio 
+          inner join centro_costos cc on cc.id_centro_costos = con.id_centro_costo ";
+        $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaI."' and '".$fechaF."') GROUP by uc.id_consultorio;";
 
         $Select2 = " cons.id_centro_costo, cc.des_centro_costos, cons.nombre_consultorio ";
         $From2 =" consultorios cons LEFT join centro_costos cc on cons.id_centro_costo= cc.id_centro_costos ";
-        $where2 = "where cons.id_centro_costo NOT IN (SELECT con.id_centro_costo FROM consultorios con
-LEFT JOIN usuario_consultorio uc on uc.id_usr = con.id_consultorio
-LEFT join consulta c on uc.id_usr = c.id_medico 
-            WHERE c.fecha_consulta BETWEEN '".$fechaI."' and '".$fechaF."' GROUP by con.id_consultorio);";
+        $where2 = "where cons.id_centro_costo NOT IN (SELECT uc.id_centro_costos 
+          FROM consulta c inner join usuario_consultorio uc on uc.id_usr = c.id_medico 
+          inner join consultorios con on con.id_consultorio=uc.id_consultorio 
+          inner join centro_costos cc on cc.id_centro_costos = con.id_centro_costo 
+            WHERE c.fecha_consulta BETWEEN '".$fechaI."' and '".$fechaF."' GROUP by uc.id_consultorio);";
 
 
     }else{
-        $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(con.id_consultorio) ";
-        $From ="consultorios con
-            INNER JOIN centro_costos cc on cc.id_centro_costos = con.id_centro_costo
-            LEFT JOIN usuario_consultorio uc on uc.id_usr = con.id_consultorio
-            LEFT join consulta c on uc.id_usr = c.id_medico ";
-        $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaI."' and '".$fechaF."') and con.id_consultorio = ".$id." GROUP by con.id_consultorio;";
+
+        $Select = " con.id_centro_costo, cc.des_centro_costos, con.nombre_consultorio, count(c.id_consulta)";
+        $From =" consulta c inner join usuario_consultorio uc on uc.id_usr = c.id_medico 
+    inner join consultorios con on con.id_consultorio=uc.id_consultorio 
+    inner join centro_costos cc on cc.id_centro_costos = con.id_centro_costo ";
+        $where = " WHERE (c.fecha_consulta BETWEEN '".$fechaI."' and '".$fechaF."') and con.id_consultorio = ".$id." GROUP by uc.id_consultorio;";
 
         
     } 
@@ -300,13 +301,13 @@ LEFT join consulta c on uc.id_usr = c.id_medico
                     $pdf->MultiCell(95,7,  utf8_decode($value["nombre_consultorio"]),'T',false);
                     $cx = 237;
                     $pdf->SetXY($cx,$cy);
-                    $pdf->MultiCell(37,7, $value["count(con.id_consultorio)"],'T');  
+                    $pdf->MultiCell(37,7, $value["count(c.id_consulta)"],'T');  
                   //  $cy =$cy+7;
                 }else{
                     $pdf->Cell(27,7, $value["id_centro_costo"],'T',false );
                     $pdf->Cell(95,7, utf8_decode($value["des_centro_costos"]),'T',false );
                     $pdf->Cell(95,7,  utf8_decode($value["nombre_consultorio"]),'T',false);                   
-                    $pdf->Cell(37,7, $value["count(con.id_consultorio)"],'T');  
+                    $pdf->Cell(37,7, $value["count(c.id_consulta)"],'T');  
                     $cy =$cy+7;
                 }
                 if($cy > 180){
