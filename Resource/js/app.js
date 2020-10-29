@@ -355,10 +355,19 @@ $(function () {
         let pronostico = document.getElementById("pronostico").value;
 
         //el idPaciente sera 0 si no tiene coincidencias con algun paciente registrado
-        let idPaciente = localStorage.getItem("idPacienteRelacionado");
+        idPaciente = localStorage.getItem("idPacienteRelacionado");
+       // console.log("id de paciente storage::" + idPaciente + "::");
+        
+        if (idPaciente == null) {
+            idPaciente = document.getElementById("idPacienteRelacionado").value;
+           // console.log("id de paciente element::" + idPaciente + "::");        
+            
+        }
+        //console.log("id de paciente1::" + idPaciente + "::");
+       // let idPaciente = localStorage.getItem("idPacienteRelacionado");
         
 
-       console.log("id de paciente::"+idPaciente+"::");
+      // console.log("P final::"+idPaciente+"::");
 
 
    
@@ -528,7 +537,7 @@ var getHistoriasClinicas = () => {
             instance.open();
             //inicializa valores de los combos
             historiasClinicas.restablecerHistoriaClinica();
-            alert("filtrarH"+array.nombre_pac+":"+array.id_paciente);
+           // alert("filtrarH"+array.nombre_pac+":"+array.id_paciente);
             //deshabilita metodo que busca coincidencias de pacientes
             var deshabilitaBusqueda = document.getElementById('fechaNacHis');
             if (deshabilitaBusqueda != null) {

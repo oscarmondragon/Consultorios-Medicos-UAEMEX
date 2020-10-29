@@ -202,7 +202,9 @@ class HistoriasClinicas {
             });
             getHistoriasClinicas();
           } else if(response == 0 && idPaciente != 0) {
-            this.vaciarFormulario();
+              this.vaciarFormulario();
+              localStorage.removeItem("idPacienteRelacionado");
+              console.log("removido" + localStorage.getItem("idPacienteRelacionado") + "::");
             Swal.fire({
               icon: 'success',
               title: 'Registro de historia clínica exitoso.',
