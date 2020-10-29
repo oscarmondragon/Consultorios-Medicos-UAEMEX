@@ -268,7 +268,7 @@ $(function () {
     $("#btnNuevaHistoria").click(function () {
        // alert("registro nueva historia");
 
-        //obtenemos id del usuario a registrar la historia clinica
+        //obtenemos id del usuario que registra la historia clinica
         let user = JSON.parse(localStorage.getItem("user"));
         let userId = user.id_usr;
 
@@ -355,13 +355,13 @@ $(function () {
         let pronostico = document.getElementById("pronostico").value;
 
         //el idPaciente sera 0 si no tiene coincidencias con algun paciente registrado
-    
-       let idPaciente = document.getElementById("idPacienteRelacionado").value;
+        let idPaciente = localStorage.getItem("idPacienteRelacionado");
+        
 
-       //console.log("id de paciente::"+idPaciente+"::");
+       console.log("id de paciente::"+idPaciente+"::");
 
 
-       
+   
 
         //mandamos los datos al metodo registrarHistoria de HistoriasClinicas.js
       
@@ -521,14 +521,14 @@ var getHistoriasClinicas = () => {
         //se verifica si existe un id de paciente previo para crear historial
         let id_pacPhist = localStorage.getItem("id_pacientePhistorial");
         var array = JSON.parse(id_pacPhist);
-        //alert("filtrarHC":nombre:"+array.nombre_pac+":");
+        
         if (id_pacPhist != null) {
            // alert("si contiene algo");
             var instance = M.Modal.getInstance($('#modalNHistoria'));
             instance.open();
             //inicializa valores de los combos
             historiasClinicas.restablecerHistoriaClinica();
-
+            alert("filtrarH"+array.nombre_pac+":"+array.id_paciente);
             //deshabilita metodo que busca coincidencias de pacientes
             var deshabilitaBusqueda = document.getElementById('fechaNacHis');
             if (deshabilitaBusqueda != null) {
@@ -545,7 +545,9 @@ var getHistoriasClinicas = () => {
             document.getElementById("maternoHis").disabled = true;
             document.getElementById("fechaNacHis").value = array.fecha_nacimiento_pac;
             document.getElementById("fechaNacHis").disabled = true;
-            document.getElementById("idPacienteRelacionado").value = array.id_paciente;            
+            document.getElementById("idPacienteRelacionado").value = array.id_paciente;
+            localStorage.setItem("idPacienteRelacionado", array.id_paciente );
+            
         }
         localStorage.removeItem("id_pacientePhistorial");
     } catch (error) {
