@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     require('../fpdf/fpdf.php');
     include('../Library/Conexion.php');
     include('../Library/QueryManager.php');
@@ -281,6 +281,7 @@ return $nl;
             $longitudArray = count($array);
             $cx = 20;
             $cy = 0;
+$contador = 0;
 
             foreach ($array as $key => $value) {        
 
@@ -301,13 +302,15 @@ return $nl;
                     $pdf->MultiCell(95,7,  utf8_decode($value["nombre_consultorio"]),'T',false);
                     $cx = 237;
                     $pdf->SetXY($cx,$cy);
-                    $pdf->MultiCell(37,7, $value["count(c.id_consulta)"],'T');  
+                    $pdf->MultiCell(37,7, $value["count(c.id_consulta)"],'T');
+$contador = $contador +$value["count(c.id_consulta)"];  
                   //  $cy =$cy+7;
                 }else{
                     $pdf->Cell(27,7, $value["id_centro_costo"],'T',false );
                     $pdf->Cell(95,7, utf8_decode($value["des_centro_costos"]),'T',false );
                     $pdf->Cell(95,7,  utf8_decode($value["nombre_consultorio"]),'T',false);                   
-                    $pdf->Cell(37,7, $value["count(c.id_consulta)"],'T');  
+                    $pdf->Cell(37,7, $value["count(c.id_consulta)"],'T'); 
+$contador = $contador +$value["count(c.id_consulta)"];
                     $cy =$cy+7;
                 }
                 if($cy > 180){
@@ -370,7 +373,7 @@ return $nl;
             }else{
                 $pdf->SetFont('Arial','B',14);
                 $pdf->Ln(20);
-                $pdf->Cell(30,10,'Total '.$longitudArray.' registros');          
+                $pdf->Cell(30,10,'Total '.$contador.' registros');          
             }
             $nombrePDF = 'reporte_semanal_consultorio'.$random.'.pdf';
             $pdf->Output();

@@ -326,7 +326,7 @@ function getConsultasDatos(){
             echo json_encode($data);
             $array = $data["results"];
             $longitudArray = count($array);
-
+$contador = 0;
             foreach ($array as $key => $value) {  
                   
                 $dataFilter.= "<tr>".                    
@@ -334,7 +334,8 @@ function getConsultasDatos(){
                 "<td>".$value["des_centro_costos"]."</td>".
                 "<td>".$value["nombre_consultorio"]."</td>".
                 "<td>".$value["count(c.id_consulta)"]."</td>".                
-                "</tr>";             
+                "</tr>";    
+                $contador = $contador +  $value["count(c.id_consulta)"];  
             }
             $longitud = strlen($dataFilter);
             // $dataFilter .= "<tr><td>longitud".$longitud."::</td></tr>";
@@ -343,7 +344,7 @@ function getConsultasDatos(){
                 echo $dataFilter;
             }else{               
                // $dataFilter .= "<tr><th>Total</th><th>".$longitudArray." registros</th></tr>";
-                $total .= "Total ".$longitudArray." registros";
+                $total .= "Total ".$contador." registros";
                 $dataFilter .= "<tr><td><div id='clonar'> <div class='input-field col s6'style='margin: 0rem 0rem;'>
                     <label id='Total' style='color: #000000; font-size: 1.5rem;'>".$total."</label></div>
                     </div></td></tr>";
