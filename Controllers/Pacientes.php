@@ -143,7 +143,7 @@ class Pacientes extends Controllers {
                         if($_POST["id_historial_clinico"] != 0){
                             $dataHistorialclinico = $this->model->registraIdPaciente($dataCon,$_POST["id_historial_clinico"]);    
                             $vinculo = "Se ha vinculado al paciente ".$nombre." con la historía clinica registrada previamente con el nombre, apellidos y fecha de nacimiento".
-                            "  registrada en esta consulta. Si no es l misma persona, favor de ponerse en contacto con el administrador." ;           
+                            "  registrada en esta consulta. Si no es la misma persona, favor de ponerse en contacto con el administrador." ;           
                         }
                          /*Eviamos el id de consulta*/  
                         echo "Folio de consulta : ".$idConsulta."\n ".$vinculo;

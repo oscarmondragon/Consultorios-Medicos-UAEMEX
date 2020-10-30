@@ -242,7 +242,7 @@ $(function () {
         let consultorios = document.getElementById("selectConsultorio");  
         let id_consultorio = consultorios.options[consultorios.selectedIndex].value;
         let nombre_consultorio = consultorios.options[consultorios.selectedIndex].text;
-        console.log("Vamos a hacer el reporte" + nombre_consultorio + ":id:" + id_consultorio);
+        //console.log("Vamos a hacer el reporte" + nombre_consultorio + ":id:" + id_consultorio);
          let rango = document.getElementById("selectRango");
          let fechaRango = rango.options[rango.selectedIndex].value;
          //console.log("consultorio id;"+id_consultorio+":fechaRango:"+fechaRango);
@@ -601,7 +601,7 @@ var pacienteNuevaConsulta = (data) => {
         $("#at2").replaceWith(var2);
         $("#at1").replaceWith(var1);
     } catch (error) {
-        console.log("Error:" +error);
+     //   console.log("Error:" +error);
     }
 
     consultas.reestablecerUsuario();
@@ -798,7 +798,9 @@ $().ready(() => {
     // $(".modal").modal();
     // $('select').formSelect();
     M.AutoInit();
-
+    //console.log("Hola");
+   
+        
     switch (URLactual) {
         case PATHNAME + "Principal/principal":
             if(localStorage.getItem("user") != null){
@@ -806,21 +808,48 @@ $().ready(() => {
             document.getElementById('messageBienvenida').innerHTML = "Bienvenid@ " +
              "<strong>" +user.nombre_usr + "</strong> al Sistema de Control de Consultorios UAEM";
             }
+            if (localStorage.getItem("user") == null) {
+               // console.log("Hola null");
+                window.location.href = URL + "Usuarios/destroySession";
+            }
             break;
         case PATHNAME + "Pacientes/pacientes":
-            getPacientes();
+            if (localStorage.getItem("user") == null) {
+               // console.log("Hola null");
+                window.location.href = URL + "Usuarios/destroySession";
+            } else {
+                getPacientes();
+            }
             break;
         case PATHNAME + "Consultas/consultas":
-            getPacientesC();
+            if (localStorage.getItem("user") == null) {
+                //console.log("Hola null");
+                window.location.href = URL + "Usuarios/destroySession";
+            } else {
+                getPacientesC();
+            }
             break;
         case PATHNAME + "Historia/historia":
-            getHistoriasClinicas();
+            if (localStorage.getItem("user") == null) {
+                //console.log("Hola null");
+                window.location.href = URL + "Usuarios/destroySession";
+            } else {
+                getHistoriasClinicas();
+            }
             break;
         case PATHNAME + "Descargables/descargables":
-            
+            if (localStorage.getItem("user") == null) {
+                //console.log("Hola null");
+                window.location.href = URL + "Usuarios/destroySession";
+            } 
             break;
         case PATHNAME + "Reportes/reportes":
-            getReportes();
+            if (localStorage.getItem("user") == null) {
+                //console.log("Hola null");
+                window.location.href = URL +"Usuarios/destroySession";
+            } else {
+                getReportes();
+            }
             break;
     }
 

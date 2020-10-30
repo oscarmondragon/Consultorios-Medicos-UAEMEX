@@ -217,7 +217,7 @@ class HistoriasClinicas {
             Swal.fire({
               icon: 'error',
               title: 'Oops ocurrio un error...',
-              text:  'Los datos no han sido guardados.Te recomendamos resumir los textos.'
+              text:  'Los datos no han sido guardados.Te recomendamos resumir los textos a un párrafo de 4 lineas.'
             });
             //console.log(response);
           }  else {
