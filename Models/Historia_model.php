@@ -156,7 +156,7 @@ class Historia_model extends Conexion{
                 :id_usuario_consultorio
                 )";
                 $data = $this->db->insert('historial_clinico',$historiaClinica,$value);
-                if($data == true){
+                if($data == 1){
                     return 0;              
                 } else {
                     return $data;

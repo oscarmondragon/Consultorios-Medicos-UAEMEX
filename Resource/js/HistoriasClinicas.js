@@ -190,32 +190,41 @@ class HistoriasClinicas {
         processData: false,
         type: "POST",
         success: (response) => {
-        // console.log(idPaciente);
-        // console.log(response);
-  
-          if (response == 0 && idPaciente == 0) {
+           
+          if (response == "0" && idPaciente == 0) {
             this.vaciarFormulario();
             Swal.fire({
               icon: 'success',
               title: 'Registro de historia clínica exitoso.',
               text: ""
             });
+          //  console.log(response);
             getHistoriasClinicas();
-          } else if(response == 0 && idPaciente != 0) {
+          } else if(response == "0" && idPaciente != 0) {
               this.vaciarFormulario();
               localStorage.removeItem("idPacienteRelacionado");
-              console.log("removido" + localStorage.getItem("idPacienteRelacionado") + "::");
+            //  console.log("removido" + localStorage.getItem("idPacienteRelacionado") + "::");
             Swal.fire({
               icon: 'success',
               title: 'Registro de historia clínica exitoso.',
               text: 'Se ha vinculado la historia clínica de ' +  nombreHis + " " + paternoHis + " " + maternoHis +
               ' con el paciente registrado previamente con el nombre, apellidos y fecha de nacimiento registrada en esta historia clínica. Si no es la misma persona, favor de ponerse en contacto con el administrador.'
             });
+            //console.log(response);
             getHistoriasClinicas();
-          } else {
+          } else  if(response.includes("Changing some columns to TEXT or BLOB or using ROW_FORMAT=DYNAMIC or ROW_FORMAT=COMPRESSED may help.")){
+            this.vaciarFormulario();
             Swal.fire({
               icon: 'error',
-              title: 'Oops...',
+              title: 'Oops ocurrio un error...',
+              text:  'Los datos no han sido guardados.Te recomendamos resumir los textos.'
+            });
+            //console.log(response);
+          }  else {
+            this.vaciarFormulario();
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops ocurrio un error...',
               text: response
             });
           }
