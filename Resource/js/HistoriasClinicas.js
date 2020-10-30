@@ -213,7 +213,7 @@ class HistoriasClinicas {
             //console.log(response);
             getHistoriasClinicas();
           } else  if(response.includes("Changing some columns to TEXT or BLOB or using ROW_FORMAT=DYNAMIC or ROW_FORMAT=COMPRESSED may help.")){
-            this.vaciarFormulario();
+            //this.vaciarFormulario();
             Swal.fire({
               icon: 'error',
               title: 'Oops ocurrio un error...',
@@ -221,7 +221,7 @@ class HistoriasClinicas {
             });
             //console.log(response);
           }  else {
-            this.vaciarFormulario();
+            //this.vaciarFormulario();
             Swal.fire({
               icon: 'error',
               title: 'Oops ocurrio un error...',
